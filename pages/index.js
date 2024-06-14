@@ -44,22 +44,22 @@ export default function Home() {
       <Shadow
         variant={"primary-lighter"}
         position={{ top: "5%", left: "10%" }}
-        opacity={0.15}
+        opacity={0.05}
       />
       <Shadow
         variant={"secondary-lighter"}
         position={{ top: "20%", right: "5%" }}
-        opacity={0.1}
+        opacity={0.05}
       />
       <Shadow
         variant={"secondary-lighter"}
         position={{ top: "50%", left: "10%" }}
-        opacity={0.1}
+        opacity={0.05}
       />
       <Shadow
         variant={"primary-lighter"}
         position={{ bottom: "0%", right: "10%" }}
-        opacity={0.15}
+        opacity={0.05}
       />
       <Container>
         <section className="text-center mb-12">

@@ -10,22 +10,22 @@ const TeamsPage = () => (
     <Shadow
       position={{ top: "0%", left: "0%" }}
       variant={"primary-lighter"}
-      opacity={0.15}
+      opacity={0.05}
     />
     <Shadow
       position={{ top: "25%", right: "0%" }}
       variant={"secondary-lighter"}
-      opacity={0.15}
+      opacity={0.05}
     />
     <Shadow
       position={{ top: "50%", left: "0%" }}
       variant={"primary-lighter"}
-      opacity={0.15}
+      opacity={0.05}
     />
     <Shadow
       position={{ bottom: "0%", right: "0%" }}
       variant={"secondary-lighter"}
-      opacity={0.15}
+      opacity={0.05}
     />
     <Container className={"overflow-hidden"}>
       <section className="mb-12 lg:mb-24">

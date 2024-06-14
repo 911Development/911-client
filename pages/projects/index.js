@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { intersectingSliceActions } from "@/store/intersecting-slice/intersecting-slice";
+import Shadow from "@/components/ui/Shadow";
 
 const ProjectsPage = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,27 @@ const ProjectsPage = () => {
   }, [isIntersecting]);
 
   return (
-    <section className="py-32 lg:py-48 overflow-hidden !min-w-full">
+    <section className="relative py-32 lg:py-48 overflow-hidden !min-w-full">
+      <Shadow
+        position={{ top: "0%", left: "0%" }}
+        variant={"primary-lighter"}
+        opacity={0.05}
+      />
+      <Shadow
+        position={{ top: "25%", right: "0%" }}
+        variant={"secondary-lighter"}
+        opacity={0.05}
+      />
+      <Shadow
+        position={{ top: "50%", left: "0%" }}
+        variant={"primary-lighter"}
+        opacity={0.05}
+      />
+      <Shadow
+        position={{ bottom: "0%", right: "0%" }}
+        variant={"secondary-lighter"}
+        opacity={0.05}
+      />
       <Container>
         <section id="kibrisevim" className="lg:grid lg:grid-cols-12 mb-48">
           <section className="lg:col-span-4 mb-16 lg:mb-0">
