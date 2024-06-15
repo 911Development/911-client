@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleLeft,
   faAngleRight,
+  faGear,
   faGears,
   faHome,
   faInfoCircle,
@@ -13,20 +14,18 @@ import {
 import Link from "next/link";
 import Shadow from "./ui/Shadow";
 import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { intersectingSliceActions } from "@/store/intersecting-slice/intersecting-slice";
 import { faInstagram, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import Button from "./ui/Button";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import Card from "./ui/Card";
+import Image from "next/image";
+import { themeSliceActions } from "@/store/theme-slice/theme-slice";
 
-const SidebarHeader = ({ handleSidebar, isInterSectingOnDark }) => {
+const SidebarHeader = ({ handleSidebar }) => {
   return (
-    <section
-      className={`offcanvas-header flex items-center sticky top-0 py-6 p-4 ${
-        isInterSectingOnDark ? "bg-black" : "bg-white shadow-sm"
-      }`}
-    >
+    <section className="offcanvas-header flex items-center sticky top-0 py-6 p-4 bg-black shadow-sm">
       <Link
         href={"/"}
         className="text-primary text-2xl font-semibold"
@@ -51,9 +50,13 @@ const SidebarHeader = ({ handleSidebar, isInterSectingOnDark }) => {
   );
 };
 
-const SidebarBody = ({ handleSidebar, isInterSectingOnDark }) => {
-  const dispatch = useDispatch();
+const SidebarBody = ({ handleSidebar }) => {
   const router = useRouter();
+
+  const themeState = useSelector((state) => state.theme);
+  const dispatch = useDispatch();
+
+  const [themeIcon, setThemeICon] = useState("");
   const [currentSidebarBodyPage, setCurrentSidebarBodyPage] = useState(0);
 
   const handleNextSidebarBodyPage = () => {
@@ -66,7 +69,16 @@ const SidebarBody = ({ handleSidebar, isInterSectingOnDark }) => {
       setCurrentSidebarBodyPage(currentSidebarBodyPage - 1);
   };
 
+  const handleSwitchTheme = () =>
+    dispatch(themeSliceActions.setTheme(theme === "dark" ? "light" : "dark"));
+
   const { pathname } = router;
+  const { theme } = themeState;
+
+  useEffect(() => {
+    if (theme === "dark") setThemeICon("/icons/themes/light.png");
+    if (theme === "light") setThemeICon("/icons/themes/dark_white.png");
+  }, [theme]);
 
   return (
     <div className="offcanvas-body flex overflow-x-hidden">
@@ -80,9 +92,7 @@ const SidebarBody = ({ handleSidebar, isInterSectingOnDark }) => {
           <Link
             href={"https://www.instagram.com/greenbirddevelopment/"}
             target="_blank"
-            className={`col-span-6 ${
-              isInterSectingOnDark ? "bg-dark" : "bg-white"
-            } shadow-sm rounded py-2 px-4`}
+            className="col-span-6 bg-dark shadow-sm rounded py-2 px-4"
           >
             <section className="flex items-center gap-2 bg-gradient-to-r from-purple-500 to-orange-500 bg-clip-text text-transparent rounded mb-1">
               <FontAwesomeIcon icon={faInstagram} className="text-purple-500" />
@@ -93,9 +103,7 @@ const SidebarBody = ({ handleSidebar, isInterSectingOnDark }) => {
           <Link
             href={"https://www.linkedin.com/company/greenbird-development/"}
             target="_blank"
-            className={`col-span-6 ${
-              isInterSectingOnDark ? "bg-dark" : "bg-white"
-            } shadow-sm rounded py-2 px-4`}
+            className="col-span-6 bg-dark shadow-sm rounded py-2 px-4"
           >
             <section className="flex items-center gap-2 bg-gradient-to-r from-blue-800 to-blue-100 bg-clip-text text-transparent rounded mb-1">
               <FontAwesomeIcon icon={faLinkedin} className="text-blue-500" />
@@ -106,58 +114,34 @@ const SidebarBody = ({ handleSidebar, isInterSectingOnDark }) => {
             </p>
           </Link>
         </section>
-        <hr
-          className={`my-10 ${
-            isInterSectingOnDark ? "border-gray-500" : "border-gray-400"
-          }`}
-        />
+        <hr className="border-gray-500 my-8" />
         <ul className="space-y-2">
           <li>
             <Link
               href={"/"}
-              className={`flex items-center gap-2 rounded ${
-                isInterSectingOnDark && "py-3 px-4"
-              } ${
-                !isInterSectingOnDark && pathname === "/" && "text-primary"
-              } ${
-                isInterSectingOnDark &&
-                pathname === "/" &&
-                "bg-dark text-primary"
+              className={`flex items-center gap-2 rounded py-3 px-4 ${
+                pathname === "/" && "bg-dark text-primary"
               }`}
-              onClick={() => {
-                dispatch(intersectingSliceActions.setIntersectingOnDark(false));
-                handleSidebar();
-              }}
+              onClick={() => handleSidebar()}
             >
-              <FontAwesomeIcon icon={faHome} size="lg" />
+              <FontAwesomeIcon icon={faHome} />
               <span className="text-lg">Home</span>
             </Link>
           </li>
           <li>
             <Link
               href={"/about"}
-              className={`flex items-center gap-2 rounded ${
-                isInterSectingOnDark && "py-3 px-4"
-              } ${
-                !isInterSectingOnDark && pathname === "/about" && "text-primary"
-              } ${
-                isInterSectingOnDark &&
-                pathname === "/about" &&
-                "bg-dark text-primary"
+              className={`flex items-center gap-2 rounded py-3 px-4 ${
+                pathname === "/about" && "bg-dark text-primary"
               }`}
-              onClick={() => {
-                dispatch(intersectingSliceActions.setIntersectingOnDark(false));
-                handleSidebar();
-              }}
+              onClick={() => handleSidebar()}
             >
-              <FontAwesomeIcon icon={faInfoCircle} size="lg" />
+              <FontAwesomeIcon icon={faInfoCircle} />
               <span className="text-lg">About</span>
             </Link>
           </li>
           <li
-            className={`flex items-center gap-2 rounded ${
-              isInterSectingOnDark && "py-3 px-4"
-            } active:text-primary ${isInterSectingOnDark && "active:bg-dark"}`}
+            className="flex items-center gap-2 rounded active:text-primary active:bg-dark py-3 px-4"
             onClick={handleNextSidebarBodyPage}
           >
             <FontAwesomeIcon icon={faGears} />
@@ -167,14 +151,8 @@ const SidebarBody = ({ handleSidebar, isInterSectingOnDark }) => {
           <li>
             <Link
               href={"/teams"}
-              className={`flex items-center gap-2 rounded ${
-                isInterSectingOnDark && "py-3 px-4"
-              } ${
-                !isInterSectingOnDark && pathname === "/teams" && "text-primary"
-              } ${
-                isInterSectingOnDark &&
-                pathname === "/teams" &&
-                "bg-dark text-primary"
+              className={`flex items-center gap-2 rounded py-3 px-4 ${
+                pathname === "/teams" && "bg-dark text-primary"
               }`}
               onClick={() => {
                 dispatch(intersectingSliceActions.setIntersectingOnDark(false));
@@ -188,16 +166,8 @@ const SidebarBody = ({ handleSidebar, isInterSectingOnDark }) => {
           <li>
             <Link
               href={"/projects"}
-              className={`flex items-center gap-2 rounded ${
-                isInterSectingOnDark && "py-3 px-4"
-              } ${
-                !isInterSectingOnDark &&
-                pathname === "/projects" &&
-                "text-primary"
-              } ${
-                isInterSectingOnDark &&
-                pathname === "/projects" &&
-                "bg-dark text-primary"
+              className={`flex items-center gap-2 rounded py-3 px-4 ${
+                pathname === "/projects" && "bg-dark text-primary"
               }`}
               onClick={() => {
                 dispatch(intersectingSliceActions.setIntersectingOnDark(false));
@@ -209,11 +179,28 @@ const SidebarBody = ({ handleSidebar, isInterSectingOnDark }) => {
             </Link>
           </li>
         </ul>
-        <hr
-          className={`my-10 ${
-            isInterSectingOnDark ? "border-gray-500" : "border-gray-400"
-          }`}
-        />
+        <hr className="border-gray-500 mt-8 mb-4" />
+        <ul>
+          <li
+            className="flex items-center gap-2 rounded bg-dark py-3 px-4"
+            onClick={() => {
+              handleSwitchTheme();
+              handleSidebar();
+            }}
+          >
+            {themeIcon !== "" && (
+              <Image
+                src={themeIcon}
+                width={96}
+                height={96}
+                className="w-9 cursor-pointer rounded transition-all p-1"
+                alt="Theme Icon"
+              />
+            )}
+            <span className="text-lg">Switch Theme</span>
+          </li>
+        </ul>
+        <hr className="border-gray-500 mt-4 mb-8" />
         <section>
           <h1 className="font-semibold mb-2">Contact us</h1>
           <p className="mb-4">
@@ -223,10 +210,8 @@ const SidebarBody = ({ handleSidebar, isInterSectingOnDark }) => {
           <Link href={"/contact"}>
             <Button
               type={"button"}
-              variant={`${
-                isInterSectingOnDark ? "primary-outline" : "primary-inverse"
-              }`}
-              className={"flex items-center gap-2"}
+              variant="primary-outline"
+              className="flex items-center gap-2"
               onClick={handleSidebar}
             >
               <FontAwesomeIcon icon={faPaperPlane} />
@@ -250,30 +235,18 @@ const SidebarBody = ({ handleSidebar, isInterSectingOnDark }) => {
         </section>
         <section>
           <Link href={"/#services"} scroll={false} onClick={handleSidebar}>
-            <Card
-              className={`rounded shadow !py-4 mb-8 ${
-                isInterSectingOnDark ? "bg-dark" : "bg-white"
-              }`}
-            >
+            <Card className="rounded shadow !py-4 mb-8 bg-dark">
               <Card.Header clasName={"mb-4"}>
                 <h1 className="text-primary text-xl">Design</h1>
               </Card.Header>
               <Card.Body clasName={"grid grid-cols-12"}>
                 <section className="col-span-6">
                   <ul className="text-muted space-y-2">
-                    <li
-                      className={`inline-block ${
-                        isInterSectingOnDark ? "bg-dark" : "bg-blue-100"
-                      } text-primary-darker rounded-md`}
-                    >
+                    <li className="inline-block bg-primary-darkest text-light rounded-md">
                       <span className="block px-1 text-nowrap">Web Design</span>
                     </li>
                     <li className="text-nowrap">Mobile Design</li>
-                    <li
-                      className={`inline-block ${
-                        isInterSectingOnDark ? "bg-dark" : "bg-blue-100"
-                      } text-primary-darker rounded-md`}
-                    >
+                    <li className="inline-block bg-primary-darkest text-light rounded-md">
                       <span className="block px-1 text-nowrap">UI / UX</span>
                     </li>
                   </ul>
@@ -289,11 +262,7 @@ const SidebarBody = ({ handleSidebar, isInterSectingOnDark }) => {
             </Card>
           </Link>
           <Link href={"/#services"} scroll={false} onClick={handleSidebar}>
-            <Card
-              className={`rounded shadow !py-4 mb-8 ${
-                isInterSectingOnDark ? "bg-dark" : "bg-white"
-              }`}
-            >
+            <Card className="rounded shadow !py-4 mb-8 bg-dark">
               <Card.Header clasName={"mb-4"}>
                 <h1 className="text-primary text-xl">Development</h1>
               </Card.Header>
@@ -308,11 +277,7 @@ const SidebarBody = ({ handleSidebar, isInterSectingOnDark }) => {
                 <section className="col-span-6">
                   <ul className="text-muted space-y-2">
                     <li>Mobile Apps</li>
-                    <li
-                      className={`inline-block ${
-                        isInterSectingOnDark ? "bg-dark" : "bg-blue-100"
-                      } text-primary-darker rounded-md`}
-                    >
+                    <li className="inline-block bg-primary-darkest text-light rounded-md">
                       <span className="block px-1 text-nowrap">Web Apps</span>
                     </li>
                     <li>Wordpress</li>
@@ -323,22 +288,14 @@ const SidebarBody = ({ handleSidebar, isInterSectingOnDark }) => {
             </Card>
           </Link>
           <Link href={"/#services"} scroll={false} onClick={handleSidebar}>
-            <Card
-              className={`rounded shadow !py-4 ${
-                isInterSectingOnDark ? "bg-dark" : "bg-white"
-              }`}
-            >
+            <Card className="rounded shadow !py-4 bg-dark">
               <Card.Header clasName={"mb-4"}>
                 <h1 className="text-primary text-xl">Other</h1>
               </Card.Header>
               <Card.Body clasName={"grid grid-cols-12"}>
                 <ul className="text-muted space-y-4 ms-auto">
                   <li className="text-nowrap">Social Media</li>
-                  <li
-                    className={`inline-block ${
-                      isInterSectingOnDark ? "bg-dark" : "bg-blue-100"
-                    } text-primary-darker rounded-md`}
-                  >
+                  <li className="inline-block bg-primary-darkest text-light rounded-md">
                     <span className="block px-1 text-nowrap">
                       Digital Marketing
                     </span>
@@ -363,7 +320,7 @@ const SidebarFooter = () => (
   </div>
 );
 
-const Sidebar = ({ show, handleSidebar, isInterSectingOnDark }) => {
+const Sidebar = ({ show, handleSidebar }) => {
   useEffect(() => {
     const body = document.querySelector("body");
 
@@ -379,28 +336,10 @@ const Sidebar = ({ show, handleSidebar, isInterSectingOnDark }) => {
       animate={{
         translateX: show ? "0%" : "100%",
       }}
-      className={`offcanvas ${
-        isInterSectingOnDark ? "bg-black text-white" : "backdrop-blur-lg"
-      } fixed w-screen h-screen flex flex-col top-0 overflow-y-scroll z-50`}
+      className="offcanvas bg-black text-white fixed w-screen h-screen flex flex-col top-0 overflow-y-scroll z-50"
     >
-      <Shadow
-        position={{ top: "0%", left: "0%" }}
-        opacity={isInterSectingOnDark ? 0 : 0.2}
-        variant={"primary-lighter"}
-      />
-      <Shadow
-        position={{ bottom: "0%", right: "0%" }}
-        opacity={isInterSectingOnDark ? 0 : 0.2}
-        variant={"secondary-lighter"}
-      />
-      <SidebarHeader
-        handleSidebar={handleSidebar}
-        isInterSectingOnDark={isInterSectingOnDark}
-      />
-      <SidebarBody
-        handleSidebar={handleSidebar}
-        isInterSectingOnDark={isInterSectingOnDark}
-      />
+      <SidebarHeader handleSidebar={handleSidebar} />
+      <SidebarBody handleSidebar={handleSidebar} />
       <SidebarFooter />
     </motion.div>
   );

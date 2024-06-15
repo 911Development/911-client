@@ -9,21 +9,14 @@ import Card from "@/components/ui/Card";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import useIntersectionObserver from "@/hooks/useIntersectionObserver";
-import { intersectingSliceActions } from "@/store/intersecting-slice/intersecting-slice";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 export default function Home() {
-  const dispatch = useDispatch();
-
-  const [ref, isIntersecting] = useIntersectionObserver({
-    // root: typeof document !== "undefined" && document.getElementById("project"),
-    root: null,
-    rootMargin: "0%",
-    threshold: 0,
-  });
-
+  const themeState = useSelector((state) => state.theme);
+  const [kibrisevimIcon, setKibrisevimIcon] = useState("");
   const [currentServicePage, setCurrentServicePage] = useState(0);
+
+  const { theme } = themeState;
 
   const nextService = () => {
     if (currentServicePage < 1) setCurrentServicePage(currentServicePage + 1);
@@ -36,8 +29,9 @@ export default function Home() {
   };
 
   useEffect(() => {
-    dispatch(intersectingSliceActions.setIntersectingOnDark(isIntersecting));
-  }, [isIntersecting]);
+    if (theme === "dark") setKibrisevimIcon("/icons/apps/kibrisevim_light.svg");
+    if (theme === "light") setKibrisevimIcon("/icons/apps/kibrisevim_dark.svg");
+  }, [theme]);
 
   return (
     <section className="relative py-16 lg:py-24">
@@ -56,11 +50,11 @@ export default function Home() {
         position={{ top: "50%", left: "10%" }}
         opacity={0.05}
       />
-      <Shadow
+      {/* <Shadow
         variant={"primary-lighter"}
-        position={{ bottom: "0%", right: "10%" }}
+        position={{ bottom: "0%", left: "50%" }}
         opacity={0.05}
-      />
+      /> */}
       <Container>
         <section className="text-center mb-12">
           <h1 className="text-4xl font-semibold text-primary mb-6">
@@ -80,7 +74,7 @@ export default function Home() {
           <input
             type="email"
             placeholder="send your email"
-            className="border rounded-full outline-none focus:border-primary w-full text-sm p-4 transition-all"
+            className=" w-full border rounded-full outline-none text-sm bg-white dark:bg-dark dark:border-gray-600 focus:border-primary focus:dark:border-primary-darker p-4 transition-all"
           />
           <Button
             type={"button"}
@@ -111,7 +105,7 @@ export default function Home() {
                   height={48}
                   alt="Development"
                 />
-                <span className="absolute opacity-0 group-hover:block group-hover:opacity-100 bg-white text-xs rounded-md border p-3 -right-full group-hover:translate-x-1/2 select-none transition-all">
+                <span className="absolute opacity-0 group-hover:block group-hover:opacity-100 bg-white dark:bg-dark dark:border-none text-xs rounded-md border p-3 -right-full group-hover:translate-x-1/2 select-none transition-all">
                   Development
                 </span>
               </div>
@@ -133,7 +127,7 @@ export default function Home() {
                   height={48}
                   alt="Magic"
                 />
-                <span className="absolute opacity-0 group-hover:block group-hover:opacity-100 bg-white text-xs rounded-md border p-3 -top-4 group-hover:-translate-y-1/2 select-none transition-all">
+                <span className="absolute opacity-0 group-hover:block group-hover:opacity-100 bg-white dark:bg-dark dark:border-none text-xs rounded-md border p-3 -top-4 group-hover:-translate-y-1/2 select-none transition-all">
                   Creativity
                 </span>
               </div>
@@ -157,7 +151,7 @@ export default function Home() {
                   height={48}
                   alt="Development"
                 />
-                <span className="absolute opacity-0 group-hover:block group-hover:opacity-100 bg-white text-xs rounded-md border p-3 -top-4 group-hover:-translate-y-1/2 select-none transition-all">
+                <span className="absolute opacity-0 group-hover:block group-hover:opacity-100 bg-white dark:bg-dark dark:border-none text-xs rounded-md border p-3 -top-4 group-hover:-translate-y-1/2 select-none transition-all">
                   SEO
                 </span>
               </div>
@@ -179,7 +173,7 @@ export default function Home() {
                   height={48}
                   alt="Marketing"
                 />
-                <span className="absolute opacity-0 group-hover:block group-hover:opacity-100 bg-white text-xs rounded-md text-center border p-3 top-1/2 group-hover:translate-y-1/2 select-none transition-all z-50">
+                <span className="absolute opacity-0 group-hover:block group-hover:opacity-100 bg-white dark:bg-dark dark:border-none text-xs rounded-md text-center border p-3 top-1/2 group-hover:translate-y-1/2 select-none transition-all z-50">
                   Digital Marketing
                 </span>
               </div>
@@ -203,7 +197,7 @@ export default function Home() {
                   height={48}
                   alt="Design"
                 />
-                <span className="absolute opacity-0 group-hover:block group-hover:opacity-100 bg-white text-xs rounded border p-3 -top-4 group-hover:-translate-y-1/2 select-none transition-all z-50">
+                <span className="absolute opacity-0 group-hover:block group-hover:opacity-100 bg-white dark:bg-dark dark:border-none text-xs rounded border p-3 -top-4 group-hover:-translate-y-1/2 select-none transition-all z-50">
                   Design
                 </span>
               </div>
@@ -225,7 +219,7 @@ export default function Home() {
                   height={48}
                   alt="UI/UX"
                 />
-                <span className="absolute opacity-0 group-hover:block group-hover:opacity-100 bg-white text-xs rounded-md border p-3 top-1/2 group-hover:translate-y-1/2 select-none transition-all z-50">
+                <span className="absolute opacity-0 group-hover:block group-hover:opacity-100 bg-white dark:bg-dark dark:border-none text-xs rounded-md border p-3 top-1/2 group-hover:translate-y-1/2 select-none transition-all z-50">
                   UI/UX
                 </span>
               </div>
@@ -249,7 +243,7 @@ export default function Home() {
                   height={48}
                   alt="Social Media"
                 />
-                <span className="absolute opacity-0 group-hover:block group-hover:opacity-100 bg-white text-xs rounded-md border p-3 -right-full group-hover:translate-x-1/2 select-none transition-all">
+                <span className="absolute opacity-0 group-hover:block group-hover:opacity-100 bg-white dark:bg-dark dark:border-none text-xs rounded-md border p-3 -right-full group-hover:translate-x-1/2 select-none transition-all">
                   Social Media
                 </span>
               </div>
@@ -804,13 +798,16 @@ export default function Home() {
               <section className="col-span-4">
                 <Card>
                   <Card.Header>
-                    <Image
-                      src={"/icons/apps/kibrisevim_dark.png"}
-                      width={676}
-                      height={652}
-                      className="lg:w-3/4 xl:w-2/4 mb-4"
-                      alt="Logo Design"
-                    />
+                    {kibrisevimIcon !== "" && (
+                      <Image
+                        src={kibrisevimIcon}
+                        width={676}
+                        height={652}
+                        className="lg:w-3/4 xl:w-2/4 mb-4"
+                        alt="Logo Design"
+                        priority
+                      />
+                    )}
                     <h1 className="text-primary text-xl">Logo Design</h1>
                   </Card.Header>
                   <Card.Body clasName={"my-4"}>
@@ -1057,13 +1054,15 @@ export default function Home() {
               <section className="col-span-6">
                 <Card>
                   <Card.Header>
-                    <Image
-                      src={"/icons/apps/kibrisevim_dark.png"}
-                      width={676}
-                      height={652}
-                      className="w-4/4 mb-4"
-                      alt="Logo Design"
-                    />
+                    {kibrisevimIcon !== "" && (
+                      <Image
+                        src={kibrisevimIcon}
+                        width={676}
+                        height={652}
+                        className="w-4/4 mb-4"
+                        alt="Logo Design"
+                      />
+                    )}
                     <h1 className="text-primary text-xl">Logo Design</h1>
                   </Card.Header>
                   <Card.Body clasName={"my-4"}>
@@ -1191,7 +1190,7 @@ export default function Home() {
           </section>
         </Container>
       </section>
-      <section ref={ref} className="bg-black text-white my-48 py-24 lg:py-32">
+      <section className="bg-black text-white my-48 py-24 lg:py-32">
         <Container>
           <section className="flex flex-col lg:flex-row items-center justify-center mb-24 lg:mb-32">
             <Image

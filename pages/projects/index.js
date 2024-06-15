@@ -2,48 +2,38 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Container from "@/components/Container";
 import Button from "@/components/ui/Button";
-import useIntersectionObserver from "@/hooks/useIntersectionObserver";
 import { Exo2_700 } from "../_app";
 import Link from "next/link";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { intersectingSliceActions } from "@/store/intersecting-slice/intersecting-slice";
 import Shadow from "@/components/ui/Shadow";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const ProjectsPage = () => {
-  const dispatch = useDispatch();
+  const themeState = useSelector((state) => state.theme);
+  const [kibrisevimIcon, setKibrisevimIcon] = useState("");
 
-  const [ref, isIntersecting] = useIntersectionObserver({
-    // root: typeof document !== "undefined" && document.getElementById("project"),
-    root: null,
-    rootMargin: "0%",
-    threshold: 0.1,
-  });
+  const { theme } = themeState;
 
   useEffect(() => {
-    dispatch(intersectingSliceActions.setIntersectingOnDark(isIntersecting));
-  }, [isIntersecting]);
+    if (theme === "dark") setKibrisevimIcon("/icons/apps/kibrisevim_light.svg");
+    if (theme === "light") setKibrisevimIcon("/icons/apps/kibrisevim_dark.svg");
+  }, [theme]);
 
   return (
     <section className="relative py-32 lg:py-48 overflow-x-hidden !min-w-full">
       <Shadow
-        position={{ top: "0%", left: "0%" }}
         variant={"primary-lighter"}
+        position={{ top: "5%", left: "10%" }}
         opacity={0.05}
       />
       <Shadow
-        position={{ top: "25%", right: "0%" }}
         variant={"secondary-lighter"}
+        position={{ top: "20%", right: "5%" }}
         opacity={0.05}
       />
       <Shadow
-        position={{ top: "50%", left: "0%" }}
-        variant={"primary-lighter"}
-        opacity={0.05}
-      />
-      <Shadow
-        position={{ bottom: "0%", right: "0%" }}
         variant={"secondary-lighter"}
+        position={{ top: "50%", left: "10%" }}
         opacity={0.05}
       />
       <Container>
@@ -58,13 +48,16 @@ const ProjectsPage = () => {
               viewport={{ once: true }}
               className="block lg:hidden mb-16"
             >
-              <Image
-                src={"/icons/apps/kibrisevim_dark.png"}
-                width={350}
-                height={125}
-                className="w-2/3 mx-auto"
-                alt="Kibrisevim Logo"
-              />
+              {kibrisevimIcon !== "" && (
+                <Image
+                  src={kibrisevimIcon}
+                  width={350}
+                  height={125}
+                  className="w-2/3 mx-auto"
+                  alt="Kibrisevim Logo"
+                  priority
+                />
+              )}
             </motion.section>
             <motion.section
               initial={{ x: "-100%" }}
@@ -93,17 +86,19 @@ const ProjectsPage = () => {
               viewport={{ once: true }}
               className="hidden lg:block mb-12"
             >
-              <Image
-                src={"/icons/apps/kibrisevim_dark.png"}
-                width={350}
-                height={125}
-                className="w-1/3 ms-auto"
-                alt="Kibrisevim Logo"
-              />
+              {kibrisevimIcon !== "" && (
+                <Image
+                  src={kibrisevimIcon}
+                  width={350}
+                  height={125}
+                  className="w-1/3 ms-auto"
+                  alt="Kibrisevim Logo"
+                />
+              )}
             </motion.section>
             <section className="mb-6">
               <h1 className="text-2xl text-center lg:text-end mb-6 lg:mb-2">
-                <strong className="text-dark">Kıbrıs</strong>
+                <strong className="text-dark dark:text-white">Kıbrıs</strong>
                 <strong>evim |</strong> Real Estate Application
               </h1>
               <p className="text-lg text-muted text-center mx-auto block lg:hidden">
@@ -136,7 +131,7 @@ const ProjectsPage = () => {
           </section>
         </section>
       </Container>
-      <section ref={ref} id="ellie" className="bg-black text-white py-48 mb-48">
+      <section id="ellie" className="bg-black text-white py-48 mb-48">
         <Container className={"lg:grid lg:grid-cols-12"}>
           <section className="lg:col-span-4 mb-16 lg:mb-0">
             <motion.section

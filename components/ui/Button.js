@@ -23,6 +23,10 @@ const Button = ({ type, variant, className, onClick, children }) => {
       classes +=
         "bg-none shadow-none border-none text-primary hover:text-primary-darker py-0 px-0";
       break;
+
+    case "link":
+      classes += "bg-none shadow-none border-none py-0 px-0";
+      break;
   }
 
   return (

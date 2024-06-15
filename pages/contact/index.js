@@ -1,12 +1,18 @@
 import Container from "@/components/Container";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import Shadow from "@/components/ui/Shadow";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 
 const ContactPage = () => (
   <section className="relative py-16 lg:py-24">
+    <Shadow
+      variant={"primary-lighter"}
+      position={{ top: "5%", left: "10%" }}
+      opacity={0.025}
+    />
     <Container>
       <section className="mb-12">
         <h1 className="text-3xl text-center text-primary mb-3">
@@ -37,16 +43,16 @@ const ContactPage = () => (
               />
             </section>
             <section className="grid grid-cols-12 gap-3 mb-4 lg:mb-0">
-              <section className="col-span-3 flex items-center justify-center gap-1 bg-white border rounded-md">
+              <section className="col-span-4 lg:col-span-3 flex items-center justify-center gap-1 bg-white dark:bg-dark border dark:border-gray-600 rounded-md">
                 <Image
-                  src={"https://img.icons8.com/fluency/20/turkey-circular.png"}
-                  width={20}
-                  height={20}
+                  src={"https://img.icons8.com/fluency/22/turkey-circular.png"}
+                  width={22}
+                  height={22}
                   alt="Turkey"
                 />
                 <span>Turkey</span>
               </section>
-              <section className="col-span-9">
+              <section className="col-span-8 lg:col-span-9">
                 <section className="relative">
                   <Input
                     type={"phone"}
@@ -61,7 +67,7 @@ const ContactPage = () => (
           <section className="col-span-6">
             <textarea
               placeholder="Your message"
-              className="w-full h-full text-sm rounded-md border focus:border-primary outline-none transition-all py-3 px-2.5 mb-3"
+              className="w-full h-full bg-white dark:bg-black text-sm rounded-md border dark:border-gray-600 focus:border-primary outline-none transition-all py-3 px-2.5 mb-3"
               style={{ resize: "none" }}
             />
             <Button

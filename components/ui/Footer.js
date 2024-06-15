@@ -8,7 +8,7 @@ import { faInstagram, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { motion } from "framer-motion";
 
 const Footer = () => (
-  <footer className="relative bg-primary-darker mt-56 py-12">
+  <footer className="relative bg-primary dark:bg-primary-darkest mt-56 py-12">
     <Container className={"text-white"}>
       <section className="lg:grid lg:grid-cols-12 mb-8 lg:mb-0">
         <section className="lg:col-span-6 mb-48 lg:mb-0">

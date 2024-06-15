@@ -1,30 +1,43 @@
 import Head from "next/head";
-import Navbar from "./ui/Navbar";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Header from "./ui/Header";
 import Footer from "./ui/Footer";
-import { useRouter } from "next/router";
+import { themeSliceActions } from "@/store/theme-slice/theme-slice";
+import Navbar from "./ui/Navbar";
 
 const Layout = ({ Poppins_400, children }) => {
-  const router = useRouter();
-  const interSectingState = useSelector((state) => state.intersectingSlice);
+  const themeState = useSelector((state) => state.theme);
 
-  const { pathname } = router;
-  const { isInterSectingOnDark } = interSectingState;
+  useEffect(() => {
+    if (typeof window !== "undefined")
+      localStorage.setItem("theme", themeState.theme);
+
+    const [html, body] = [
+      document.querySelector("html"),
+      document.querySelector("body"),
+    ];
+
+    if (themeState.theme === "dark") {
+      html.classList.add("dark");
+      body.className = "bg-black text-white";
+    }
+
+    if (themeState.theme === "light") {
+      html.classList.remove("dark");
+      body.className = "bg-white text-dark";
+    }
+  }, [themeState]);
 
   return (
     <>
       <Head>
         <meta name="description" content="911 Creativity and Development" />
       </Head>
-      <header
-        className={`sticky top-0 bg-white shadow-sm ${
-          isInterSectingOnDark &&
-          (pathname === "/" || pathname === "/projects") &&
-          "!bg-black text-white"
-        } py-6 z-50 ${Poppins_400.className}`}
-      >
-        <Navbar isInterSectingOnDark={isInterSectingOnDark} />
-      </header>
+      {/* <header className={`sticky top-0 py-4 z-50 ${Poppins_400.className}`}>
+        <Navbar theme={themeState.theme} />
+      </header> */}
+      <Header />
       <main className={Poppins_400.className}>{children}</main>
       <Footer />
     </>

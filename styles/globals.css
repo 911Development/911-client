@@ -6,6 +6,7 @@
   --color-primary: 66, 133, 244;
   --color-primary-lighter: 123, 170, 247;
   --color-primary-darker: 53, 106, 195;
+  --color-primary-darkest: 20, 40, 73;
   --color-secondary: 190, 52, 255;
   --color-secondary-darker: 171, 47, 230;
   --color-secondary-lighter: 203, 93, 255;
@@ -19,15 +20,3 @@ body {
   overflow-x: hidden !important;
   min-width: 100% !important;
 }
-
-/* #offcanvas-overlay {
-  width: 100%;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-} */
-
-/* .offcanvas {
-  background-image: url("/public/offcanvas-background.png");
-} */
