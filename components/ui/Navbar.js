@@ -103,16 +103,14 @@ const Navbar = () => {
           </li>
         </ul>
         <section className="hidden lg:flex items-center gap-4 col-span-3 ms-auto">
-          {themeIcon !== "" && (
-            <Image
-              src={themeIcon}
-              width={96}
-              height={96}
-              className="w-9 cursor-pointer rounded hover:bg-light hover:dark:bg-dark transition-all p-1"
-              onClick={handleSwitchTheme}
-              alt="Theme Icon"
-            />
-          )}
+          <Image
+            src={themeIcon}
+            width={96}
+            height={96}
+            className="w-9 cursor-pointer rounded hover:bg-light hover:dark:bg-dark transition-all p-1"
+            onClick={handleSwitchTheme}
+            alt="Theme Icon"
+          />
           <Link href={"/contact"}>
             <Button
               type={"button"}

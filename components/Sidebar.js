@@ -188,15 +188,13 @@ const SidebarBody = ({ handleSidebar }) => {
               handleSidebar();
             }}
           >
-            {themeIcon !== "" && (
-              <Image
-                src={themeIcon}
-                width={96}
-                height={96}
-                className="w-9 cursor-pointer rounded transition-all p-1"
-                alt="Theme Icon"
-              />
-            )}
+            <Image
+              src={themeIcon}
+              width={96}
+              height={96}
+              className="w-9 cursor-pointer rounded transition-all p-1"
+              alt="Theme Icon"
+            />
             <span className="text-lg">Switch Theme</span>
           </li>
         </ul>
