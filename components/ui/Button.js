@@ -11,11 +11,13 @@ const Button = ({ type, variant, className, onClick, children }) => {
 
     case "primary-outline":
       classes +=
-        "bg-none bg-transparent shadow-none hover:text-white border border-primary hover:bg-primary";
+        "bg-none bg-transparent shadow-none text-primary hover:text-white border border-primary hover:bg-primary";
+      break;
 
     case "primary-inverse":
       classes +=
         "bg-white text-primary hover:bg-primary hover:text-white shadow-none";
+      break;
 
     case "primary-link":
       classes +=
