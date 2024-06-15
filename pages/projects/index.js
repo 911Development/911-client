@@ -25,7 +25,7 @@ const ProjectsPage = () => {
   }, [isIntersecting]);
 
   return (
-    <section className="relative py-32 lg:py-48 overflow-hidden !min-w-full">
+    <section className="relative py-32 lg:py-48 overflow-x-hidden !min-w-full">
       <Shadow
         position={{ top: "0%", left: "0%" }}
         variant={"primary-lighter"}
