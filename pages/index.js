@@ -34,27 +34,7 @@ export default function Home() {
   }, [theme]);
 
   return (
-    <section className="relative py-16 lg:py-24">
-      <Shadow
-        variant={"primary-lighter"}
-        position={{ top: "5%", left: "10%" }}
-        opacity={0.05}
-      />
-      <Shadow
-        variant={"secondary-lighter"}
-        position={{ top: "20%", right: "5%" }}
-        opacity={0.05}
-      />
-      <Shadow
-        variant={"secondary-lighter"}
-        position={{ top: "50%", left: "10%" }}
-        opacity={0.05}
-      />
-      {/* <Shadow
-        variant={"primary-lighter"}
-        position={{ bottom: "0%", left: "50%" }}
-        opacity={0.05}
-      /> */}
+    <section className="py-16 lg:py-24">
       <Container>
         <section className="text-center mb-12">
           <h1 className="text-4xl font-semibold text-primary mb-6">

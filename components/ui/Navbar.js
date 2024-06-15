@@ -21,7 +21,7 @@ const Navbar = () => {
 
   const [headerDropdown, setHeaderDropdown] = useState(false);
   const [sidebar, setSidebar] = useState(false);
-  const [themeIcon, setThemeICon] = useState("");
+  const [themeIcon, setThemeICon] = useState("/icons/themes/dark.png");
 
   const { pathname } = router;
   const { theme } = themeState;
@@ -36,6 +36,9 @@ const Navbar = () => {
     if (theme === "dark") setThemeICon("/icons/themes/light.png");
     if (theme === "light") setThemeICon("/icons/themes/dark.png");
   }, [theme]);
+
+  console.log("theme", theme);
+  console.log("themeIcon", themeIcon);
 
   return (
     <nav className="relative">

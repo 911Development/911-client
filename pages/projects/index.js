@@ -21,21 +21,6 @@ const ProjectsPage = () => {
 
   return (
     <section className="relative py-32 lg:py-48 overflow-x-hidden !min-w-full">
-      <Shadow
-        variant={"primary-lighter"}
-        position={{ top: "5%", left: "10%" }}
-        opacity={0.05}
-      />
-      <Shadow
-        variant={"secondary-lighter"}
-        position={{ top: "20%", right: "5%" }}
-        opacity={0.05}
-      />
-      <Shadow
-        variant={"secondary-lighter"}
-        position={{ top: "50%", left: "10%" }}
-        opacity={0.05}
-      />
       <Container>
         <section id="kibrisevim" className="lg:grid lg:grid-cols-12 mb-48">
           <section className="lg:col-span-4 mb-16 lg:mb-0">
