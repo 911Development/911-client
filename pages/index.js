@@ -357,12 +357,12 @@ export default function Home() {
           Our Teams
         </h1>
         <section
-          className="flex items-center flex-nowrap lg:gap-6 overflow-x-scroll snap-mandatory snap-always snap-x snap-center touch-pan-x select-none"
+          className="flex items-center flex-nowrap lg:gap-6 overflow-x-scroll snap-mandatory snap-x select-none"
           style={{
             scrollbarWidth: "none",
           }}
         >
-          <section className="relative min-w-96 snap-center touch-pan-x">
+          <section className="min-w-96 snap-center snap-always">
             <Card className={"bg-no-repeat bg-cover bg-opacity-0"}>
               <Card.Header clasName={"text-center"}>
                 <h1 className="text-primary text-xl mb-2">Backend Team</h1>
@@ -422,7 +422,7 @@ export default function Home() {
               </Card.Footer>
             </Card>
           </section>
-          <section className="min-w-96 snap-center touch-pan-x">
+          <section className="min-w-96 snap-center snap-always">
             <Card>
               <Card.Header clasName={"text-center"}>
                 <h1 className="text-primary text-xl mb-2">Frontend Team</h1>
@@ -481,7 +481,7 @@ export default function Home() {
               </Card.Footer>
             </Card>
           </section>
-          <section className="min-w-96 snap-center touch-pan-x">
+          <section className="min-w-96 snap-center snap-always">
             <Card>
               <Card.Header clasName={"text-center"}>
                 <h1 className="text-primary text-xl mb-2">Mobile Team</h1>
@@ -540,7 +540,7 @@ export default function Home() {
               </Card.Footer>
             </Card>
           </section>
-          <section className="min-w-96 snap-center touch-pan-x">
+          <section className="min-w-96 snap-center snap-always">
             <Card>
               <Card.Header clasName={"text-center"}>
                 <h1 className="text-primary text-xl mb-2">Social Media Team</h1>
@@ -600,7 +600,7 @@ export default function Home() {
               </Card.Footer>
             </Card>
           </section>
-          <section className="min-w-96 snap-center touch-pan-x">
+          <section className="min-w-96 snap-center snap-always">
             <Card>
               <Card.Header clasName={"text-center"}>
                 <h1 className="text-primary text-xl mb-2">Design Team</h1>
@@ -660,7 +660,7 @@ export default function Home() {
               </Card.Footer>
             </Card>
           </section>
-          <section className="min-w-96 snap-center touch-pan-x">
+          <section className="min-w-96 snap-center snap-always">
             <Card>
               <Card.Header clasName={"text-center"}>
                 <h1 className="text-primary text-xl mb-2">DevOps Team</h1>
@@ -985,12 +985,12 @@ export default function Home() {
             Our Services
           </h1>
           <section
-            className="flex items-start flex-nowrap overflow-x-scroll snap-mandatory snap-x snap-center touch-pan-x select-none"
+            className="flex items-start flex-nowrap overflow-x-scroll snap-mandatory snap-x select-none"
             style={{
               scrollbarWidth: "none",
             }}
           >
-            <motion.section className="min-w-full grid grid-cols-12 snap-center">
+            <motion.section className="min-w-full grid grid-cols-12 snap-center snap-always">
               <section className="col-span-6">
                 <Card>
                   <Card.Header>
@@ -1076,7 +1076,7 @@ export default function Home() {
                 </Card>
               </section>
             </motion.section>
-            <motion.section className="min-w-full grid grid-cols-12 snap-center">
+            <motion.section className="min-w-full grid grid-cols-12 snap-center snap-always">
               <section className="col-span-6">
                 <Card>
                   <Card.Header>
@@ -1165,7 +1165,7 @@ export default function Home() {
                 </Card>
               </section>
             </motion.section>
-            <motion.section className="min-w-full grid grid-cols-12 snap-center">
+            <motion.section className="min-w-full grid grid-cols-12 snap-center snap-always">
               <section className="col-span-6">
                 <Card>
                   <Card.Header>
@@ -1222,7 +1222,7 @@ export default function Home() {
               />
             </motion.section>
             <section className="lg:col-span-8 flex flex-col lg:items-end">
-              <p className="text-3xl lg:text-6xl font-semibold text-center lg:text-end leading-loose mb-24">
+              <p className="text-3xl lg:text-6xl font-semibold text-center lg:text-end leading-snug mb-24">
                 House <strong className="text-primary">rental</strong> and&nbsp;
                 <strong className="text-primary">buying</strong> application is
                 now in Cyprus! Moreover, all regions are supported!
