@@ -922,7 +922,7 @@ export default function Home() {
                 }
                 width={48}
                 height={48}
-                className="absolute top-1/2 left-6 -translate-y-1/2 cursor-pointer rotate-90 hover:scale-110 opacity-40 hover:opacity-90 transition-all"
+                className="absolute top-1/2 left-6 -translate-y-1/2 cursor-pointer rotate-90 hover:scale-110 opacity-40 dark:opacity-90 hover:dark:opacity-100 hover:opacity-90 transition-all"
                 onClick={previousService}
                 alt="Previous"
               />
@@ -934,7 +934,7 @@ export default function Home() {
                 }
                 width={48}
                 height={48}
-                className="absolute top-1/2 right-6 -translate-y-1/2 cursor-pointer -rotate-90 hover:scale-110 opacity-40 hover:opacity-90 transition-all"
+                className="absolute top-1/2 right-6 -translate-y-1/2 cursor-pointer -rotate-90 hover:scale-110 opacity-40 dark:opacity-90 hover:dark:opacity-100 hover:opacity-90 transition-all"
                 onClick={nextService}
                 alt="Next"
               />
@@ -1170,7 +1170,7 @@ export default function Home() {
           </section>
         </Container>
       </section>
-      <section className="bg-black text-white my-48 py-24 lg:py-32">
+      <section className="bg-black dark:!bg-transparent text-white my-48 py-24 lg:py-32">
         <Container>
           <section className="flex flex-col lg:flex-row items-center justify-center mb-24 lg:mb-32">
             <Image

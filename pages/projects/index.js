@@ -116,7 +116,7 @@ const ProjectsPage = () => {
           </section>
         </section>
       </Container>
-      <section id="ellie" className="bg-black text-white py-48 mb-48">
+      <section className="bg-black dark:bg-transparent text-white py-48 mb-48">
         <Container className={"lg:grid lg:grid-cols-12"}>
           <section className="lg:col-span-4 mb-16 lg:mb-0">
             <motion.section

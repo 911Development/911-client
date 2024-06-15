@@ -37,9 +37,6 @@ const Navbar = () => {
     if (theme === "light") setThemeICon("/icons/themes/dark.png");
   }, [theme]);
 
-  console.log("theme", theme);
-  console.log("themeIcon", themeIcon);
-
   return (
     <nav className="relative">
       <Container className={"flex lg:grid lg:grid-cols-12 items-center"}>

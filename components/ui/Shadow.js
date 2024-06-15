@@ -1,6 +1,6 @@
 const Shadow = ({ position, opacity, variant }) => (
   <div
-    className="absolute"
+    className="absolute z-50"
     style={{
       top: position.top,
       left: position.left,
