@@ -2,9 +2,12 @@ import Button from "./ui/Button";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const HeaderDropdown = ({ show }) => {
+  const router = useRouter();
   const [display, setDisplay] = useState("none");
 
   useEffect(() => {
@@ -49,7 +52,7 @@ const HeaderDropdown = ({ show }) => {
               </section>
             </section>
           </section>
-          <section className="col-span-4 text-center">
+          <section className="col-span-5 text-center">
             <h1 className="text-lg mb-4 text-primary">Development</h1>
             <section className="grid grid-cols-12">
               <section className="col-span-6">
@@ -70,7 +73,7 @@ const HeaderDropdown = ({ show }) => {
               </section>
             </section>
           </section>
-          <section className="col-span-4 text-end">
+          <section className="col-span-3 text-end">
             <h1 className="text-lg text-primary text-end mb-4">Other</h1>
             <ul className="text-muted space-y-4 ms-auto">
               <li className="text-nowrap">Social Media</li>
@@ -83,21 +86,11 @@ const HeaderDropdown = ({ show }) => {
             </ul>
           </section>
         </section>
-        <div className="flex items-center justify-between px-8 bg-gradient-to-r from-primary-darker to-primary-lighter text-white py-4">
+        <div className="flex items-center justify-center px-8 bg-gradient-to-r from-primary-darker to-primary-lighter text-white py-4">
           <p>
-            If you cannot find the service you are looking for, you can contact
-            us.
+            All our services are prepared professionally with the most
+            up-to-date technologies.
           </p>
-          <Button
-            type={"button"}
-            variant={"primary-inverse"}
-            className={
-              "flex items-center gap-2 rounded-full hover:bg-primary-darker"
-            }
-          >
-            <FontAwesomeIcon icon={faPaperPlane} />
-            <span>Contact</span>
-          </Button>
         </div>
       </motion.div>
     </div>

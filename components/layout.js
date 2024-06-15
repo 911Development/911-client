@@ -11,8 +11,6 @@ const Layout = ({ Poppins_400, children }) => {
   const { pathname } = router;
   const { isInterSectingOnDark } = interSectingState;
 
-  console.log("isInterSectingOnDark", isInterSectingOnDark);
-
   return (
     <>
       <Head>
