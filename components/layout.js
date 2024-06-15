@@ -55,6 +55,11 @@ const Layout = ({ Poppins_400, children }) => {
           position={{ top: "50%", left: "10%" }}
           opacity={0.035}
         />
+        <Shadow
+          variant={"primary-lighter"}
+          position={{ top: "90%", right: "0%" }}
+          opacity={0.035}
+        />
         {children}
       </main>
       <Footer />

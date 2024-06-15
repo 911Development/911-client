@@ -25,7 +25,7 @@ const HeaderDropdown = ({ show }) => {
       >
         <section className="grid grid-cols-12 p-8 mb-4">
           <section className="col-span-4 text-primary">
-            <h1 className="text-lg mb-4">Design</h1>
+            <h1 className="text-primary text-lg mb-4">Design</h1>
             <section className="grid grid-cols-12 gap-3">
               <section className="col-span-6">
                 <ul className="text-muted space-y-4">
@@ -47,7 +47,7 @@ const HeaderDropdown = ({ show }) => {
             </section>
           </section>
           <section className="col-span-5 text-center">
-            <h1 className="text-lg mb-4 text-primary">Development</h1>
+            <h1 className="text-primary text-lg mb-4">Development</h1>
             <section className="grid grid-cols-12">
               <section className="col-span-6">
                 <ul className="text-muted space-y-4">
@@ -68,7 +68,7 @@ const HeaderDropdown = ({ show }) => {
             </section>
           </section>
           <section className="col-span-3 text-end">
-            <h1 className="text-lg text-primary text-end mb-4">Other</h1>
+            <h1 className="text-primary text-lg text-end mb-4">Other</h1>
             <ul className="text-muted space-y-4 ms-auto">
               <li className="text-nowrap">Social Media</li>
               <li className="inline-block bg-blue-100 dark:bg-primary-darkest text-primary-darker dark:text-light rounded-md">
