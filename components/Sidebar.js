@@ -111,7 +111,7 @@ const SidebarBody = ({ handleSidebar, isInterSectingOnDark }) => {
             isInterSectingOnDark ? "border-gray-500" : "border-gray-400"
           }`}
         />
-        <ul className={`${isInterSectingOnDark ? "space-y-6" : "space-y-10"}`}>
+        <ul className="space-y-2">
           <li>
             <Link
               href={"/"}
@@ -220,16 +220,19 @@ const SidebarBody = ({ handleSidebar, isInterSectingOnDark }) => {
             If you cannot find the service you are looking for, you can contact
             us.
           </p>
-          <Button
-            type={"button"}
-            variant={`${
-              isInterSectingOnDark ? "primary-outline" : "primary-inverse"
-            }`}
-            className={"flex items-center gap-2"}
-          >
-            <FontAwesomeIcon icon={faPaperPlane} />
-            <span>Contact</span>
-          </Button>
+          <Link href={"/contact"}>
+            <Button
+              type={"button"}
+              variant={`${
+                isInterSectingOnDark ? "primary-outline" : "primary-inverse"
+              }`}
+              className={"flex items-center gap-2"}
+              onClick={handleSidebar}
+            >
+              <FontAwesomeIcon icon={faPaperPlane} />
+              <span>Contact</span>
+            </Button>
+          </Link>
         </section>
       </motion.section>
       <motion.section

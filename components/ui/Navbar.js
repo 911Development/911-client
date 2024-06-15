@@ -95,14 +95,16 @@ const Navbar = ({ isInterSectingOnDark }) => {
           </li>
         </ul>
         <section className="hidden lg:block col-span-3 ms-auto">
-          <Button
-            type={"button"}
-            variant={"primary"}
-            className={"flex items-center gap-2"}
-          >
-            <FontAwesomeIcon icon={faPaperPlane} />
-            <span>Contact</span>
-          </Button>
+          <Link href={"/contact"}>
+            <Button
+              type={"button"}
+              variant={"primary"}
+              className={"flex items-center gap-2"}
+            >
+              <FontAwesomeIcon icon={faPaperPlane} />
+              <span>Contact</span>
+            </Button>
+          </Link>
         </section>
         <section className="block lg:hidden ms-auto">
           <MenuIcon onClick={handleSidebar} />

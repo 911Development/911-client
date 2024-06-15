@@ -1240,7 +1240,7 @@ export default function Home() {
                   transition={{ ease: "easeOut", duration: 0.5, delay: 0.25 }}
                   viewport={{ once: true }}
                 >
-                  Buy house
+                  Buy a house
                 </motion.li>
                 <motion.li
                   whileInView={{ opacity: [0, 1], y: [50, 0] }}
@@ -1265,7 +1265,7 @@ export default function Home() {
                 <Button
                   type={"button"}
                   variant={"primary-outline"}
-                  className={"flex items-center gap-3"}
+                  className={"flex items-center gap-2"}
                 >
                   <span>Go to the App!</span>
                   <FontAwesomeIcon icon={faAngleRight} size="lg" />

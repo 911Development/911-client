@@ -29,7 +29,7 @@ const TeamsPage = () => (
     />
     <Container className={"overflow-hidden"}>
       <section className="mb-12 lg:mb-24">
-        <p className="text-center text-xl">
+        <p className="text-center lg:w-3/4 lg:mx-auto text-xl">
           <strong className="text-primary font-normal">
             911 Creativity & Development
           </strong>
