@@ -86,7 +86,7 @@ const HeaderDropdown = ({ show }) => {
             </ul>
           </section>
         </section>
-        <div className="flex items-center justify-center px-8 bg-gradient-to-r from-primary-darker to-primary-lighter text-white py-4">
+        <div className="flex items-center justify-center px-8 bg-gradient-to-r from-primary-darker to-primary-lighter text-white py-6">
           <p>
             All our services are prepared professionally with the most
             up-to-date technologies.
