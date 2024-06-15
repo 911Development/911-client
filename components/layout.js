@@ -20,7 +20,9 @@ const Layout = ({ Poppins_400, children }) => {
       </Head>
       <header
         className={`sticky top-0 bg-white shadow-sm ${
-          isInterSectingOnDark && "!bg-black text-white"
+          isInterSectingOnDark &&
+          (pathname === "/" || pathname === "/projects") &&
+          "!bg-black text-white"
         } py-6 z-50 ${Poppins_400.className}`}
       >
         <Navbar isInterSectingOnDark={isInterSectingOnDark} />

@@ -16,6 +16,11 @@ const Button = ({ type, variant, className, onClick, children }) => {
     case "primary-inverse":
       classes +=
         "bg-white text-primary hover:bg-primary hover:text-white shadow-none";
+
+    case "primary-link":
+      classes +=
+        "bg-none shadow-none border-none text-primary hover:text-primary-darker py-0 px-0";
+      break;
   }
 
   return (
