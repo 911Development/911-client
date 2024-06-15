@@ -412,7 +412,7 @@ export default function Home() {
                 <Link href={"/teams/#backend"}>
                   <Button
                     type={"button"}
-                    variant={"primary-outline"}
+                    variant={"primary-link"}
                     className={"flex items-center gap-2 mx-auto py-2.5"}
                   >
                     <span>See the team</span>
@@ -471,7 +471,7 @@ export default function Home() {
                 <Link href={"/teams/#frontend"}>
                   <Button
                     type={"button"}
-                    variant={"primary-outline"}
+                    variant={"primary-link"}
                     className={"flex items-center gap-2 mx-auto py-2.5"}
                   >
                     <span>See the team</span>
@@ -530,7 +530,7 @@ export default function Home() {
                 <Link href={"/teams/#mobile"}>
                   <Button
                     type={"button"}
-                    variant={"primary-outline"}
+                    variant={"primary-link"}
                     className={"flex items-center gap-2 mx-auto py-2.5"}
                   >
                     <span>See the team</span>
@@ -590,7 +590,7 @@ export default function Home() {
                 <Link href={"/teams/#social"}>
                   <Button
                     type={"button"}
-                    variant={"primary-outline"}
+                    variant={"primary-link"}
                     className={"flex items-center gap-2 mx-auto py-2.5"}
                   >
                     <span>See the team</span>
@@ -650,7 +650,7 @@ export default function Home() {
                 <Link href={"/teams/#design"}>
                   <Button
                     type={"button"}
-                    variant={"primary-outline"}
+                    variant={"primary-link"}
                     className={"flex items-center gap-2 mx-auto py-2.5"}
                   >
                     <span>See the team</span>
@@ -709,7 +709,7 @@ export default function Home() {
                 <Link href={"/teams/#devops"}>
                   <Button
                     type={"button"}
-                    variant={"primary-outline"}
+                    variant={"primary-link"}
                     className={"flex items-center gap-2 mx-auto py-2.5"}
                   >
                     <span>See the team</span>
@@ -808,7 +808,7 @@ export default function Home() {
                       src={"/icons/apps/kibrisevim_dark.png"}
                       width={676}
                       height={652}
-                      className="w-36 mb-4"
+                      className="lg:w-3/4 xl:w-2/4 mb-4"
                       alt="Logo Design"
                     />
                     <h1 className="text-primary text-xl">Logo Design</h1>
@@ -1061,13 +1061,13 @@ export default function Home() {
                       src={"/icons/apps/kibrisevim_dark.png"}
                       width={676}
                       height={652}
-                      className="w-36 mb-4"
-                      alt="Web Design"
+                      className="w-3/4 mb-4"
+                      alt="Logo Design"
                     />
                     <h1 className="text-primary text-xl">Logo Design</h1>
                   </Card.Header>
                   <Card.Body clasName={"my-4"}>
-                    <p className="text-sm text-muted line-clamp-4">
+                    <p className="text-sm text-muted line-clamp-5">
                       An impressive logo is an indispensable part of a brand. We
                       offer you the most modern design by finding the best
                       colors and fonts for your brand.
@@ -1268,7 +1268,7 @@ export default function Home() {
             </section>
           </section>
           <section className="text-center">
-            <Link href={"/"}>
+            <Link href={"/projects"}>
               <Button
                 type={"button"}
                 variant={"primary-inverse"}
