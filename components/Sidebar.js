@@ -56,7 +56,7 @@ const SidebarBody = ({ handleSidebar }) => {
   const themeState = useSelector((state) => state.theme);
   const dispatch = useDispatch();
 
-  const [themeIcon, setThemeICon] = useState("");
+  const [themeIcon, setThemeICon] = useState("/icons/themes/dark.png");
   const [currentSidebarBodyPage, setCurrentSidebarBodyPage] = useState(0);
 
   const handleNextSidebarBodyPage = () => {

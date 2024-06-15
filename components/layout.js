@@ -5,6 +5,7 @@ import Header from "./ui/Header";
 import Footer from "./ui/Footer";
 import { themeSliceActions } from "@/store/theme-slice/theme-slice";
 import Navbar from "./ui/Navbar";
+import Shadow from "./ui/Shadow";
 
 const Layout = ({ Poppins_400, children }) => {
   const themeState = useSelector((state) => state.theme);
@@ -38,7 +39,24 @@ const Layout = ({ Poppins_400, children }) => {
         <Navbar theme={themeState.theme} />
       </header> */}
       <Header />
-      <main className={Poppins_400.className}>{children}</main>
+      <main className={`relative ${Poppins_400.className}`}>
+        <Shadow
+          variant={"primary-lighter"}
+          position={{ top: "5%", left: "10%" }}
+          opacity={0.035}
+        />
+        <Shadow
+          variant={"secondary-lighter"}
+          position={{ top: "20%", right: "5%" }}
+          opacity={0.035}
+        />
+        <Shadow
+          variant={"secondary-lighter"}
+          position={{ top: "50%", left: "10%" }}
+          opacity={0.035}
+        />
+        {children}
+      </main>
       <Footer />
     </>
   );

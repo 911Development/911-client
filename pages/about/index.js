@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const AboutPage = () => {
   return (
-    <section className="relative py-16 lg:py-24">
+    <section className="py-16 lg:py-24">
       <Container>
         <section>
           <h1 className="text-2xl text-primary text-center font-semibold mb-4">
