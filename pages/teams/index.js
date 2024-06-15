@@ -8,23 +8,18 @@ import Shadow from "@/components/ui/Shadow";
 const TeamsPage = () => (
   <section className="relative py-16 lg:py-24">
     <Shadow
-      position={{ top: "0%", left: "0%" }}
       variant={"primary-lighter"}
+      position={{ top: "5%", left: "10%" }}
       opacity={0.05}
     />
     <Shadow
-      position={{ top: "25%", right: "0%" }}
       variant={"secondary-lighter"}
+      position={{ top: "20%", right: "5%" }}
       opacity={0.05}
     />
     <Shadow
-      position={{ top: "50%", left: "0%" }}
-      variant={"primary-lighter"}
-      opacity={0.05}
-    />
-    <Shadow
-      position={{ bottom: "0%", right: "0%" }}
       variant={"secondary-lighter"}
+      position={{ top: "50%", left: "10%" }}
       opacity={0.05}
     />
     <Container className={"overflow-hidden"}>
