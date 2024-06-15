@@ -106,7 +106,7 @@ export default function Home() {
                 style={{ width: "56px", height: "56px" }}
               >
                 <Image
-                  src={"https://img.icons8.com/nolan/48/code--v2.png"}
+                  src={"https://img.icons8.com/nolan/192/code--v2.png"}
                   width={48}
                   height={48}
                   alt="Development"
@@ -128,7 +128,7 @@ export default function Home() {
                 style={{ width: "56px", height: "56px" }}
               >
                 <Image
-                  src={"https://img.icons8.com/nolan/48/fantasy.png"}
+                  src={"https://img.icons8.com/nolan/192/fantasy.png"}
                   width={48}
                   height={48}
                   alt="Magic"
@@ -151,7 +151,7 @@ export default function Home() {
               >
                 <Image
                   src={
-                    "https://img.icons8.com/nolan/48/1A6DFF/C822FF/ookla-speedtest.png"
+                    "https://img.icons8.com/nolan/192/1A6DFF/C822FF/ookla-speedtest.png"
                   }
                   width={48}
                   height={48}
@@ -174,7 +174,7 @@ export default function Home() {
                 style={{ width: "56px", height: "56px" }}
               >
                 <Image
-                  src={"https://img.icons8.com/nolan/48/positive-dynamic.png"}
+                  src={"https://img.icons8.com/nolan/192/positive-dynamic.png"}
                   width={48}
                   height={48}
                   alt="Marketing"
@@ -197,7 +197,7 @@ export default function Home() {
               >
                 <Image
                   src={
-                    "https://img.icons8.com/nolan/48/1A6DFF/C822FF/windows10-personalization.png"
+                    "https://img.icons8.com/nolan/192/1A6DFF/C822FF/windows10-personalization.png"
                   }
                   width={48}
                   height={48}
@@ -220,7 +220,7 @@ export default function Home() {
                 style={{ width: "56px", height: "56px" }}
               >
                 <Image
-                  src={"https://img.icons8.com/nolan/48/1A6DFF/C822FF/web.png"}
+                  src={"https://img.icons8.com/nolan/192/1A6DFF/C822FF/web.png"}
                   width={48}
                   height={48}
                   alt="UI/UX"
@@ -243,7 +243,7 @@ export default function Home() {
               >
                 <Image
                   src={
-                    "https://img.icons8.com/nolan/48/1A6DFF/C822FF/connected-people.png"
+                    "https://img.icons8.com/nolan/192/1A6DFF/C822FF/connected-people.png"
                   }
                   width={48}
                   height={48}
@@ -1061,13 +1061,13 @@ export default function Home() {
                       src={"/icons/apps/kibrisevim_dark.png"}
                       width={676}
                       height={652}
-                      className="w-3/4 mb-4"
+                      className="w-4/4 mb-4"
                       alt="Logo Design"
                     />
                     <h1 className="text-primary text-xl">Logo Design</h1>
                   </Card.Header>
                   <Card.Body clasName={"my-4"}>
-                    <p className="text-sm text-muted line-clamp-5">
+                    <p className="text-sm text-muted line-clamp-6">
                       An impressive logo is an indispensable part of a brand. We
                       offer you the most modern design by finding the best
                       colors and fonts for your brand.
