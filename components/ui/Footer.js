@@ -146,7 +146,7 @@ const Footer = () => (
             </section>
             <section className="col-span-8 lg:col-span-10">
               <h1 className="text-lg font-semibold mb-1">Contact Us</h1>
-              <ul>
+              <ul className="text-sm">
                 <li>GSM: +90 XXX XXX XX XX</li>
                 <li>Adress: XXXXXXXXXX</li>
                 <li>Email: 911developmentcomp@gmail.com</li>
@@ -155,7 +155,7 @@ const Footer = () => (
           </section>
         </section>
       </section>
-      <p className="text-lg lg:hidden">
+      <p className="text-sm lg:hidden">
         © 911 CAD {new Date().getFullYear()}, All rights reserved.
       </p>
     </Container>
