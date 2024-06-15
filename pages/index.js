@@ -1257,14 +1257,20 @@ export default function Home() {
                   Find cheapest prices!
                 </motion.li>
               </ul>
-              <Button
-                type={"button"}
-                variant={"primary-outline"}
-                className={"flex items-center gap-3 mx-auto mb-24"}
+              <Link
+                href={"https://kibrisevim.com/"}
+                target="_blank"
+                className="mx-auto mb-24"
               >
-                <span>Go to the App!</span>
-                <FontAwesomeIcon icon={faAngleRight} size="lg" />
-              </Button>
+                <Button
+                  type={"button"}
+                  variant={"primary-outline"}
+                  className={"flex items-center gap-3"}
+                >
+                  <span>Go to the App!</span>
+                  <FontAwesomeIcon icon={faAngleRight} size="lg" />
+                </Button>
+              </Link>
             </section>
           </section>
           <section className="text-center">

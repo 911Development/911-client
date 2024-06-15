@@ -198,14 +198,14 @@ const ProjectsPage = () => {
               <Link href={"https://www.elliesmarthome.com/"} target="_blank">
                 <Button
                   type={"button"}
-                  variant={"primary"}
+                  variant={"primary-outline"}
                   className={"flex lg:hidden items-center gap-2 mx-auto"}
                 >
                   <span>Go to the proejct</span>
                 </Button>
                 <Button
                   type={"button"}
-                  variant={"primary"}
+                  variant={"primary-outline"}
                   className={"hidden lg:flex items-center gap-2 ms-auto"}
                 >
                   <span>Go to the proejct</span>
