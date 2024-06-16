@@ -30,12 +30,6 @@ const Layout = ({ Poppins_400, children }) => {
 
   return (
     <>
-      <Head>
-        <meta name="description" content="911 Creativity and Development" />
-      </Head>
-      {/* <header className={`sticky top-0 py-4 z-50 ${Poppins_400.className}`}>
-        <Navbar theme={themeState.theme} />
-      </header> */}
       <Header />
       <main className={`relative ${Poppins_400.className}`}>
         <Shadow
