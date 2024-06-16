@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.911development.com/
+
+# Sitemaps
+Sitemap: https://www.911development.com/sitemap.xml
