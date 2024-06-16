@@ -43,22 +43,22 @@ const Layout = ({ Poppins_400, children }) => {
         <Shadow
           variant={"primary-lighter"}
           position={{ top: "5%", left: "10%" }}
-          opacity={0.035}
+          opacity={themeState.theme === "dark" ? 0.015 : 0.07}
         />
         <Shadow
           variant={"secondary-lighter"}
           position={{ top: "20%", right: "5%" }}
-          opacity={0.035}
+          opacity={themeState.theme === "dark" ? 0.015 : 0.07}
         />
         <Shadow
           variant={"secondary-lighter"}
           position={{ top: "50%", left: "10%" }}
-          opacity={0.035}
+          opacity={themeState.theme === "dark" ? 0.015 : 0.07}
         />
         <Shadow
           variant={"primary-lighter"}
           position={{ top: "90%", right: "0%" }}
-          opacity={0.035}
+          opacity={themeState.theme === "dark" ? 0.015 : 0.07}
         />
         {children}
       </main>
