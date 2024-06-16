@@ -1,10 +1,8 @@
 import Head from "next/head";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import Header from "./ui/Header";
 import Footer from "./ui/Footer";
-import { themeSliceActions } from "@/store/theme-slice/theme-slice";
-import Navbar from "./ui/Navbar";
 import Shadow from "./ui/Shadow";
 
 const Layout = ({ Poppins_400, children }) => {

@@ -1,5 +1,4 @@
 import Container from "@/components/Container";
-import Shadow from "@/components/ui/Shadow";
 import Button from "@/components/ui/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";

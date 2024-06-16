@@ -7,12 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 
 const ContactPage = () => (
-  <section className="relative py-16 lg:py-24">
-    <Shadow
-      variant={"primary-lighter"}
-      position={{ top: "5%", left: "10%" }}
-      opacity={0.025}
-    />
+  <section className="py-16 lg:py-24">
     <Container>
       <section className="mb-12">
         <h1 className="text-3xl text-center text-primary mb-3">

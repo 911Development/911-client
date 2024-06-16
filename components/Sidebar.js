@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleLeft,
   faAngleRight,
-  faGear,
   faGears,
   faHome,
   faInfoCircle,
@@ -12,7 +11,6 @@ import {
   faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-import Shadow from "./ui/Shadow";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { intersectingSliceActions } from "@/store/intersecting-slice/intersecting-slice";

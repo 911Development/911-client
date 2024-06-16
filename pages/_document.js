@@ -7,7 +7,6 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
-        {/* <div id="offcanvas-backdrop"></div> */}
       </body>
     </Html>
   );

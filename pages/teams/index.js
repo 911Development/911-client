@@ -3,10 +3,9 @@ import Image from "next/image";
 import { Poppins_300 } from "../_app";
 import Container from "@/components/Container";
 import { motion } from "framer-motion";
-import Shadow from "@/components/ui/Shadow";
 
 const TeamsPage = () => (
-  <section className="relative py-16 lg:py-24">
+  <section className="py-16 lg:py-24">
     <Container className={"overflow-hidden"}>
       <section className="mb-12 lg:mb-24">
         <p className="text-center lg:w-3/4 lg:mx-auto text-xl">

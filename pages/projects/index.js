@@ -4,7 +4,6 @@ import Container from "@/components/Container";
 import Button from "@/components/ui/Button";
 import { Exo2_700 } from "../_app";
 import Link from "next/link";
-import Shadow from "@/components/ui/Shadow";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -20,7 +19,7 @@ const ProjectsPage = () => {
   }, [theme]);
 
   return (
-    <section className="relative py-32 lg:py-48 overflow-x-hidden !min-w-full">
+    <section className="py-32 lg:py-48 overflow-x-hidden !min-w-full">
       <Container>
         <section id="kibrisevim" className="lg:grid lg:grid-cols-12 mb-48">
           <section className="lg:col-span-4 mb-16 lg:mb-0">
