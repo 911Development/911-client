@@ -3,9 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const getLocalStorageTheme = () => {
   let theme;
 
-  if (typeof window !== "undefined") {
+  if (typeof window !== "undefined")
     theme = localStorage.getItem("theme") || null;
-  }
 
   return theme;
 };
