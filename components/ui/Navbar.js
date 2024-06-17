@@ -41,8 +41,14 @@ const Navbar = () => {
     <nav className="relative">
       <Container className={"flex lg:grid lg:grid-cols-12 items-center"}>
         <section className="lg:col-span-3">
-          <Link href={"/"} className="text-primary text-2xl font-semibold">
-            911 CAD
+          <Link href={"/"}>
+            <Image
+              src={"/logo.png"}
+              width={350}
+              height={234}
+              className="w-16"
+              alt="Logo"
+            />
           </Link>
         </section>
         <ul

@@ -21,17 +21,17 @@ const Footer = () => (
           >
             <Image
               src={"/icons/mockups/911_cad_mockup.png"}
-              width={2689}
-              height={2154}
+              width={350}
+              height={234}
               alt="911 CAD Mockup"
             />
           </motion.section>
           <section className="absolute hidden lg:block bottom-10 left-10">
             <Image
               src={"/logo.png"}
-              className="opacity-30 w-56"
-              width={765}
-              height={506}
+              className="opacity-30 w-32"
+              width={120}
+              height={120}
               alt="Watermark"
             />
           </section>

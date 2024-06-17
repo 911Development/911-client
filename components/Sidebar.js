@@ -26,10 +26,16 @@ const SidebarHeader = ({ handleSidebar }) => {
     <section className="offcanvas-header flex items-center sticky top-0 py-6 p-4 bg-black shadow-sm">
       <Link
         href={"/"}
-        className="text-primary text-2xl font-semibold"
+        // className="text-primary text-2xl font-semibold"
         onClick={handleSidebar}
       >
-        911 CAD
+        <Image
+          src={"/logo.png"}
+          width={350}
+          height={234}
+          className="w-16"
+          alt="Logo"
+        />
       </Link>
       <svg
         xmlns="http://www.w3.org/2000/svg"
