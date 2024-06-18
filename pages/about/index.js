@@ -9,15 +9,15 @@ const AboutPage = () => {
       <Head>
         <meta
           name="description"
-          content="About 911 Creativity & Software Development Company | Where creativity  meets code, innovative solutions are born, transforming ideas into reality and pushing the boundaries of what's possible in the digital world."
+          content="About 911 CAD, 911 Creativity & Software Development Company | Where creativity  meets code, innovative solutions are born, transforming ideas into reality and pushing the boundaries of what's possible in the digital world."
         />
         <meta
           name="keywords"
-          content="911 development, 911 CAD, 911 software development, 911 software, 911 creativity, about 911, about 911 cad, about 911 development, 911 Creativity and Development, 911 Creativity & Development, kibris 911, kıbrıs 911, kıbrısevim, kibrisevim"
+          content="911 development, 911 CAD, 911cad, 911 software development, 911 software, 911 creativity, about 911, about 911 cad, about 911 development, 911 Creativity and Development, 911 Creativity & Development, kibris 911, kıbrıs 911, kıbrısevim, kibrisevim"
         />
         <title>
-          About 911 Creativity & Software Development Company | Where creativity
-          meets code
+          About 911 CAD | 911 Creativity & Software Development Company | Where
+          creativity meets code
         </title>
       </Head>
       <section className="py-16 lg:py-24">
