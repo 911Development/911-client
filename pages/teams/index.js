@@ -10,14 +10,14 @@ const TeamsPage = () => (
     <Head>
       <meta
         name="description"
-        content="Teams at 911 Creativity & Software Development Company | Where creativity  meets code, innovative solutions are born, transforming ideas into reality and pushing the boundaries of what's possible in the digital world."
+        content="Teams at 911 CAD, 911 Creativity & Software Development Company | Where creativity  meets code, innovative solutions are born, transforming ideas into reality and pushing the boundaries of what's possible in the digital world."
       />
       <meta
         name="keywords"
-        content="911 development, 911 CAD, 911 software development, 911 software, 911 teams, 911 creativity, 911 cad teams, 911 development teams, 911 Creativity and Development, 911 Creativity & Development, kibris 911, kıbrıs 911, kıbrısevim, kibrisevim"
+        content="911 development, 911 CAD, 911cad, 911 software development, 911 software, 911 teams, 911 creativity, 911 cad teams, 911 development teams, 911 Creativity and Development, 911 Creativity & Development, kibris 911, kıbrıs 911, kıbrısevim, kibrisevim"
       />
       <title>
-        Teams at 911 Creativity & Software Development Company | Where
+        Teams at 911 CAD | 911 Creativity & Software Development Company | Where
         creativity meets code
       </title>
     </Head>

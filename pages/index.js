@@ -38,25 +38,25 @@ export default function Home() {
       <Head>
         <meta
           name="description"
-          content="911 Creativity & Software Development Company | Where creativity  meets code, innovative solutions are born, transforming ideas into reality and pushing the boundaries of what's possible in the digital world."
+          content="911 CAD, 911 Creativity & Software Development Company | Where creativity  meets code, innovative solutions are born, transforming ideas into reality and pushing the boundaries of what's possible in the digital world."
         />
         <meta
           name="keywords"
-          content="911 development, 911 CAD, 911 cad, 911 software development, 911 creativity, 911 software, 911 Creativity and Development, 911 Creativity & Development, kibris 911, kıbrıs 911, kıbrısevim, kibrisevim"
+          content="911 development, 911 CAD, 911 cad, 911cad, 911 software development, 911 creativity, 911 software, 911 Creativity and Development, 911 Creativity & Development, kibris 911, kıbrıs 911, kıbrısevim, kibrisevim"
         />
         <title>
-          911 Creativity & Software Development Company | Where creativity meets
-          code
+          911 CAD | 911 Creativity & Software Development Company | Where
+          creativity meets code
         </title>
       </Head>
       <section className="py-16 lg:py-24">
         <Container>
-          <section className="text-center mb-12">
-            <h1 className="text-4xl font-semibold text-primary mb-6">
-              CREATIVITY & SOFTWARE DEVELOPMENT
+          <section className="text-center mb-16">
+            <h1 className="text-4xl font-semibold text-primary mb-8">
+              911 CAD | CREATIVITY & SOFTWARE DEVELOPMENT
             </h1>
             <p className="mx-auto lg:w-1/2">
-              "Where&nbsp;
+              "911 Development: Where&nbsp;
               <strong className="text-primary font-normal">creativity</strong>
               &nbsp; meets&nbsp;
               <strong className="text-primary font-normal">code</strong>,
@@ -64,7 +64,6 @@ export default function Home() {
               pushing the boundaries of what's possible in the digital world."
             </p>
           </section>
-          {/* <section className="flex items-center justify-center "> */}
           <section className="relative w-11/12 lg:w-1/2 text-center mx-auto my-16">
             <input
               type="email"

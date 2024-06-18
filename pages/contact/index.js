@@ -11,15 +11,15 @@ const ContactPage = () => (
     <Head>
       <meta
         name="description"
-        content="911 Creativity & Software Development Company | Where creativity  meets code, innovative solutions are born, transforming ideas into reality and pushing the boundaries of what's possible in the digital world."
+        content="Contacy with 911 CAD, 911 Creativity & Software Development Company | Where creativity  meets code, innovative solutions are born, transforming ideas into reality and pushing the boundaries of what's possible in the digital world."
       />
       <meta
         name="keywords"
-        content="911 development, 911 CAD, contact 911, contact 911 cad, contact 911 CAD, contact 911 development, contact 911 creativity, 911 software, 911 software, 911 creativity, 911 Creativity and Development, 911 Creativity & Development, kıbrıs 911, kibris 911, kıbrısevim, kibrisevim"
+        content="911 development, 911 CAD, 911cad, contact 911, contact 911 cad, contact 911 CAD, contact 911 development, contact 911 creativity, 911 software, 911 software, 911 creativity, 911 Creativity and Development, 911 Creativity & Development, kıbrıs 911, kibris 911, kıbrısevim, kibrisevim"
       />
       <title>
-        Contact us | 911 Creativity & Software Development Company | Where
-        creativity meets code
+        Contact with 911 CAD | 911 Creativity & Software Development Company |
+        Where creativity meets code
       </title>
     </Head>
     <section className="py-16 lg:py-24">
