@@ -94,7 +94,7 @@ const SidebarBody = ({ handleSidebar }) => {
       >
         <section className="grid grid-cols-12 gap-3">
           <Link
-            href={"https://www.instagram.com/greenbirddevelopment/"}
+            href={"https://www.instagram.com/911development/"}
             target="_blank"
             className="col-span-6 bg-dark shadow-sm rounded py-2 px-4"
           >
@@ -105,7 +105,7 @@ const SidebarBody = ({ handleSidebar }) => {
             <p className="text-sm text-muted">See our posts on Instagram</p>
           </Link>
           <Link
-            href={"https://www.linkedin.com/company/greenbird-development/"}
+            href={"https://www.linkedin.com/company/911development/"}
             target="_blank"
             className="col-span-6 bg-dark shadow-sm rounded py-2 px-4"
           >

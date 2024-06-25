@@ -44,9 +44,7 @@ const Footer = () => (
             <section className="flex items-center justify-center lg:justify-start gap-3">
               <section className="bg-white rounded">
                 <Link
-                  href={
-                    "https://www.linkedin.com/company/greenbird-development/"
-                  }
+                  href={"https://www.linkedin.com/company/911development/"}
                   target="_blank"
                   className="flex items-center gap-2 bg-gradient-to-r from-blue-900 to-blue-500 bg-clip-text text-transparent font-semibold text-sm py-2 px-4"
                 >
@@ -59,7 +57,7 @@ const Footer = () => (
               </section>
               <section className="bg-white rounded">
                 <Link
-                  href={"https://www.instagram.com/greenbirddevelopment/"}
+                  href={"https://www.instagram.com/911development/"}
                   target="_blank"
                   className="flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent font-semibold text-sm py-2 px-4"
                 >
