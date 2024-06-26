@@ -90,7 +90,7 @@ const SidebarBody = ({ handleSidebar }) => {
         animate={{
           translateX: `${currentSidebarBodyPage * -100}%`,
         }}
-        className="min-w-full py-6 px-4"
+        className="min-w-full y-6 px-4"
       >
         <section className="grid grid-cols-12 gap-3">
           <Link
@@ -221,6 +221,7 @@ const SidebarBody = ({ handleSidebar }) => {
             </Button>
           </Link>
         </section>
+        <section style={{ height: "120px" }} />
       </motion.section>
       <motion.section
         animate={{
@@ -260,7 +261,6 @@ const SidebarBody = ({ handleSidebar }) => {
                   </ul>
                 </section>
               </Card.Body>
-              <Card.Footer></Card.Footer>
             </Card>
           </Link>
           <Link href={"/#services"} scroll={false} onClick={handleSidebar}>
@@ -286,7 +286,6 @@ const SidebarBody = ({ handleSidebar }) => {
                   </ul>
                 </section>
               </Card.Body>
-              <Card.Footer></Card.Footer>
             </Card>
           </Link>
           <Link href={"/#services"} scroll={false} onClick={handleSidebar}>
@@ -305,7 +304,6 @@ const SidebarBody = ({ handleSidebar }) => {
                   <li className="text-nowrap">SEO Analysis</li>
                 </ul>
               </Card.Body>
-              <Card.Footer></Card.Footer>
             </Card>
           </Link>
         </section>

@@ -23,27 +23,29 @@ const AboutPage = () => {
       <section className="py-16 lg:py-24">
         <Container>
           <section>
-            <h1 className="text-2xl text-primary text-center font-semibold mb-4">
-              About 911 CAD
+            <h1 className="text-2xl text-primary text-center font-semibold mb-8">
+              About 911 CAD & 911 Development
             </h1>
             <p className="lg:w-3/4 text-center mx-auto">
-              Focusing on the technologies of the future, 911 CAD Company was
-              established after two years of service. Our goal is to be the best
-              in our service areas. As we get better every day with our young
-              and dynamic staff, we incorporate new technologies.
+              Focusing on the technologies of the future, 911 CAD & 911
+              Development Company was established after two years of service.
+              Our goal is to be the best in our service areas. As we get better
+              every day with our young and dynamic staff, we incorporate new
+              technologies.
             </p>
             <br />
             <p className="lg:w-3/4 text-center mx-auto">
               We are aware of the value of doing our job and the value of our
-              employees. For this reason, we always strive to improve working
-              conditions for our team. We know that a good team will take us
-              better with good teamwork.
+              employees at 911 CAD and 911 Development. For this reason, we
+              always strive to improve working conditions for our team. We know
+              that a good team will take us better with good teamwork with 911
+              CAD and 911 Development.
             </p>
             <br />
             <p className="lg:w-3/4 text-center mx-auto">
-              With completely original projects and unique designs, all of
-              Zalisoft's teams are always with you to create the product that
-              suits your needs.
+              With completely original projects and unique designs, all of 911
+              CAD's and 911 Developments's teams and are always with you to
+              create the product that suits your needs.
             </p>
           </section>
           <section className="grid grid-cols-12 items-start my-48">

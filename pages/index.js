@@ -13,7 +13,6 @@ import Head from "next/head";
 
 export default function Home() {
   const themeState = useSelector((state) => state.theme);
-  const [kibrisevimIcon, setKibrisevimIcon] = useState("");
   const [currentServicePage, setCurrentServicePage] = useState(0);
 
   const { theme } = themeState;
@@ -27,11 +26,6 @@ export default function Home() {
     if (currentServicePage > 0) setCurrentServicePage(currentServicePage - 1);
     else setCurrentServicePage(currentServicePage + 1);
   };
-
-  useEffect(() => {
-    if (theme === "dark") setKibrisevimIcon("/icons/apps/kibrisevim_light.svg");
-    if (theme === "light") setKibrisevimIcon("/icons/apps/kibrisevim_dark.svg");
-  }, [theme]);
 
   return (
     <>
@@ -349,10 +343,13 @@ export default function Home() {
             Our Teams
           </h1>
           <section
+            id="teams"
             className="flex items-center flex-nowrap lg:gap-6 overflow-x-scroll snap-mandatory snap-x select-none"
-            style={{
-              scrollbarWidth: "none",
-            }}
+            style={
+              {
+                // scrollbarWidth: "none",
+              }
+            }
           >
             <section className="min-w-96 snap-center snap-always">
               <Card className={"bg-no-repeat bg-cover bg-opacity-0"}>
@@ -812,16 +809,14 @@ export default function Home() {
                 <section className="col-span-4">
                   <Card>
                     <Card.Header>
-                      {kibrisevimIcon !== "" && (
-                        <Image
-                          src={kibrisevimIcon}
-                          width={676}
-                          height={652}
-                          className="lg:w-3/4 xl:w-2/4 mb-4"
-                          alt="Logo Design"
-                          priority
-                        />
-                      )}
+                      <Image
+                        src={"/icons/services/logo_design.png"}
+                        width={676}
+                        height={652}
+                        className="w-24 mb-4"
+                        alt="Logo Design"
+                        priority
+                      />
                       <h1 className="text-primary text-xl">Logo Design</h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
@@ -1071,19 +1066,17 @@ export default function Home() {
                 <section className="col-span-6">
                   <Card>
                     <Card.Header>
-                      {kibrisevimIcon !== "" && (
-                        <Image
-                          src={kibrisevimIcon}
-                          width={676}
-                          height={652}
-                          className="w-4/4 mb-4"
-                          alt="Logo Design"
-                        />
-                      )}
+                      <Image
+                        src={"/icons/services/logo_design.png"}
+                        width={680}
+                        height={680}
+                        className="w-20 mb-4"
+                        alt="Logo Design"
+                      />
                       <h1 className="text-primary text-xl">Logo Design</h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted line-clamp-6">
+                      <p className="text-sm text-muted line-clamp-4">
                         An impressive logo is an indispensable part of a brand.
                         We offer you the most modern design by finding the best
                         colors and fonts for your brand.

@@ -57,8 +57,8 @@ const Navbar = () => {
           <li className="transition-all">
             <Link
               href={"/"}
-              className={`hover:text-primary ${
-                pathname === "/" && "text-primary transition-all"
+              className={`hover:text-primary transition-all ${
+                pathname === "/" && "text-primary"
               }`}
             >
               Home
@@ -67,8 +67,8 @@ const Navbar = () => {
           <li className="transition-all">
             <Link
               href={"/about"}
-              className={`hover:text-primary ${
-                pathname === "/about" && "text-primary transition-all"
+              className={`hover:text-primary transition-all ${
+                pathname === "/about" && "text-primary"
               }`}
             >
               About Us
@@ -90,7 +90,7 @@ const Navbar = () => {
           <li className="transition-all">
             <Link
               href={"/teams"}
-              className={`hover:text-primary ${
+              className={`hover:text-primary transition-all ${
                 pathname === "/teams" && "text-primary"
               }`}
             >
@@ -100,7 +100,7 @@ const Navbar = () => {
           <li className="transition-all">
             <Link
               href={"/projects"}
-              className={`hover:text-primary ${
+              className={`hover:text-primary transition-all ${
                 pathname === "/projects" && "text-primary"
               }`}
             >

@@ -20,3 +20,13 @@ body {
   overflow-x: hidden !important;
   min-width: 100% !important;
 }
+
+#teams::-webkit-scrollbar {
+  width: 0px !important;
+  height: 0px !important;
+  /* display: none !important; */
+}
+
+#teams {
+  scrollbar-width: none !important;
+}

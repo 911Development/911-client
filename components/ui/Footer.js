@@ -145,8 +145,6 @@ const Footer = () => (
             <section className="col-span-8 lg:col-span-10">
               <h1 className="text-lg font-semibold mb-1">Contact Us</h1>
               <ul className="text-sm">
-                <li>GSM: +90 XXX XXX XX XX</li>
-                <li>Adress: XXXXXXXXXX</li>
                 <li>Email: 911developmentcomp@gmail.com</li>
               </ul>
             </section>
