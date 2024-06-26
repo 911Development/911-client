@@ -307,6 +307,7 @@ const SidebarBody = ({ handleSidebar }) => {
             </Card>
           </Link>
         </section>
+        <section style={{ height: "120px" }} />
       </motion.section>
     </div>
   );
