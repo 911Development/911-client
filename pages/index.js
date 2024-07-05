@@ -74,7 +74,6 @@ export default function Home() {
               <FontAwesomeIcon icon={faPaperPlane} />
               <span>Send</span>
             </Button>
-            {/* </section> */}
           </section>
           <section className="w-3/4 lg:w-1/3 mx-auto my-32">
             <section className="flex items-center justify-center mb-2">
@@ -84,7 +83,7 @@ export default function Home() {
                 transition={{ delay: 0.2 }}
               >
                 <div
-                  className="relative group backdrop-blur-lg flex items-center justify-center rounded-lg shadow hover:shadow-lg transition-all"
+                  className="relative group backdrop-blur-lg flex items-center justify-center bg-white dark:bg-dark rounded-lg shadow hover:shadow-lg transition-all p-2"
                   style={{ width: "56px", height: "56px" }}
                 >
                   <Image
@@ -106,7 +105,7 @@ export default function Home() {
                 transition={{ delay: 0.1 }}
               >
                 <div
-                  className="relative group backdrop-blur-lg flex items-center justify-center rounded-lg shadow hover:shadow-lg transition-all"
+                  className="relative group backdrop-blur-lg flex items-center justify-center bg-white dark:bg-dark rounded-lg shadow hover:shadow-lg transition-all p-2"
                   style={{ width: "56px", height: "56px" }}
                 >
                   <Image
@@ -128,7 +127,7 @@ export default function Home() {
                 transition={{ delay: 0.2 }}
               >
                 <div
-                  className="relative group backdrop-blur-lg flex items-center justify-center rounded-lg shadow hover:shadow-lg transition-all"
+                  className="relative group backdrop-blur-lg flex items-center justify-center bg-white dark:bg-dark rounded-lg shadow hover:shadow-lg transition-all p-2"
                   style={{ width: "56px", height: "56px" }}
                 >
                   <Image
@@ -152,7 +151,7 @@ export default function Home() {
                 transition={{ delay: 0.3 }}
               >
                 <div
-                  className="relative group backdrop-blur-lg flex items-center justify-center rounded-lg shadow hover:shadow-lg transition-all"
+                  className="relative group backdrop-blur-lg flex items-center justify-center bg-white dark:bg-dark rounded-lg shadow hover:shadow-lg transition-all p-2"
                   style={{ width: "56px", height: "56px" }}
                 >
                   <Image
@@ -176,7 +175,7 @@ export default function Home() {
                 transition={{ delay: 0.4 }}
               >
                 <div
-                  className="relative group backdrop-blur-lg flex items-center justify-center rounded-lg shadow hover:shadow-lg transition-all"
+                  className="relative group backdrop-blur-lg flex items-center justify-center bg-white dark:bg-dark rounded-lg shadow hover:shadow-lg transition-all p-2"
                   style={{ width: "56px", height: "56px" }}
                 >
                   <Image
@@ -200,7 +199,7 @@ export default function Home() {
                 transition={{ delay: 0.5 }}
               >
                 <div
-                  className="relative group backdrop-blur-lg flex items-center justify-center rounded-lg shadow hover:shadow-lg transition-all"
+                  className="relative group backdrop-blur-lg flex items-center justify-center bg-white dark:bg-dark rounded-lg shadow hover:shadow-lg transition-all p-2"
                   style={{ width: "56px", height: "56px" }}
                 >
                   <Image
@@ -224,7 +223,7 @@ export default function Home() {
                 transition={{ delay: 0.4 }}
               >
                 <div
-                  className="relative group backdrop-blur-lg flex items-center justify-center rounded-lg shadow hover:shadow-lg transition-all"
+                  className="relative group backdrop-blur-lg flex items-center justify-center bg-white dark:bg-dark rounded-lg shadow hover:shadow-lg transition-all p-2"
                   style={{ width: "56px", height: "56px" }}
                 >
                   <Image
