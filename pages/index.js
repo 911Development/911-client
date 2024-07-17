@@ -1238,7 +1238,7 @@ export default function Home() {
               Our Services
             </h1>
             <section
-              className="flex items-start flex-nowrap overflow-x-hidden mb-8 select-none"
+              className="flex items-stretch flex-nowrap overflow-x-hidden mb-8 select-none"
               style={{
                 scrollbarWidth: "none",
               }}
@@ -1538,14 +1538,15 @@ export default function Home() {
               Our Services
             </h1>
             <section
-              className="flex items-start flex-nowrap gap-3 overflow-x-scroll snap-mandatory snap-x select-none"
+              className="flex items-stretch flex-nowrap gap-3 overflow-x-scroll snap-mandatory snap-x select-none"
               style={{
                 scrollbarWidth: "none",
               }}
             >
-              <motion.section className="min-w-full grid grid-cols-12 gap-4 snap-center snap-always">
+              <motion.section className="min-w-full grid grid-cols-12 items-stretch gap-4 snap-center snap-always">
                 <section className="col-span-6">
                   <Card
+                    style={{ height: "300px" }}
                     className={
                       "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
                     }
@@ -1571,6 +1572,7 @@ export default function Home() {
                 </section>
                 <section className="col-span-6">
                   <Card
+                    style={{ height: "300px" }}
                     className={
                       "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
                     }
@@ -1596,6 +1598,7 @@ export default function Home() {
                 </section>
                 <section className="col-span-6">
                   <Card
+                    style={{ height: "300px" }}
                     className={
                       "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
                     }
@@ -1621,6 +1624,7 @@ export default function Home() {
                 </section>
                 <section className="col-span-6">
                   <Card
+                    style={{ height: "300px" }}
                     className={
                       "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
                     }
@@ -1645,9 +1649,10 @@ export default function Home() {
                   </Card>
                 </section>
               </motion.section>
-              <motion.section className="min-w-full grid grid-cols-12 gap-4 snap-center snap-always">
+              <motion.section className="min-w-full grid grid-cols-12 items-stretch gap-4 snap-center snap-always">
                 <section className="col-span-6">
                   <Card
+                    style={{ height: "300px" }}
                     className={
                       "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
                     }
@@ -1674,6 +1679,7 @@ export default function Home() {
                 </section>
                 <section className="col-span-6">
                   <Card
+                    style={{ height: "300px" }}
                     className={
                       "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
                     }
@@ -1699,6 +1705,7 @@ export default function Home() {
                 </section>
                 <section className="col-span-6">
                   <Card
+                    style={{ height: "300px" }}
                     className={
                       "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
                     }
@@ -1716,7 +1723,7 @@ export default function Home() {
                       </h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted line-clamp-4">
+                      <p className="text-sm text-muted line-clamp-3">
                         We organize your posts with the social media consultancy
                         we provide, and offer you the best plan by considering
                         statistics specific to your page.
@@ -1726,6 +1733,7 @@ export default function Home() {
                 </section>
                 <section className="col-span-6">
                   <Card
+                    style={{ height: "300px" }}
                     className={
                       "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
                     }
@@ -1752,9 +1760,10 @@ export default function Home() {
                   </Card>
                 </section>
               </motion.section>
-              <motion.section className="min-w-full grid grid-cols-12 gap-4 snap-center snap-always">
+              <motion.section className="min-w-full grid grid-cols-12 items-stretch gap-4 snap-center snap-always">
                 <section className="col-span-6">
                   <Card
+                    style={{ height: "300px" }}
                     className={
                       "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
                     }
