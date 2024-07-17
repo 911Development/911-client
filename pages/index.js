@@ -358,7 +358,7 @@ export default function Home() {
           <Container className={"relative"}>
             <section
               id="teams"
-              className="flex items-center flex-nowrap lg:gap-6 overflow-x-hidden select-none"
+              className="flex items-center flex-nowrap lg:gap-6 overflow-x-hidden mb-8 select-none"
               style={{
                 scrollbarWidth: "none",
               }}
@@ -367,10 +367,14 @@ export default function Home() {
                 animate={{
                   translateX: `${currentTeamsPage * -100}%`,
                 }}
-                className="grid grid-cols-12 min-w-full"
+                className="grid grid-cols-12 gap-4 min-w-full"
               >
                 <section className="col-span-4">
-                  <Card className={"bg-no-repeat bg-cover bg-opacity-0"}>
+                  <Card
+                    className={
+                      "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg"
+                    }
+                  >
                     <Card.Header clasName={"text-center"}>
                       <h1 className="text-primary text-xl mb-2">
                         Backend Team
@@ -434,7 +438,11 @@ export default function Home() {
                   </Card>
                 </section>
                 <section className="col-span-4">
-                  <Card>
+                  <Card
+                    className={
+                      "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg"
+                    }
+                  >
                     <Card.Header clasName={"text-center"}>
                       <h1 className="text-primary text-xl mb-2">
                         Frontend Team
@@ -497,7 +505,11 @@ export default function Home() {
                   </Card>
                 </section>
                 <section className="col-span-4">
-                  <Card>
+                  <Card
+                    className={
+                      "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg"
+                    }
+                  >
                     <Card.Header clasName={"text-center"}>
                       <h1 className="text-primary text-xl mb-2">Mobile Team</h1>
                       <section className="flex items-center justify-evenly">
@@ -563,10 +575,14 @@ export default function Home() {
                 animate={{
                   translateX: `${currentTeamsPage * -100}%`,
                 }}
-                className="grid grid-cols-12 min-w-full"
+                className="grid grid-cols-12 gap-4 min-w-full"
               >
                 <section className="col-span-4">
-                  <Card>
+                  <Card
+                    className={
+                      "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg"
+                    }
+                  >
                     <Card.Header clasName={"text-center"}>
                       <h1 className="text-primary text-xl mb-2">
                         Social Media Team
@@ -610,7 +626,7 @@ export default function Home() {
                     </Card.Header>
                     <Card.Body clasName={"text-center my-5"}>
                       <p className="text-muted text-sm">
-                        With the social media consultancy service we provide, we
+                        With the social media consultancy we provide, we
                         organize your posts, analyze the statistics specific to
                         your page and offer you the best plan.
                       </p>
@@ -630,7 +646,11 @@ export default function Home() {
                   </Card>
                 </section>
                 <section className="col-span-4">
-                  <Card>
+                  <Card
+                    className={
+                      "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg"
+                    }
+                  >
                     <Card.Header clasName={"text-center"}>
                       <h1 className="text-primary text-xl mb-2">Design Team</h1>
                       <section className="flex items-center justify-evenly">
@@ -692,7 +712,11 @@ export default function Home() {
                   </Card>
                 </section>
                 <section className="col-span-4">
-                  <Card>
+                  <Card
+                    className={
+                      "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg"
+                    }
+                  >
                     <Card.Header clasName={"text-center"}>
                       <h1 className="text-primary text-xl mb-2">DevOps Team</h1>
                       <section className="flex items-center justify-evenly">
@@ -799,387 +823,413 @@ export default function Home() {
           <h1 className="text-center text-primary font-semibold text-2xl mb-4">
             Our Teams
           </h1>
-          <section
-            id="teams"
-            className="flex items-center flex-nowrap lg:gap-6 overflow-x-scroll snap-mandatory snap-x select-none"
-            style={{
-              scrollbarWidth: "none",
-            }}
-          >
-            <section className="min-w-72 snap-center snap-always">
-              <Card className={"bg-no-repeat bg-cover bg-opacity-0"}>
-                <Card.Header clasName={"text-center"}>
-                  <h1 className="text-primary text-xl mb-2">Backend Team</h1>
-                  <section className="flex items-center justify-evenly">
-                    <section className="flex items-center gap-1 text-sm">
-                      <Image
-                        src={
-                          "https://img.icons8.com/fluency/18/graduation-cap.png"
-                        }
-                        width={18}
-                        height={18}
-                        className="opacity-50"
-                        alt="Graduation"
-                      />
-                      <span className="text-muted">Expert</span>
+          <Container>
+            <section
+              id="teams"
+              className="flex items-center flex-nowrap gap-4 overflow-x-scroll snap-mandatory snap-x select-none"
+              style={{
+                scrollbarWidth: "none",
+              }}
+            >
+              <section className="min-w-72 snap-center snap-always">
+                <Card
+                  className={
+                    "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-3"
+                  }
+                >
+                  <Card.Header clasName={"text-center"}>
+                    <h1 className="text-primary text-xl mb-2">Backend Team</h1>
+                    <section className="flex items-center justify-evenly">
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={
+                            "https://img.icons8.com/fluency/18/graduation-cap.png"
+                          }
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Graduation"
+                        />
+                        <span className="text-muted">Expert</span>
+                      </section>
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={"https://img.icons8.com/color/18/idea.png"}
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Idea"
+                        />
+                        <span className="text-muted">Creative</span>
+                      </section>
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={
+                            "https://img.icons8.com/fluency/18/engineering.png"
+                          }
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Engineering"
+                        />
+                        <span className="text-muted">Modern</span>
+                      </section>
                     </section>
-                    <section className="flex items-center gap-1 text-sm">
-                      <Image
-                        src={"https://img.icons8.com/color/18/idea.png"}
-                        width={18}
-                        height={18}
-                        className="opacity-50"
-                        alt="Idea"
-                      />
-                      <span className="text-muted">Creative</span>
+                  </Card.Header>
+                  <Card.Body clasName={"text-center my-5"}>
+                    <p className="text-muted text-sm line-clamp-3">
+                      Our team, led by a Senior Software Engineer, is an expert
+                      in the field and has years of experience in the most
+                      up-to-date technologies.
+                    </p>
+                  </Card.Body>
+                  <Card.Footer>
+                    <Link href={"/teams/#backend"}>
+                      <Button
+                        type={"button"}
+                        variant={"primary-link"}
+                        className={"flex items-center gap-2 mx-auto py-2.5"}
+                      >
+                        <span>See the team</span>
+                        <FontAwesomeIcon icon={faAngleRight} />
+                      </Button>
+                    </Link>
+                  </Card.Footer>
+                </Card>
+              </section>
+              <section className="min-w-72 snap-center snap-always">
+                <Card
+                  className={
+                    "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-3"
+                  }
+                >
+                  <Card.Header clasName={"text-center"}>
+                    <h1 className="text-primary text-xl mb-2">Frontend Team</h1>
+                    <section className="flex items-center justify-evenly">
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={
+                            "https://img.icons8.com/fluency/18/graduation-cap.png"
+                          }
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Graduation"
+                        />
+                        <span className="text-muted">Expert</span>
+                      </section>
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={"https://img.icons8.com/color/18/idea.png"}
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Idea"
+                        />
+                        <span className="text-muted">Creative</span>
+                      </section>
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={
+                            "https://img.icons8.com/fluency/18/engineering.png"
+                          }
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Engineering"
+                        />
+                        <span className="text-muted">Modern</span>
+                      </section>
                     </section>
-                    <section className="flex items-center gap-1 text-sm">
-                      <Image
-                        src={
-                          "https://img.icons8.com/fluency/18/engineering.png"
-                        }
-                        width={18}
-                        height={18}
-                        className="opacity-50"
-                        alt="Engineering"
-                      />
-                      <span className="text-muted">Modern</span>
+                  </Card.Header>
+                  <Card.Body clasName={"text-center my-5"}>
+                    <p className="text-muted text-sm line-clamp-3">
+                      Our expert frontend team works with our design team to
+                      develop the most modern interfaces and UI / UX.
+                    </p>
+                  </Card.Body>
+                  <Card.Footer>
+                    <Link href={"/teams/#frontend"}>
+                      <Button
+                        type={"button"}
+                        variant={"primary-link"}
+                        className={"flex items-center gap-2 mx-auto py-2.5"}
+                      >
+                        <span>See the team</span>
+                        <FontAwesomeIcon icon={faAngleRight} />
+                      </Button>
+                    </Link>
+                  </Card.Footer>
+                </Card>
+              </section>
+              <section className="min-w-72 snap-center snap-always">
+                <Card
+                  className={
+                    "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-3"
+                  }
+                >
+                  <Card.Header clasName={"text-center"}>
+                    <h1 className="text-primary text-xl mb-2">Mobile Team</h1>
+                    <section className="flex items-center justify-evenly">
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={
+                            "https://img.icons8.com/fluency/18/graduation-cap.png"
+                          }
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Graduation"
+                        />
+                        <span className="text-muted">Expert</span>
+                      </section>
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={"https://img.icons8.com/color/18/idea.png"}
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Idea"
+                        />
+                        <span className="text-muted">Creative</span>
+                      </section>
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={
+                            "https://img.icons8.com/fluency/18/engineering.png"
+                          }
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Engineering"
+                        />
+                        <span className="text-muted">Modern</span>
+                      </section>
                     </section>
-                  </section>
-                </Card.Header>
-                <Card.Body clasName={"text-center my-5"}>
-                  <p className="text-muted text-sm line-clamp-3">
-                    Our team, led by a Senior Software Engineer, is an expert in
-                    the field and has years of experience in the most up-to-date
-                    technologies.
-                  </p>
-                </Card.Body>
-                <Card.Footer>
-                  <Link href={"/teams/#backend"}>
-                    <Button
-                      type={"button"}
-                      variant={"primary-link"}
-                      className={"flex items-center gap-2 mx-auto py-2.5"}
-                    >
-                      <span>See the team</span>
-                      <FontAwesomeIcon icon={faAngleRight} />
-                    </Button>
-                  </Link>
-                </Card.Footer>
-              </Card>
+                  </Card.Header>
+                  <Card.Body clasName={"text-center my-5"}>
+                    <p className="text-muted text-sm line-clamp-3">
+                      Our team uses the most modern and high-performance
+                      application development technologies for both cross and
+                      native platforms.
+                    </p>
+                  </Card.Body>
+                  <Card.Footer>
+                    <Link href={"/teams/#mobile"}>
+                      <Button
+                        type={"button"}
+                        variant={"primary-link"}
+                        className={"flex items-center gap-2 mx-auto py-2.5"}
+                      >
+                        <span>See the team</span>
+                        <FontAwesomeIcon icon={faAngleRight} />
+                      </Button>
+                    </Link>
+                  </Card.Footer>
+                </Card>
+              </section>
+              <section className="min-w-72 snap-center snap-always">
+                <Card
+                  className={
+                    "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-3"
+                  }
+                >
+                  <Card.Header clasName={"text-center"}>
+                    <h1 className="text-primary text-xl mb-2">
+                      Social Media Team
+                    </h1>
+                    <section className="flex items-center justify-evenly">
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={
+                            "https://img.icons8.com/fluency/18/graduation-cap.png"
+                          }
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Graduation"
+                        />
+                        <span className="text-muted">Expert</span>
+                      </section>
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={"https://img.icons8.com/color/18/idea.png"}
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Idea"
+                        />
+                        <span className="text-muted">Creative</span>
+                      </section>
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={
+                            "https://img.icons8.com/fluency/18/engineering.png"
+                          }
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Engineering"
+                        />
+                        <span className="text-muted">Modern</span>
+                      </section>
+                    </section>
+                  </Card.Header>
+                  <Card.Body clasName={"text-center my-5"}>
+                    <p className="text-muted text-sm line-clamp-3">
+                      With the social media consultancy service we provide, we
+                      organize your posts, analyze the statistics specific to
+                      your page and offer you the best plan.
+                    </p>
+                  </Card.Body>
+                  <Card.Footer>
+                    <Link href={"/teams/#social"}>
+                      <Button
+                        type={"button"}
+                        variant={"primary-link"}
+                        className={"flex items-center gap-2 mx-auto py-2.5"}
+                      >
+                        <span>See the team</span>
+                        <FontAwesomeIcon icon={faAngleRight} />
+                      </Button>
+                    </Link>
+                  </Card.Footer>
+                </Card>
+              </section>
+              <section className="min-w-72 snap-center snap-always">
+                <Card
+                  className={
+                    "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-3"
+                  }
+                >
+                  <Card.Header clasName={"text-center"}>
+                    <h1 className="text-primary text-xl mb-2">Design Team</h1>
+                    <section className="flex items-center justify-evenly">
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={
+                            "https://img.icons8.com/fluency/18/graduation-cap.png"
+                          }
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Graduation"
+                        />
+                        <span className="text-muted">Expert</span>
+                      </section>
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={"https://img.icons8.com/color/18/idea.png"}
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Idea"
+                        />
+                        <span className="text-muted">Creative</span>
+                      </section>
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={
+                            "https://img.icons8.com/fluency/18/engineering.png"
+                          }
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Engineering"
+                        />
+                        <span className="text-muted">Modern</span>
+                      </section>
+                    </section>
+                  </Card.Header>
+                  <Card.Body clasName={"text-center my-5"}>
+                    <p className="text-muted text-sm line-clamp-3">
+                      Our dynamic and creative team is passionate about
+                      creativity and discovery and spends this energy on
+                      producing digital design products.
+                    </p>
+                  </Card.Body>
+                  <Card.Footer>
+                    <Link href={"/teams/#design"}>
+                      <Button
+                        type={"button"}
+                        variant={"primary-link"}
+                        className={"flex items-center gap-2 mx-auto py-2.5"}
+                      >
+                        <span>See the team</span>
+                        <FontAwesomeIcon icon={faAngleRight} />
+                      </Button>
+                    </Link>
+                  </Card.Footer>
+                </Card>
+              </section>
+              <section className="min-w-72 snap-center snap-always">
+                <Card
+                  className={
+                    "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-3"
+                  }
+                >
+                  <Card.Header clasName={"text-center"}>
+                    <h1 className="text-primary text-xl mb-2">DevOps Team</h1>
+                    <section className="flex items-center justify-evenly">
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={
+                            "https://img.icons8.com/fluency/18/graduation-cap.png"
+                          }
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Graduation"
+                        />
+                        <span className="text-muted">Expert</span>
+                      </section>
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={"https://img.icons8.com/color/18/idea.png"}
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Idea"
+                        />
+                        <span className="text-muted">Creative</span>
+                      </section>
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={
+                            "https://img.icons8.com/fluency/18/engineering.png"
+                          }
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Engineering"
+                        />
+                        <span className="text-muted">Modern</span>
+                      </section>
+                    </section>
+                  </Card.Header>
+                  <Card.Body clasName={"text-center my-5"}>
+                    <p className="text-muted text-sm line-clamp-3">
+                      The team ensures the monitoring of processes and products,
+                      the scalability and sustainability of projects,the best
+                      version.
+                    </p>
+                  </Card.Body>
+                  <Card.Footer>
+                    <Link href={"/teams/#devops"}>
+                      <Button
+                        type={"button"}
+                        variant={"primary-link"}
+                        className={"flex items-center gap-2 mx-auto py-2.5"}
+                      >
+                        <span>See the team</span>
+                        <FontAwesomeIcon icon={faAngleRight} />
+                      </Button>
+                    </Link>
+                  </Card.Footer>
+                </Card>
+              </section>
             </section>
-            <section className="min-w-72 snap-center snap-always">
-              <Card>
-                <Card.Header clasName={"text-center"}>
-                  <h1 className="text-primary text-xl mb-2">Frontend Team</h1>
-                  <section className="flex items-center justify-evenly">
-                    <section className="flex items-center gap-1 text-sm">
-                      <Image
-                        src={
-                          "https://img.icons8.com/fluency/18/graduation-cap.png"
-                        }
-                        width={18}
-                        height={18}
-                        className="opacity-50"
-                        alt="Graduation"
-                      />
-                      <span className="text-muted">Expert</span>
-                    </section>
-                    <section className="flex items-center gap-1 text-sm">
-                      <Image
-                        src={"https://img.icons8.com/color/18/idea.png"}
-                        width={18}
-                        height={18}
-                        className="opacity-50"
-                        alt="Idea"
-                      />
-                      <span className="text-muted">Creative</span>
-                    </section>
-                    <section className="flex items-center gap-1 text-sm">
-                      <Image
-                        src={
-                          "https://img.icons8.com/fluency/18/engineering.png"
-                        }
-                        width={18}
-                        height={18}
-                        className="opacity-50"
-                        alt="Engineering"
-                      />
-                      <span className="text-muted">Modern</span>
-                    </section>
-                  </section>
-                </Card.Header>
-                <Card.Body clasName={"text-center my-5"}>
-                  <p className="text-muted text-sm line-clamp-3">
-                    Our expert frontend team works with our design team to
-                    develop the most modern interfaces and UI / UX.
-                  </p>
-                </Card.Body>
-                <Card.Footer>
-                  <Link href={"/teams/#frontend"}>
-                    <Button
-                      type={"button"}
-                      variant={"primary-link"}
-                      className={"flex items-center gap-2 mx-auto py-2.5"}
-                    >
-                      <span>See the team</span>
-                      <FontAwesomeIcon icon={faAngleRight} />
-                    </Button>
-                  </Link>
-                </Card.Footer>
-              </Card>
-            </section>
-            <section className="min-w-72 snap-center snap-always">
-              <Card>
-                <Card.Header clasName={"text-center"}>
-                  <h1 className="text-primary text-xl mb-2">Mobile Team</h1>
-                  <section className="flex items-center justify-evenly">
-                    <section className="flex items-center gap-1 text-sm">
-                      <Image
-                        src={
-                          "https://img.icons8.com/fluency/18/graduation-cap.png"
-                        }
-                        width={18}
-                        height={18}
-                        className="opacity-50"
-                        alt="Graduation"
-                      />
-                      <span className="text-muted">Expert</span>
-                    </section>
-                    <section className="flex items-center gap-1 text-sm">
-                      <Image
-                        src={"https://img.icons8.com/color/18/idea.png"}
-                        width={18}
-                        height={18}
-                        className="opacity-50"
-                        alt="Idea"
-                      />
-                      <span className="text-muted">Creative</span>
-                    </section>
-                    <section className="flex items-center gap-1 text-sm">
-                      <Image
-                        src={
-                          "https://img.icons8.com/fluency/18/engineering.png"
-                        }
-                        width={18}
-                        height={18}
-                        className="opacity-50"
-                        alt="Engineering"
-                      />
-                      <span className="text-muted">Modern</span>
-                    </section>
-                  </section>
-                </Card.Header>
-                <Card.Body clasName={"text-center my-5"}>
-                  <p className="text-muted text-sm line-clamp-3">
-                    Our team uses the most modern and high-performance
-                    application development technologies for both cross and
-                    native platforms.
-                  </p>
-                </Card.Body>
-                <Card.Footer>
-                  <Link href={"/teams/#mobile"}>
-                    <Button
-                      type={"button"}
-                      variant={"primary-link"}
-                      className={"flex items-center gap-2 mx-auto py-2.5"}
-                    >
-                      <span>See the team</span>
-                      <FontAwesomeIcon icon={faAngleRight} />
-                    </Button>
-                  </Link>
-                </Card.Footer>
-              </Card>
-            </section>
-            <section className="min-w-72 snap-center snap-always">
-              <Card>
-                <Card.Header clasName={"text-center"}>
-                  <h1 className="text-primary text-xl mb-2">
-                    Social Media Team
-                  </h1>
-                  <section className="flex items-center justify-evenly">
-                    <section className="flex items-center gap-1 text-sm">
-                      <Image
-                        src={
-                          "https://img.icons8.com/fluency/18/graduation-cap.png"
-                        }
-                        width={18}
-                        height={18}
-                        className="opacity-50"
-                        alt="Graduation"
-                      />
-                      <span className="text-muted">Expert</span>
-                    </section>
-                    <section className="flex items-center gap-1 text-sm">
-                      <Image
-                        src={"https://img.icons8.com/color/18/idea.png"}
-                        width={18}
-                        height={18}
-                        className="opacity-50"
-                        alt="Idea"
-                      />
-                      <span className="text-muted">Creative</span>
-                    </section>
-                    <section className="flex items-center gap-1 text-sm">
-                      <Image
-                        src={
-                          "https://img.icons8.com/fluency/18/engineering.png"
-                        }
-                        width={18}
-                        height={18}
-                        className="opacity-50"
-                        alt="Engineering"
-                      />
-                      <span className="text-muted">Modern</span>
-                    </section>
-                  </section>
-                </Card.Header>
-                <Card.Body clasName={"text-center my-5"}>
-                  <p className="text-muted text-sm line-clamp-3">
-                    With the social media consultancy service we provide, we
-                    organize your posts, analyze the statistics specific to your
-                    page and offer you the best plan.
-                  </p>
-                </Card.Body>
-                <Card.Footer>
-                  <Link href={"/teams/#social"}>
-                    <Button
-                      type={"button"}
-                      variant={"primary-link"}
-                      className={"flex items-center gap-2 mx-auto py-2.5"}
-                    >
-                      <span>See the team</span>
-                      <FontAwesomeIcon icon={faAngleRight} />
-                    </Button>
-                  </Link>
-                </Card.Footer>
-              </Card>
-            </section>
-            <section className="min-w-72 snap-center snap-always">
-              <Card>
-                <Card.Header clasName={"text-center"}>
-                  <h1 className="text-primary text-xl mb-2">Design Team</h1>
-                  <section className="flex items-center justify-evenly">
-                    <section className="flex items-center gap-1 text-sm">
-                      <Image
-                        src={
-                          "https://img.icons8.com/fluency/18/graduation-cap.png"
-                        }
-                        width={18}
-                        height={18}
-                        className="opacity-50"
-                        alt="Graduation"
-                      />
-                      <span className="text-muted">Expert</span>
-                    </section>
-                    <section className="flex items-center gap-1 text-sm">
-                      <Image
-                        src={"https://img.icons8.com/color/18/idea.png"}
-                        width={18}
-                        height={18}
-                        className="opacity-50"
-                        alt="Idea"
-                      />
-                      <span className="text-muted">Creative</span>
-                    </section>
-                    <section className="flex items-center gap-1 text-sm">
-                      <Image
-                        src={
-                          "https://img.icons8.com/fluency/18/engineering.png"
-                        }
-                        width={18}
-                        height={18}
-                        className="opacity-50"
-                        alt="Engineering"
-                      />
-                      <span className="text-muted">Modern</span>
-                    </section>
-                  </section>
-                </Card.Header>
-                <Card.Body clasName={"text-center my-5"}>
-                  <p className="text-muted text-sm line-clamp-3">
-                    Our dynamic and creative team is passionate about creativity
-                    and discovery and spends this energy on producing digital
-                    design products.
-                  </p>
-                </Card.Body>
-                <Card.Footer>
-                  <Link href={"/teams/#design"}>
-                    <Button
-                      type={"button"}
-                      variant={"primary-link"}
-                      className={"flex items-center gap-2 mx-auto py-2.5"}
-                    >
-                      <span>See the team</span>
-                      <FontAwesomeIcon icon={faAngleRight} />
-                    </Button>
-                  </Link>
-                </Card.Footer>
-              </Card>
-            </section>
-            <section className="min-w-72 snap-center snap-always">
-              <Card>
-                <Card.Header clasName={"text-center"}>
-                  <h1 className="text-primary text-xl mb-2">DevOps Team</h1>
-                  <section className="flex items-center justify-evenly">
-                    <section className="flex items-center gap-1 text-sm">
-                      <Image
-                        src={
-                          "https://img.icons8.com/fluency/18/graduation-cap.png"
-                        }
-                        width={18}
-                        height={18}
-                        className="opacity-50"
-                        alt="Graduation"
-                      />
-                      <span className="text-muted">Expert</span>
-                    </section>
-                    <section className="flex items-center gap-1 text-sm">
-                      <Image
-                        src={"https://img.icons8.com/color/18/idea.png"}
-                        width={18}
-                        height={18}
-                        className="opacity-50"
-                        alt="Idea"
-                      />
-                      <span className="text-muted">Creative</span>
-                    </section>
-                    <section className="flex items-center gap-1 text-sm">
-                      <Image
-                        src={
-                          "https://img.icons8.com/fluency/18/engineering.png"
-                        }
-                        width={18}
-                        height={18}
-                        className="opacity-50"
-                        alt="Engineering"
-                      />
-                      <span className="text-muted">Modern</span>
-                    </section>
-                  </section>
-                </Card.Header>
-                <Card.Body clasName={"text-center my-5"}>
-                  <p className="text-muted text-sm line-clamp-3">
-                    The team ensures the monitoring of processes and products,
-                    the scalability and sustainability of projects,the best
-                    version.
-                  </p>
-                </Card.Body>
-                <Card.Footer>
-                  <Link href={"/teams/#devops"}>
-                    <Button
-                      type={"button"}
-                      variant={"primary-link"}
-                      className={"flex items-center gap-2 mx-auto py-2.5"}
-                    >
-                      <span>See the team</span>
-                      <FontAwesomeIcon icon={faAngleRight} />
-                    </Button>
-                  </Link>
-                </Card.Footer>
-              </Card>
-            </section>
-          </section>
+          </Container>
         </section>
         <section id="services" className="hidden lg:block relative my-48">
           <Container>
@@ -1187,7 +1237,7 @@ export default function Home() {
               Our Services
             </h1>
             <section
-              className="flex items-start flex-nowrap gap-6 overflow-x-hidden select-none"
+              className="flex items-start flex-nowrap overflow-x-hidden mb-8 select-none"
               style={{
                 scrollbarWidth: "none",
               }}
@@ -1196,43 +1246,52 @@ export default function Home() {
                 animate={{
                   translateX: `${currentServicePage * -100}%`,
                 }}
-                className="min-w-full grid grid-cols-12"
+                className="min-w-full grid grid-cols-12 items-stretch gap-6 px-2"
               >
                 <section className="col-span-4">
-                  <Card>
+                  <Card
+                    className={
+                      "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
+                    }
+                  >
                     <Card.Header>
                       <Image
                         src={"/icons/services/web_design.png"}
                         width={676}
                         height={652}
-                        className="w-20 mb-4"
+                        className="w-20 mb-4 mx-auto"
                         alt="Web Design"
                       />
                       <h1 className="text-primary text-xl">Web Design</h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted">
-                        Our own design team brings your dream website to the
-                        digital environment. We help you make your website
-                        unique and stand out from your competitors.
+                      <p className="text-sm text-muted line-clamp-4">
+                        Our own design team brings your dream website &
+                        requirements to the digital & virtual environment. We
+                        help you make your website unique, and stand out from
+                        your competitors.
                       </p>
                     </Card.Body>
                   </Card>
                 </section>
                 <section className="col-span-4">
-                  <Card>
+                  <Card
+                    className={
+                      "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
+                    }
+                  >
                     <Card.Header>
                       <Image
                         src={"/icons/services/mobile_design.png"}
                         width={676}
                         height={652}
-                        className="w-20 mb-4"
+                        className="w-20 mb-4 mx-auto"
                         alt="Mobile Design"
                       />
                       <h1 className="text-primary text-xl">Mobile Design</h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted">
+                      <p className="text-sm text-muted line-clamp-4">
                         Our own design team brings your dream mobile application
                         to the digital environment. We help you make your mobile
                         application unique and stand out from your competitors.
@@ -1241,19 +1300,23 @@ export default function Home() {
                   </Card>
                 </section>
                 <section className="col-span-4">
-                  <Card>
+                  <Card
+                    className={
+                      "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
+                    }
+                  >
                     <Card.Header>
                       <Image
                         src={"/icons/services/backend.png"}
                         width={676}
                         height={652}
-                        className="w-20 mb-4"
+                        className="w-20 mb-4 mx-auto"
                         alt="Backend"
                       />
                       <h1 className="text-primary text-xl">Backend</h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted">
+                      <p className="text-sm text-muted line-clamp-4">
                         You don't have to have us do your projects from start to
                         finish. If you are not lacking in frontend and design
                         but need help with the backend, we are here for you.
@@ -1262,20 +1325,24 @@ export default function Home() {
                   </Card>
                 </section>
                 <section className="col-span-4">
-                  <Card>
+                  <Card
+                    className={
+                      "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
+                    }
+                  >
                     <Card.Header>
                       <Image
                         src={"/icons/services/logo_design.png"}
                         width={676}
                         height={652}
-                        className="w-24 mb-4"
+                        className="w-24 mb-4 mx-auto"
                         alt="Logo Design"
                         priority
                       />
                       <h1 className="text-primary text-xl">Logo Design</h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted">
+                      <p className="text-sm text-muted line-clamp-4">
                         An impressive logo is an indispensable part of a brand.
                         We offer you the most modern, and the best design by
                         finding the best colors, tint and fonts for your brand.
@@ -1284,19 +1351,23 @@ export default function Home() {
                   </Card>
                 </section>
                 <section className="col-span-4">
-                  <Card>
+                  <Card
+                    className={
+                      "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
+                    }
+                  >
                     <Card.Header>
                       <Image
                         src={"/icons/services/frontend.png"}
                         width={676}
                         height={652}
-                        className="w-20 mb-4"
+                        className="w-20 mb-4 mx-auto"
                         alt="Frontend"
                       />
                       <h1 className="text-primary text-xl">Frontend</h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted">
+                      <p className="text-sm text-muted line-clamp-4">
                         You may only need support in the frontend area. In this
                         case, we help you complete your project by combining the
                         design you presented to us and our backend and frontend
@@ -1306,22 +1377,27 @@ export default function Home() {
                   </Card>
                 </section>
                 <section className="col-span-4">
-                  <Card>
+                  <Card
+                    className={
+                      "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
+                    }
+                  >
                     <Card.Header>
                       <Image
                         src={"/icons/services/website.png"}
                         width={676}
                         height={652}
-                        className="w-20 mb-4"
+                        className="w-20 mb-4 mx-auto"
                         alt="Website"
                       />
                       <h1 className="text-primary text-xl">Website</h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted">
+                      <p className="text-sm text-muted line-clamp-4">
                         We create and deliver the website you want, from start
-                        to finish, with design and coding, in a way that best
-                        suits your budget.
+                        to finish [A-Z] zero to expert, with design and coding,
+                        in a way that best suits, solutions, and implementations
+                        your budget & requirements.
                       </p>
                     </Card.Body>
                   </Card>
@@ -1331,16 +1407,20 @@ export default function Home() {
                 animate={{
                   translateX: `${currentServicePage * -100}%`,
                 }}
-                className="min-w-full grid grid-cols-12"
+                className="min-w-full grid grid-cols-12 gap-6 px-2"
               >
                 <section className="col-span-4">
-                  <Card>
+                  <Card
+                    className={
+                      "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
+                    }
+                  >
                     <Card.Header>
                       <Image
                         src={"/icons/services/social_media.png"}
                         width={676}
                         height={652}
-                        className="w-20 mb-4"
+                        className="w-20 mb-4 mx-auto"
                         alt="Social Media"
                       />
                       <h1 className="text-primary text-xl">
@@ -1348,7 +1428,7 @@ export default function Home() {
                       </h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted">
+                      <p className="text-sm text-muted line-clamp-4">
                         We organize your posts with the social media consultancy
                         we provide, and offer you the best plan by considering
                         statistics specific to your page.
@@ -1357,13 +1437,17 @@ export default function Home() {
                   </Card>
                 </section>
                 <section className="col-span-4">
-                  <Card>
+                  <Card
+                    className={
+                      "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
+                    }
+                  >
                     <Card.Header>
                       <Image
                         src={"/icons/services/digital_marketing.png"}
                         width={676}
                         height={652}
-                        className="w-20 mb-4"
+                        className="w-20 mb-4 mx-auto"
                         alt="Web Design"
                       />
                       <h1 className="text-primary text-xl">
@@ -1371,7 +1455,7 @@ export default function Home() {
                       </h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted">
+                      <p className="text-sm text-muted line-clamp-4">
                         Unlock the full potential of your brand with our premier
                         digital marketing services, designed to elevate your
                         company's online presence.
@@ -1380,19 +1464,23 @@ export default function Home() {
                   </Card>
                 </section>
                 <section className="col-span-4">
-                  <Card>
+                  <Card
+                    className={
+                      "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
+                    }
+                  >
                     <Card.Header>
                       <Image
                         src={"/icons/services/seo.png"}
                         width={676}
                         height={652}
-                        className="w-20 mb-4"
+                        className="w-20 mb-4 mx-auto"
                         alt="Web Design"
                       />
                       <h1 className="text-primary text-xl">SEO Consultancy</h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted">
+                      <p className="text-sm text-muted line-clamp-4">
                         Elevate your company's online visibility and drive
                         organic traffic with our expert SEO services. Our team
                         of seasoned professionals employs cutting-edge
@@ -1449,20 +1537,24 @@ export default function Home() {
               Our Services
             </h1>
             <section
-              className="flex items-start flex-nowrap overflow-x-scroll snap-mandatory snap-x select-none"
+              className="flex items-start flex-nowrap gap-3 overflow-x-scroll snap-mandatory snap-x select-none"
               style={{
                 scrollbarWidth: "none",
               }}
             >
-              <motion.section className="min-w-full grid grid-cols-12 snap-center snap-always">
+              <motion.section className="min-w-full grid grid-cols-12 gap-4 snap-center snap-always">
                 <section className="col-span-6">
-                  <Card>
+                  <Card
+                    className={
+                      "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
+                    }
+                  >
                     <Card.Header>
                       <Image
                         src={"/icons/services/web_design.png"}
                         width={676}
                         height={652}
-                        className="w-20 mb-4"
+                        className="w-20 mb-4 mx-auto"
                         alt="Web Design"
                       />
                       <h1 className="text-primary text-xl">Web Design</h1>
@@ -1477,13 +1569,17 @@ export default function Home() {
                   </Card>
                 </section>
                 <section className="col-span-6">
-                  <Card>
+                  <Card
+                    className={
+                      "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
+                    }
+                  >
                     <Card.Header>
                       <Image
                         src={"/icons/services/mobile_design.png"}
                         width={676}
                         height={652}
-                        className="w-20 mb-4"
+                        className="w-20 mb-4 mx-auto"
                         alt="Web Design"
                       />
                       <h1 className="text-primary text-xl">Mobile Design</h1>
@@ -1498,13 +1594,17 @@ export default function Home() {
                   </Card>
                 </section>
                 <section className="col-span-6">
-                  <Card>
+                  <Card
+                    className={
+                      "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
+                    }
+                  >
                     <Card.Header>
                       <Image
                         src={"/icons/services/backend.png"}
                         width={676}
                         height={652}
-                        className="w-20 mb-4"
+                        className="w-20 mb-4 mx-auto"
                         alt="Web Design"
                       />
                       <h1 className="text-primary text-xl">Backend</h1>
@@ -1519,13 +1619,17 @@ export default function Home() {
                   </Card>
                 </section>
                 <section className="col-span-6">
-                  <Card>
+                  <Card
+                    className={
+                      "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
+                    }
+                  >
                     <Card.Header>
                       <Image
                         src={"/icons/services/logo_design.png"}
                         width={680}
                         height={680}
-                        className="w-20 mb-4"
+                        className="w-20 mb-4 mx-auto"
                         alt="Logo Design"
                       />
                       <h1 className="text-primary text-xl">Logo Design</h1>
@@ -1540,15 +1644,19 @@ export default function Home() {
                   </Card>
                 </section>
               </motion.section>
-              <motion.section className="min-w-full grid grid-cols-12 snap-center snap-always">
+              <motion.section className="min-w-full grid grid-cols-12 gap-4 snap-center snap-always">
                 <section className="col-span-6">
-                  <Card>
+                  <Card
+                    className={
+                      "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
+                    }
+                  >
                     <Card.Header>
                       <Image
                         src={"/icons/services/frontend.png"}
                         width={676}
                         height={652}
-                        className="w-20 mb-4"
+                        className="w-20 mb-4 mx-auto"
                         alt="Web Design"
                       />
                       <h1 className="text-primary text-xl">Frontend</h1>
@@ -1564,13 +1672,17 @@ export default function Home() {
                   </Card>
                 </section>
                 <section className="col-span-6">
-                  <Card>
+                  <Card
+                    className={
+                      "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
+                    }
+                  >
                     <Card.Header>
                       <Image
                         src={"/icons/services/website.png"}
                         width={676}
                         height={652}
-                        className="w-20 mb-4"
+                        className="w-20 mb-4 mx-auto"
                         alt="Web Design"
                       />
                       <h1 className="text-primary text-xl">Website</h1>
@@ -1585,13 +1697,17 @@ export default function Home() {
                   </Card>
                 </section>
                 <section className="col-span-6">
-                  <Card>
+                  <Card
+                    className={
+                      "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
+                    }
+                  >
                     <Card.Header>
                       <Image
                         src={"/icons/services/social_media.png"}
                         width={676}
                         height={652}
-                        className="w-20 mb-4"
+                        className="w-20 mb-4 mx-auto"
                         alt="Web Design"
                       />
                       <h1 className="text-primary text-xl">
@@ -1608,13 +1724,17 @@ export default function Home() {
                   </Card>
                 </section>
                 <section className="col-span-6">
-                  <Card>
+                  <Card
+                    className={
+                      "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
+                    }
+                  >
                     <Card.Header>
                       <Image
                         src={"/icons/services/digital_marketing.png"}
                         width={676}
                         height={652}
-                        className="w-20 mb-4"
+                        className="w-20 mb-4 mx-auto"
                         alt="Web Design"
                       />
                       <h1 className="text-primary text-xl">
@@ -1631,15 +1751,19 @@ export default function Home() {
                   </Card>
                 </section>
               </motion.section>
-              <motion.section className="min-w-full grid grid-cols-12 snap-center snap-always">
+              <motion.section className="min-w-full grid grid-cols-12 gap-4 snap-center snap-always">
                 <section className="col-span-6">
-                  <Card>
+                  <Card
+                    className={
+                      "shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg text-center"
+                    }
+                  >
                     <Card.Header>
                       <Image
                         src={"/icons/services/seo.png"}
                         width={676}
                         height={652}
-                        className="w-20 mb-4"
+                        className="w-20 mb-4 mx-auto"
                         alt="Web Design"
                       />
                       <h1 className="text-primary text-xl">SEO Consultancy</h1>
