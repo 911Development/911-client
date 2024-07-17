@@ -1,21 +1,20 @@
+import Link from "next/link";
+import Head from "next/head";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { useState } from "react";
 import Container from "@/components/Container";
 import Button from "@/components/ui/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Card from "@/components/ui/Card";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import { useSelector } from "react-redux";
-import Head from "next/head";
 
 export default function Home() {
-  const themeState = useSelector((state) => state.theme);
-  const [currentServicePage, setCurrentServicePage] = useState(0);
+  const router = useRouter();
 
-  const { theme } = themeState;
+  const [currentServicePage, setCurrentServicePage] = useState(0);
 
   const nextService = () => {
     if (currentServicePage < 1) setCurrentServicePage(currentServicePage + 1);
@@ -241,13 +240,14 @@ export default function Home() {
               </motion.div>
             </section>
           </section>
-          <section className="grid grid-cols-12 items-start my-48">
+          <section className="grid grid-cols-12 items-stretch gap-3 my-48">
             <motion.section
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ ease: "easeOut", duration: 0.5, delay: 0.15 }}
               viewport={{ once: true }}
-              className="col-span-6 lg:col-span-3"
+              className="col-span-6 shadow border bg-white dark:bg-dark dark:shadow-xl dark:border-none rounded-lg lg:col-span-3 hover:scale-105 transition-all cursor-pointer"
+              onClick={() => router.push("/about")}
             >
               <Card>
                 <Card.Header>
@@ -270,7 +270,8 @@ export default function Home() {
               whileInView={{ opacity: 1 }}
               transition={{ ease: "easeOut", duration: 0.5, delay: 0.35 }}
               viewport={{ once: true }}
-              className="col-span-6 lg:col-span-3"
+              className="col-span-6 shadow border bg-white dark:bg-dark dark:shadow-xl dark:border-none rounded-lg lg:col-span-3 hover:scale-105 transition-all cursor-pointer"
+              onClick={() => router.push("/about")}
             >
               <Card>
                 <Card.Header>
@@ -293,7 +294,8 @@ export default function Home() {
               whileInView={{ opacity: 1 }}
               transition={{ ease: "easeOut", duration: 0.5, delay: 0.5 }}
               viewport={{ once: true }}
-              className="col-span-6 lg:col-span-3"
+              className="col-span-6 shadow border bg-white dark:bg-dark dark:shadow-xl dark:border-none rounded-lg lg:col-span-3 hover:scale-105 transition-all cursor-pointer"
+              onClick={() => router.push("/about")}
             >
               <Card>
                 <Card.Header>
@@ -316,7 +318,8 @@ export default function Home() {
               whileInView={{ opacity: 1 }}
               transition={{ ease: "easeOut", duration: 0.5, delay: 0.75 }}
               viewport={{ once: true }}
-              className="col-span-6 lg:col-span-3"
+              className="col-span-6 shadow border bg-white dark:bg-dark dark:shadow-xl dark:border-none rounded-lg lg:col-span-3 hover:scale-105 transition-all cursor-pointer"
+              onClick={() => router.push("/about")}
             >
               <Card>
                 <Card.Header>
@@ -344,11 +347,9 @@ export default function Home() {
           <section
             id="teams"
             className="flex items-center flex-nowrap lg:gap-6 overflow-x-scroll snap-mandatory snap-x select-none"
-            style={
-              {
-                // scrollbarWidth: "none",
-              }
-            }
+            style={{
+              scrollbarWidth: "none",
+            }}
           >
             <section className="min-w-96 snap-center snap-always">
               <Card className={"bg-no-repeat bg-cover bg-opacity-0"}>
@@ -1290,9 +1291,9 @@ export default function Home() {
                 <Button
                   type={"button"}
                   variant={"primary-inverse"}
-                  className={"flex items-center gap-2 mx-auto font-semibold"}
+                  className={"flex items-center gap-2 mx-auto !font-semibold"}
                 >
-                  <span>Show More Projects</span>
+                  <span className="text-xs">Show More Projects</span>
                   <FontAwesomeIcon icon={faAngleRight} size="lg" />
                 </Button>
               </Link>
