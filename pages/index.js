@@ -358,7 +358,7 @@ export default function Home() {
           <Container className={"relative"}>
             <section
               id="teams"
-              className="flex items-center flex-nowrap lg:gap-6 overflow-x-hidden mb-8 select-none"
+              className="flex items-center flex-nowrap overflow-x-hidden mb-8 select-none"
               style={{
                 scrollbarWidth: "none",
               }}
@@ -1343,7 +1343,7 @@ export default function Home() {
                       <h1 className="text-primary text-xl">Logo Design</h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted line-clamp-4">
+                      <p className="text-sm text-muted line-clamp-3">
                         An impressive logo is an indispensable part of a brand.
                         We offer you the most modern, and the best design by
                         finding the best colors, tint and fonts for your brand.
@@ -1429,7 +1429,7 @@ export default function Home() {
                       </h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted line-clamp-4">
+                      <p className="text-sm text-muted line-clamp-3">
                         We organize your posts with the social media consultancy
                         we provide, and offer you the best plan by considering
                         statistics specific to your page.
@@ -1456,7 +1456,7 @@ export default function Home() {
                       </h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted line-clamp-4">
+                      <p className="text-sm text-muted line-clamp-3">
                         Unlock the full potential of your brand with our premier
                         digital marketing services, designed to elevate your
                         company's online presence.
@@ -1481,7 +1481,7 @@ export default function Home() {
                       <h1 className="text-primary text-xl">SEO Consultancy</h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted line-clamp-4">
+                      <p className="text-sm text-muted line-clamp-3">
                         Elevate your company's online visibility and drive
                         organic traffic with our expert SEO services. Our team
                         of seasoned professionals employs cutting-edge
