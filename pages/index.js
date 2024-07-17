@@ -487,7 +487,8 @@ export default function Home() {
                     <Card.Body clasName={"text-center my-5"}>
                       <p className="text-muted text-sm">
                         Our expert frontend team works with our design team to
-                        develop the most modern interfaces and UI / UX.
+                        develop the most modern interfaces, technologies and UI
+                        / UX.
                       </p>
                     </Card.Body>
                     <Card.Footer>
