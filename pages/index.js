@@ -72,7 +72,7 @@ const initialState = {
   service: 0,
 };
 
-export default function Home({ data }) {
+export default function Home({}) {
   const router = useRouter();
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -1952,14 +1952,14 @@ export default function Home({ data }) {
   );
 }
 
-export async function getServerSideProps() {
-  const res = await fetch("http://localhost:3000/api/");
+// export async function getServerSideProps() {
+//   const res = await fetch("http://localhost:3000/api/");
 
-  const data = await res.json();
+//   const data = await res.json();
 
-  return {
-    props: {
-      data,
-    },
-  };
-}
+//   return {
+//     props: {
+//       data,
+//     },
+//   };
+// }
