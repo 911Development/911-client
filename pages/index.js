@@ -408,7 +408,13 @@ export default function Home({ data }) {
                 }}
                 className="grid grid-cols-12 gap-4 min-w-full"
               >
-                <section className="col-span-4">
+                <motion.section
+                  initial={{ y: 100 }}
+                  whileInView={{ y: [100, 0] }}
+                  transition={{ ease: "easeOut", duration: 0.25 }}
+                  viewport={{ once: true }}
+                  className="col-span-4"
+                >
                   <Card
                     className={
                       "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg"
@@ -475,8 +481,14 @@ export default function Home({ data }) {
                       </Link>
                     </Card.Footer>
                   </Card>
-                </section>
-                <section className="col-span-4">
+                </motion.section>
+                <motion.section
+                  initial={{ y: 100 }}
+                  whileInView={{ y: [100, 0] }}
+                  transition={{ ease: "easeOut", duration: 0.5 }}
+                  viewport={{ once: true }}
+                  className="col-span-4"
+                >
                   <Card
                     className={
                       "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg"
@@ -543,8 +555,14 @@ export default function Home({ data }) {
                       </Link>
                     </Card.Footer>
                   </Card>
-                </section>
-                <section className="col-span-4">
+                </motion.section>
+                <motion.section
+                  initial={{ y: 100 }}
+                  whileInView={{ y: [100, 0] }}
+                  transition={{ ease: "easeOut", duration: 0.75 }}
+                  viewport={{ once: true }}
+                  className="col-span-4"
+                >
                   <Card
                     className={
                       "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg"
@@ -609,7 +627,7 @@ export default function Home({ data }) {
                       </Link>
                     </Card.Footer>
                   </Card>
-                </section>
+                </motion.section>
               </motion.section>
               <motion.section
                 animate={{
@@ -1333,8 +1351,9 @@ export default function Home({ data }) {
                     <Card.Body clasName={"my-4"}>
                       <p className="text-sm text-muted line-clamp-4">
                         Our own design team brings your dream mobile application
-                        to the digital environment. We help you make your mobile
-                        application unique and stand out from your competitors.
+                        to the digital ^ virtual environment. We help you make
+                        your mobile application unique and stand out from your
+                        competitors.
                       </p>
                     </Card.Body>
                   </Card>
