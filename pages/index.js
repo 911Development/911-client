@@ -72,21 +72,15 @@ const initialState = {
   service: 0,
 };
 
-export default function Home({}) {
+export default function Home({ meta, headings }) {
   const router = useRouter();
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <>
       <Head>
-        <meta
-          name="description"
-          content="911 CAD, 911 Creativity & Software Development Company | Where creativity  meets code, innovative solutions are born, transforming ideas into reality and pushing the boundaries of what's possible in the digital world."
-        />
-        <meta
-          name="keywords"
-          content="911 development, 911 CAD, 911 cad, 911cad, 911 software development, 911 creativity, 911 software, 911 Creativity and Development, 911 Creativity & Development, kibris 911, kıbrıs 911, kıbrısevim, kibrisevim"
-        />
+        <meta name="description" content={meta.description} />
+        <meta name="keywords" content={meta.keywords.join(", ")} />
         <title>
           911 CAD | 911 Creativity & Software Development Company | Where
           creativity meets code
@@ -96,15 +90,16 @@ export default function Home({}) {
         <Container>
           <section className="text-center mb-16">
             <h1 className="text-4xl font-semibold text-primary mb-8">
-              911 CAD | CREATIVITY & SOFTWARE DEVELOPMENT
+              {headings.title}
             </h1>
             <p className="mx-auto lg:w-1/2">
-              "911 Development: Where&nbsp;
+              "{headings.description}"
+              {/* "911 Development: Where&nbsp;
               <strong className="text-primary font-normal">creativity</strong>
               &nbsp; meets&nbsp;
               <strong className="text-primary font-normal">code</strong>,
               innovative solutions are born, transforming ideas into reality and
-              pushing the boundaries of what's possible in the digital world."
+              pushing the boundaries of what's possible in the digital world." */}
             </p>
           </section>
           <section className="relative w-11/12 lg:w-1/2 text-center mx-auto my-16">
@@ -411,7 +406,7 @@ export default function Home({}) {
                 <motion.section
                   initial={{ y: 100 }}
                   whileInView={{ y: [100, 0] }}
-                  transition={{ ease: "easeOut", duration: 0.25 }}
+                  transition={{ ease: "easeOut", duration: 0.25, delay: 0.15 }}
                   viewport={{ once: true }}
                   className="col-span-4"
                 >
@@ -485,7 +480,7 @@ export default function Home({}) {
                 <motion.section
                   initial={{ y: 100 }}
                   whileInView={{ y: [100, 0] }}
-                  transition={{ ease: "easeOut", duration: 0.5 }}
+                  transition={{ ease: "easeOut", duration: 0.5, delay: 0.3 }}
                   viewport={{ once: true }}
                   className="col-span-4"
                 >
@@ -559,7 +554,7 @@ export default function Home({}) {
                 <motion.section
                   initial={{ y: 100 }}
                   whileInView={{ y: [100, 0] }}
-                  transition={{ ease: "easeOut", duration: 0.75 }}
+                  transition={{ ease: "easeOut", duration: 0.75, delay: 0.6 }}
                   viewport={{ once: true }}
                   className="col-span-4"
                 >
@@ -1952,14 +1947,17 @@ export default function Home({}) {
   );
 }
 
-// export async function getServerSideProps() {
-//   const res = await fetch("http://localhost:3000/api/");
+export async function getServerSideProps() {
+  const response = await fetch("https://911development.com/api/home");
 
-//   const data = await res.json();
+  const { data } = await response.json();
 
-//   return {
-//     props: {
-//       data,
-//     },
-//   };
-// }
+  const { meta, headings } = data;
+
+  return {
+    props: {
+      meta,
+      headings,
+    },
+  };
+}
