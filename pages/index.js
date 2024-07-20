@@ -2,7 +2,7 @@ import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useReducer } from "react";
 import Container from "@/components/Container";
 import Button from "@/components/ui/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,31 +11,70 @@ import { motion } from "framer-motion";
 import Card from "@/components/ui/Card";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
-export default function Home() {
+const reducer = (state, action) => {
+  const { type } = action;
+
+  switch (type) {
+    case "nextTeam": {
+      let currentTeam = state.team;
+
+      if (currentTeam < 1) currentTeam += 1;
+      else currentTeam -= 1;
+
+      return {
+        ...state,
+        team: currentTeam,
+      };
+    }
+
+    case "previousTeam": {
+      let currentTeam = state.team;
+
+      if (currentTeam > 0) currentTeam -= 1;
+      else currentTeam += 1;
+
+      return {
+        ...state,
+        team: currentTeam,
+      };
+    }
+
+    case "nextService": {
+      let currentService = state.service;
+
+      if (currentService < 1) currentService += 1;
+      else currentService -= 1;
+
+      return {
+        ...state,
+        service: currentService,
+      };
+    }
+
+    case "previousService": {
+      let currentService = state.service;
+
+      if (currentService > 0) currentService -= 1;
+      else currentService += 1;
+
+      return {
+        ...state,
+        service: currentService,
+      };
+    }
+  }
+
+  return state;
+};
+
+const initialState = {
+  team: 0,
+  service: 0,
+};
+
+export default function Home({ data }) {
   const router = useRouter();
-
-  const [currentServicePage, setCurrentServicePage] = useState(0);
-  const [currentTeamsPage, setCurrentTeamsPage] = useState(0);
-
-  const handleNextTeams = () => {
-    if (currentTeamsPage < 1) setCurrentTeamsPage(currentTeamsPage + 1);
-    else setCurrentTeamsPage(currentTeamsPage - 1);
-  };
-
-  const handlePreviousTeams = () => {
-    if (currentTeamsPage > 0) setCurrentTeamsPage(currentTeamsPage - 1);
-    else setCurrentTeamsPage(currentTeamsPage + 1);
-  };
-
-  const nextService = () => {
-    if (currentServicePage < 1) setCurrentServicePage(currentServicePage + 1);
-    else setCurrentServicePage(currentServicePage - 1);
-  };
-
-  const previousService = () => {
-    if (currentServicePage > 0) setCurrentServicePage(currentServicePage - 1);
-    else setCurrentServicePage(currentServicePage + 1);
-  };
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <>
@@ -365,7 +404,7 @@ export default function Home() {
             >
               <motion.section
                 animate={{
-                  translateX: `${currentTeamsPage * -100}%`,
+                  translateX: `${state.team * -100}%`,
                 }}
                 className="grid grid-cols-12 gap-4 min-w-full"
               >
@@ -574,7 +613,7 @@ export default function Home() {
               </motion.section>
               <motion.section
                 animate={{
-                  translateX: `${currentTeamsPage * -100}%`,
+                  translateX: `${state.team * -100}%`,
                 }}
                 className="grid grid-cols-12 gap-4 min-w-full"
               >
@@ -783,15 +822,15 @@ export default function Home() {
             <section className="flex items-center justify-center gap-2">
               <span
                 className={`inline-block ${
-                  currentTeamsPage === 0 ? "bg-primary" : "bg-muted"
+                  state.team === 0 ? "bg-primary" : "bg-muted"
                 } rounded-full cursor-pointer p-1.5 transition-all`}
-                onClick={handlePreviousTeams}
+                onClick={() => dispatch({ type: "previousTeam" })}
               />
               <span
                 className={`inline-block ${
-                  currentTeamsPage === 1 ? "bg-primary" : "bg-muted"
+                  state.team === 1 ? "bg-primary" : "bg-muted"
                 } rounded-full cursor-pointer p-1.5 transition-all`}
-                onClick={handleNextTeams}
+                onClick={() => dispatch({ type: "nextTeam" })}
               />
             </section>
           </Container>
@@ -803,7 +842,7 @@ export default function Home() {
               width={48}
               height={48}
               className="absolute top-1/2 left-6 -translate-y-1/2 cursor-pointer rotate-90 hover:scale-110 opacity-40 dark:opacity-90 hover:dark:opacity-100 hover:opacity-90 transition-all"
-              onClick={handlePreviousTeams}
+              onClick={() => dispatch({ type: "previousTeam" })}
               alt="Previous"
             />
           </span>
@@ -815,7 +854,7 @@ export default function Home() {
               width={48}
               height={48}
               className="absolute top-1/2 right-6 -translate-y-1/2 cursor-pointer -rotate-90 hover:scale-110 opacity-40 dark:opacity-90 hover:dark:opacity-100 hover:opacity-90 transition-all"
-              onClick={handleNextTeams}
+              onClick={() => dispatch({ type: "nextTeam" })}
               alt="Next"
             />
           </span>
@@ -1245,7 +1284,7 @@ export default function Home() {
             >
               <motion.section
                 animate={{
-                  translateX: `${currentServicePage * -100}%`,
+                  translateX: `${state.service * -100}%`,
                 }}
                 className="min-w-full grid grid-cols-12 items-stretch gap-6 px-2"
               >
@@ -1406,7 +1445,7 @@ export default function Home() {
               </motion.section>
               <motion.section
                 animate={{
-                  translateX: `${currentServicePage * -100}%`,
+                  translateX: `${state.service * -100}%`,
                 }}
                 className="min-w-full grid grid-cols-12 gap-6 px-2"
               >
@@ -1499,7 +1538,7 @@ export default function Home() {
                   width={48}
                   height={48}
                   className="absolute top-1/2 left-6 -translate-y-1/2 cursor-pointer rotate-90 hover:scale-110 opacity-40 dark:opacity-90 hover:dark:opacity-100 hover:opacity-90 transition-all"
-                  onClick={previousService}
+                  onClick={() => dispatch({ type: "previousService" })}
                   alt="Previous"
                 />
               </span>
@@ -1511,7 +1550,7 @@ export default function Home() {
                   width={48}
                   height={48}
                   className="absolute top-1/2 right-6 -translate-y-1/2 cursor-pointer -rotate-90 hover:scale-110 opacity-40 dark:opacity-90 hover:dark:opacity-100 hover:opacity-90 transition-all"
-                  onClick={nextService}
+                  onClick={() => dispatch({ type: "nextService" })}
                   alt="Next"
                 />
               </span>
@@ -1519,15 +1558,15 @@ export default function Home() {
             <section className="flex items-center justify-center gap-2">
               <span
                 className={`inline-block ${
-                  currentServicePage === 0 ? "bg-primary" : "bg-muted"
+                  state.service === 0 ? "bg-primary" : "bg-muted"
                 } rounded-full cursor-pointer p-1.5 transition-all`}
-                onClick={previousService}
+                onClick={() => dispatch({ type: "previousService" })}
               />
               <span
                 className={`inline-block ${
-                  currentServicePage === 1 ? "bg-primary" : "bg-muted"
+                  state.service === 1 ? "bg-primary" : "bg-muted"
                 } rounded-full cursor-pointer p-1.5 transition-all`}
-                onClick={nextService}
+                onClick={() => dispatch({ type: "nextService" })}
               />
             </section>
           </Container>
@@ -1892,4 +1931,16 @@ export default function Home() {
       </section>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch("http://localhost:3000/api/");
+
+  const data = await res.json();
+
+  return {
+    props: {
+      data,
+    },
+  };
 }
