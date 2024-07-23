@@ -90,7 +90,7 @@ const ContactPage = ({ meta }) => (
 );
 
 export async function getServerSideProps() {
-  const response = await fetch("https://911development.com/api/contact");
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/meta/contact`);
   const { data } = await response.json();
 
   const { meta } = data;

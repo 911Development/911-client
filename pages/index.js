@@ -2,7 +2,7 @@ import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import Container from "@/components/Container";
 import Button from "@/components/ui/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,6 +10,10 @@ import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { motion } from "framer-motion";
 import Card from "@/components/ui/Card";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import useInput from "@/hooks/useInput";
+import { useMutation } from "react-query";
+import { sendEmail } from "@/utils/helpers";
+import Toast from "@/components/ui/Toast";
 
 const reducer = (state, action) => {
   const { type } = action;
@@ -74,7 +78,55 @@ const initialState = {
 
 export default function Home({ meta, headings }) {
   const router = useRouter();
+
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const [toast, setToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastVariant, setToastVariant] = useState("");
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [showEmailError, setShowEmailError] = useState(false);
+
+  const {
+    state: {
+      value: email,
+      isValid: isEmailValid,
+      errorMessage: emailErrorMessage,
+    },
+    handleOnChange: handleEmailOnChange,
+  } = useInput();
+
+  const sendEmailMutation = useMutation({
+    mutationKey: "sendEmail",
+    mutationFn: sendEmail,
+    onSuccess: function (data) {
+      setToast(true);
+      setToastMessage(data.message);
+      setToastVariant(data.status);
+    },
+  });
+
+  function handleEmailSubmit(e) {
+    e.preventDefault();
+
+    if (!isEmailValid) setShowEmailError(true);
+    else {
+      setShowEmailError(false);
+
+      if (isFormValid) sendEmailMutation.mutate({ email });
+    }
+  }
+
+  useEffect(
+    function () {
+      const identifier = setTimeout(function () {
+        setIsFormValid(isEmailValid);
+      }, 150);
+
+      return () => clearTimeout(identifier);
+    },
+    [isEmailValid]
+  );
 
   return (
     <>
@@ -92,32 +144,46 @@ export default function Home({ meta, headings }) {
             <h1 className="text-4xl font-semibold text-primary mb-8">
               {headings.title}
             </h1>
-            <p className="mx-auto lg:w-1/2">
-              "{headings.description}"
-              {/* "911 Development: Where&nbsp;
-              <strong className="text-primary font-normal">creativity</strong>
-              &nbsp; meets&nbsp;
-              <strong className="text-primary font-normal">code</strong>,
-              innovative solutions are born, transforming ideas into reality and
-              pushing the boundaries of what's possible in the digital world." */}
-            </p>
+            <p className="mx-auto lg:w-1/2">"{headings.description}"</p>
           </section>
-          <section className="relative w-11/12 lg:w-1/2 text-center mx-auto my-16">
-            <input
-              type="email"
-              placeholder="send your email"
-              className=" w-full border rounded-full outline-none text-sm bg-white dark:bg-dark dark:border-gray-600 focus:border-primary focus:dark:border-primary-darker p-4 transition-all"
-            />
-            <Button
-              type={"button"}
-              variant={"primary"}
-              className={
-                "flex items-center gap-2 absolute top-1/2 -translate-y-1/2 right-2 rounded-full"
-              }
-            >
-              <FontAwesomeIcon icon={faPaperPlane} />
-              <span>Send</span>
-            </Button>
+          <section className="w-11/12 lg:w-1/2 text-center mx-auto my-16">
+            <section className="relative mb-4 lg:mb-0">
+              <form onSubmit={handleEmailSubmit}>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="send your email"
+                  className="w-full border rounded-full outline-none text-sm bg-white dark:bg-dark dark:border-gray-600 focus:border-primary focus:dark:border-primary-darker p-4 transition-all"
+                  value={email}
+                  onChange={handleEmailOnChange}
+                />
+                <section className="flex items-center gap-3 absolute top-1/2 -translate-y-1/2 right-2">
+                  {showEmailError && (
+                    <p className="text-xs text-red-500 hidden lg:block">
+                      {emailErrorMessage}
+                    </p>
+                  )}
+                  <Button
+                    type={"submit"}
+                    variant={"primary"}
+                    className={"flex items-center gap-2 rounded-full"}
+                    disabled={sendEmailMutation.status === "loading"}
+                  >
+                    <FontAwesomeIcon icon={faPaperPlane} />
+                    <span>
+                      {sendEmailMutation.status === "loading"
+                        ? "Sending"
+                        : "Send"}
+                    </span>
+                  </Button>
+                </section>
+              </form>
+            </section>
+            {showEmailError && (
+              <p className="text-xs text-red-500 block lg:hidden">
+                {emailErrorMessage}
+              </p>
+            )}
           </section>
           <section className="w-3/4 lg:w-1/3 mx-auto my-32">
             <section className="flex items-center justify-center mb-2">
@@ -291,7 +357,7 @@ export default function Home({ meta, headings }) {
               whileInView={{ opacity: 1 }}
               transition={{ ease: "easeOut", duration: 0.5, delay: 0.15 }}
               viewport={{ once: true }}
-              className="col-span-6 shadow border bg-white dark:bg-dark dark:shadow-xl dark:border-none rounded-lg lg:col-span-3 hover:scale-105 transition-all cursor-pointer"
+              className="col-span-6 shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg lg:col-span-3 hover:scale-105 transition-all cursor-pointer"
               onClick={() => router.push("/about")}
             >
               <Card>
@@ -315,7 +381,7 @@ export default function Home({ meta, headings }) {
               whileInView={{ opacity: 1 }}
               transition={{ ease: "easeOut", duration: 0.5, delay: 0.35 }}
               viewport={{ once: true }}
-              className="col-span-6 shadow border bg-white dark:bg-dark dark:shadow-xl dark:border-none rounded-lg lg:col-span-3 hover:scale-105 transition-all cursor-pointer"
+              className="col-span-6 shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg lg:col-span-3 hover:scale-105 transition-all cursor-pointer"
               onClick={() => router.push("/about")}
             >
               <Card>
@@ -339,7 +405,7 @@ export default function Home({ meta, headings }) {
               whileInView={{ opacity: 1 }}
               transition={{ ease: "easeOut", duration: 0.5, delay: 0.5 }}
               viewport={{ once: true }}
-              className="col-span-6 shadow border bg-white dark:bg-dark dark:shadow-xl dark:border-none rounded-lg lg:col-span-3 hover:scale-105 transition-all cursor-pointer"
+              className="col-span-6 shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg lg:col-span-3 hover:scale-105 transition-all cursor-pointer"
               onClick={() => router.push("/about")}
             >
               <Card>
@@ -363,7 +429,7 @@ export default function Home({ meta, headings }) {
               whileInView={{ opacity: 1 }}
               transition={{ ease: "easeOut", duration: 0.5, delay: 0.75 }}
               viewport={{ once: true }}
-              className="col-span-6 shadow border bg-white dark:bg-dark dark:shadow-xl dark:border-none rounded-lg lg:col-span-3 hover:scale-105 transition-all cursor-pointer"
+              className="col-span-6 shadow border bg-light dark:bg-dark dark:shadow-xl dark:border-none rounded-lg lg:col-span-3 hover:scale-105 transition-all cursor-pointer"
               onClick={() => router.push("/about")}
             >
               <Card>
@@ -1877,7 +1943,7 @@ export default function Home({ meta, headings }) {
               </motion.section>
               <section className="lg:col-span-8 flex flex-col lg:items-end">
                 <p className="text-3xl lg:text-6xl font-semibold text-center lg:text-end leading-snug mb-24">
-                  House <strong className="text-primary">rental</strong>{" "}
+                  House <strong className="text-primary">rental</strong>
                   and&nbsp;
                   <strong className="text-primary">buying</strong> application
                   is now in Cyprus! Moreover, all regions are supported!
@@ -1943,12 +2009,18 @@ export default function Home({ meta, headings }) {
           </Container>
         </section>
       </section>
+      <Toast
+        show={toast}
+        setToast={setToast}
+        message={toastMessage}
+        variant={toastVariant}
+      />
     </>
   );
 }
 
 export async function getServerSideProps() {
-  const response = await fetch("https://911development.com/api/home");
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/meta/home`);
 
   const { data } = await response.json();
 

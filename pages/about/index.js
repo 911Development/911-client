@@ -126,7 +126,7 @@ const AboutPage = ({ meta, headings }) => (
 );
 
 export async function getServerSideProps() {
-  const response = await fetch("https://911development.com/api/about");
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/meta/about`);
   const { data } = await response.json();
 
   const { meta, headings } = data;

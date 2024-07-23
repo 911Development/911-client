@@ -563,7 +563,7 @@ const TeamsPage = ({ meta, headings }) => (
 );
 
 export async function getServerSideProps() {
-  const response = await fetch("https://911development.com/api/teams");
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/meta/teams`);
   const { data } = await response.json();
 
   const { meta, headings } = data;

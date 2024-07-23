@@ -8,7 +8,7 @@ const Shadow = ({ position, opacity, variant }) => (
       bottom: position.bottom,
       transform: "translate(-50%, -50%)",
       boxShadow: `0 0 250px 250px rgba(var(--color-${variant}), ${opacity})`,
-      zIndex: -1,
+      // zIndex: -1,
     }}
   />
 );

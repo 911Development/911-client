@@ -13,6 +13,9 @@
   --color-black: 24, 24, 24;
   --color-dark: 32, 32, 32;
   --color-light: 248, 248, 248;
+  --color-danger: 200, 0, 54;
+  --color-danger-dark: 160, 0, 43;
+  --color-success: 5, 146, 18;
   --color-muted: 120, 120, 120;
 }
 
@@ -29,4 +32,9 @@ body {
 
 #teams {
   scrollbar-width: none !important;
+}
+
+button[disabled].bg-primary:hover {
+  background-color: rgb(var(--color-primary));
+  cursor: default;
 }
