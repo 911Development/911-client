@@ -9,7 +9,7 @@ export default async function handler(req, res) {
       await connectMongoDb();
 
       if (await Email.findOne({ email }))
-        res.status(409).json({
+        return res.status(409).json({
           status: "fail",
           message: "We've already been contacted via this email.",
         });
