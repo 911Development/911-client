@@ -79,6 +79,9 @@ const initialState = {
 export default function Home({ meta, headings }) {
   const router = useRouter();
 
+  console.log(process.env.NEXT_PUBLIC_API);
+  console.log(process.env.NEXT_PUBLIC_MONGODB_URL);
+
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const [toast, setToast] = useState(false);
