@@ -878,8 +878,8 @@ export default function Home({ meta, headings }) {
                     <Card.Body clasName={"text-center my-5"}>
                       <p className="text-muted text-sm">
                         The team ensures the monitoring of processes and
-                        products, the scalability and sustainability of
-                        projects,the best version.
+                        products, the scalability, reliablity and sustainability
+                        of projects,the best version.
                       </p>
                     </Card.Body>
                     <Card.Footer>
