@@ -9,6 +9,9 @@ import { useSelector } from "react-redux";
 import Head from "next/head";
 
 const ProjectsPage = ({ meta }) => {
+  console.log(process.env.NEXT_PUBLIC_API);
+  console.log(process.env.NEXT_PUBLIC_MONGODB_URL);
+
   const themeState = useSelector((state) => state.theme);
   const [kibrisevimIcon, setKibrisevimIcon] = useState("");
 
