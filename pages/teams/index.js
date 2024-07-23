@@ -5,35 +5,21 @@ import Container from "@/components/Container";
 import { motion } from "framer-motion";
 import Head from "next/head";
 
-const TeamsPage = () => (
+const TeamsPage = ({ meta, headings }) => (
   <>
     <Head>
-      <meta
-        name="description"
-        content="Teams at 911 CAD, 911 Creativity & Software Development Company | Where creativity  meets code, innovative solutions are born, transforming ideas into reality and pushing the boundaries of what's possible in the digital world."
-      />
-      <meta
-        name="keywords"
-        content="911 development, 911 CAD, 911cad, 911 software development, 911 software, 911 teams, 911 creativity, 911 cad teams, 911 development teams, 911 Creativity and Development, 911 Creativity & Development, kibris 911, kıbrıs 911, kıbrısevim, kibrisevim"
-      />
-      <title>
-        Teams at 911 CAD | 911 Creativity & Software Development Company | Where
-        creativity meets code
-      </title>
+      <meta name="description" content={meta.description} />
+      <meta name="keywords" content={meta.keywords.join(", ")} />
+      <title>{meta.title}</title>
     </Head>
     <section className="py-16 lg:py-24">
       <Container className={"overflow-hidden"}>
         <section className="mb-12 lg:mb-24">
           <p className="text-center lg:w-3/4 lg:mx-auto text-xl">
-            <strong className="text-primary font-normal">
-              911 Creativity & Development
-            </strong>
-            &nbsp;Company is a company that aims to keep the satisfaction of its
-            customers and users positive by using the most up-to-date and modern
-            technologies.
+            {headings.title}
           </p>
           <br />
-          <p className="text-center text-xl">Here are all our teams!</p>
+          <p className="text-center text-xl">{headings.description}</p>
         </section>
         <section id="backend" className="lg:grid lg:grid-cols-12 mb-48">
           <motion.section
@@ -575,5 +561,19 @@ const TeamsPage = () => (
     </section>
   </>
 );
+
+export async function getServerSideProps() {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/meta/teams`);
+  const { data } = await response.json();
+
+  const { meta, headings } = data;
+
+  return {
+    props: {
+      meta,
+      headings,
+    },
+  };
+}
 
 export default TeamsPage;

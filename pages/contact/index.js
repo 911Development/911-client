@@ -6,21 +6,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Head from "next/head";
 import Image from "next/image";
 
-const ContactPage = () => (
+const ContactPage = ({ meta }) => (
   <>
     <Head>
-      <meta
-        name="description"
-        content="Contacy with 911 CAD, 911 Creativity & Software Development Company | Where creativity  meets code, innovative solutions are born, transforming ideas into reality and pushing the boundaries of what's possible in the digital world."
-      />
-      <meta
-        name="keywords"
-        content="911 development, 911 CAD, 911cad, contact 911, contact 911 cad, contact 911 CAD, contact 911 development, contact 911 creativity, 911 software, 911 software, 911 creativity, 911 Creativity and Development, 911 Creativity & Development, kıbrıs 911, kibris 911, kıbrısevim, kibrisevim"
-      />
-      <title>
-        Contact with 911 CAD | 911 Creativity & Software Development Company |
-        Where creativity meets code
-      </title>
+      <meta name="description" content={meta.description} />
+      <meta name="keywords" content={meta.keywords.join(", ")} />
+      <title>{meta.title}</title>
     </Head>
     <section className="py-16 lg:py-24">
       <Container>
@@ -97,5 +88,18 @@ const ContactPage = () => (
     </section>
   </>
 );
+
+export async function getServerSideProps() {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/meta/contact`);
+  const { data } = await response.json();
+
+  const { meta } = data;
+
+  return {
+    props: {
+      meta,
+    },
+  };
+}
 
 export default ContactPage;

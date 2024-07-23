@@ -1,7 +1,7 @@
 import { Poppins_400 } from "@/pages/_app";
 
-const Button = ({ type, variant, className, onClick, children }) => {
-  let classes = `button rounded shadow text-sm font-semibold transition-all py-3 px-5 ${Poppins_400.className} ${className} `;
+const Button = ({ type, variant, className, onClick, disabled, children }) => {
+  let classes = `button rounded shadow text-sm font-semibold transition-all cursor-pointer py-3 px-5 ${Poppins_400.className} ${className} `;
 
   switch (variant) {
     case "primary":
@@ -30,7 +30,12 @@ const Button = ({ type, variant, className, onClick, children }) => {
   }
 
   return (
-    <button type={type} className={classes} onClick={onClick}>
+    <button
+      type={type}
+      className={classes}
+      onClick={onClick}
+      disabled={disabled}
+    >
       {children}
     </button>
   );

@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Header from "./ui/Header";
@@ -35,22 +34,22 @@ const Layout = ({ Poppins_400, children }) => {
         <Shadow
           variant={"primary-lighter"}
           position={{ top: "5%", left: "10%" }}
-          opacity={0.02}
+          opacity={0.05}
         />
         <Shadow
           variant={"secondary-lighter"}
           position={{ top: "20%", right: "5%" }}
-          opacity={0.02}
+          opacity={0.05}
         />
         <Shadow
           variant={"secondary-lighter"}
           position={{ top: "50%", left: "10%" }}
-          opacity={0.02}
+          opacity={0.05}
         />
         <Shadow
           variant={"primary-lighter"}
           position={{ top: "90%", right: "0%" }}
-          opacity={0.02}
+          opacity={0.05}
         />
         {children}
       </main>

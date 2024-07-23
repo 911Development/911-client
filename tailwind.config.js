@@ -25,6 +25,13 @@ module.exports = {
         black: "rgb(var(--color-black))",
         dark: "rgb(var(--color-dark))",
         light: "rgb(var(--color-light))",
+
+        danger: {
+          DEFAULT: "rgb(var(--color-danger))",
+          darker: "rgb(var(--color-danger-dark))",
+        },
+
+        success: "rgb(var(--color-success))",
         muted: "rgb(var(--color-muted))",
       },
       borderRadius: {

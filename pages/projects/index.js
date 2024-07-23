@@ -8,7 +8,10 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Head from "next/head";
 
-const ProjectsPage = () => {
+const ProjectsPage = ({ meta }) => {
+  console.log(process.env.NEXT_PUBLIC_API);
+  console.log(process.env.NEXT_PUBLIC_MONGODB_URL);
+
   const themeState = useSelector((state) => state.theme);
   const [kibrisevimIcon, setKibrisevimIcon] = useState("");
 
@@ -22,18 +25,9 @@ const ProjectsPage = () => {
   return (
     <>
       <Head>
-        <meta
-          name="description"
-          content="Projects of 911 CAD, 911 Creativity & Software Development Company | Where creativity  meets code, innovative solutions are born, transforming ideas into reality and pushing the boundaries of what's possible in the digital world."
-        />
-        <meta
-          name="keywords"
-          content="911 development, 911 CAD, 911cad, 911 development projects, 911 software projects, 911 cad projects, 911 CAD projects, 911 software, 911 creativity, 911 Creativity and Development, 911 Creativity & Development, kıbrıs 911, kibris 911, kıbrısevim, kibrisevim"
-        />
-        <title>
-          Projects of 911 CAD | 911 Creativity & Software Development Company |
-          Where creativity meets code
-        </title>
+        <meta name="description" content={meta.description} />
+        <meta name="keywords" content={meta.keywords.join(", ")} />
+        <title>{meta.title}</title>
       </Head>
       <section className="py-32 lg:py-48 overflow-x-hidden !min-w-full">
         <Container>
@@ -347,5 +341,18 @@ const ProjectsPage = () => {
     </>
   );
 };
+
+export async function getServerSideProps() {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API}/meta/projects`);
+  const { data } = await response.json();
+
+  const { meta } = data;
+
+  return {
+    props: {
+      meta,
+    },
+  };
+}
 
 export default ProjectsPage;
