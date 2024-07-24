@@ -246,7 +246,7 @@ const Footer = () => {
             </section>
           </section>
           <p className="text-sm lg:hidden">
-            © 911 CAD {new Date().getFullYear()}, {t("right_reserved")}
+            © 911 CAD {new Date().getFullYear()}, {t("rights_reserved")}
           </p>
         </Container>
       </footer>
