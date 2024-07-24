@@ -14,6 +14,8 @@ import useInput from "@/hooks/useInput";
 import { useMutation } from "react-query";
 import { sendEmail } from "@/utils/helpers";
 import Toast from "@/components/ui/Toast";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const reducer = (state, action) => {
   const { type } = action;
@@ -76,11 +78,13 @@ const initialState = {
   service: 0,
 };
 
-export default function Home({ meta, headings }) {
+export default function Home({ meta }) {
   const router = useRouter();
+  const { t, i18n } = useTranslation();
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const [currentLanguage, setCurrentLanguage] = useState("");
   const [toast, setToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [toastVariant, setToastVariant] = useState("");
@@ -96,12 +100,16 @@ export default function Home({ meta, headings }) {
     handleOnChange: handleEmailOnChange,
   } = useInput();
 
+  const { language } = i18n;
+
   const sendEmailMutation = useMutation({
     mutationKey: "sendEmail",
     mutationFn: sendEmail,
     onSuccess: function (data) {
       setToast(true);
-      setToastMessage(data.message);
+      setToastMessage(
+        currentLanguage === "en" ? data.message.en : data.message.tr
+      );
       setToastVariant(data.status);
     },
   });
@@ -128,6 +136,13 @@ export default function Home({ meta, headings }) {
     [isEmailValid]
   );
 
+  useEffect(
+    function () {
+      setCurrentLanguage(language);
+    },
+    [language]
+  );
+
   return (
     <>
       <Head>
@@ -142,9 +157,9 @@ export default function Home({ meta, headings }) {
         <Container>
           <section className="text-center mb-16">
             <h1 className="text-4xl font-semibold text-primary mb-8">
-              {headings.title}
+              {t("homepage_title")}
             </h1>
-            <p className="mx-auto lg:w-1/2">"{headings.description}"</p>
+            <p className="mx-auto lg:w-1/2">{t("homepage_description")}</p>
           </section>
           <section className="w-11/12 lg:w-1/2 text-center mx-auto my-16">
             <section className="relative mb-4 lg:mb-0">
@@ -152,7 +167,7 @@ export default function Home({ meta, headings }) {
                 <input
                   type="email"
                   name="email"
-                  placeholder="send your email"
+                  placeholder={t("send_your_email")}
                   className="w-full border rounded-full outline-none text-sm bg-white dark:bg-dark dark:border-gray-600 focus:border-primary focus:dark:border-primary-darker p-4 transition-all"
                   value={email}
                   onChange={handleEmailOnChange}
@@ -160,7 +175,7 @@ export default function Home({ meta, headings }) {
                 <section className="flex items-center gap-3 absolute top-1/2 -translate-y-1/2 right-2">
                   {showEmailError && (
                     <p className="text-xs text-red-500 hidden lg:block">
-                      {emailErrorMessage}
+                      {t(emailErrorMessage)}
                     </p>
                   )}
                   <Button
@@ -172,8 +187,8 @@ export default function Home({ meta, headings }) {
                     <FontAwesomeIcon icon={faPaperPlane} />
                     <span>
                       {sendEmailMutation.status === "loading"
-                        ? "Sending"
-                        : "Send"}
+                        ? t("Sending")
+                        : t("Send")}
                     </span>
                   </Button>
                 </section>
@@ -181,7 +196,7 @@ export default function Home({ meta, headings }) {
             </section>
             {showEmailError && (
               <p className="text-xs text-red-500 block lg:hidden">
-                {emailErrorMessage}
+                {t(emailErrorMessage)}
               </p>
             )}
           </section>
@@ -203,7 +218,7 @@ export default function Home({ meta, headings }) {
                     alt="Development"
                   />
                   <span className="absolute opacity-0 group-hover:block group-hover:opacity-100 bg-white dark:bg-dark dark:border-none text-xs rounded-md border p-3 -right-full group-hover:translate-x-1/2 select-none transition-all">
-                    Development
+                    {t("Development")}
                   </span>
                 </div>
               </motion.div>
@@ -225,7 +240,7 @@ export default function Home({ meta, headings }) {
                     alt="Magic"
                   />
                   <span className="absolute opacity-0 group-hover:block group-hover:opacity-100 bg-white dark:bg-dark dark:border-none text-xs rounded-md border p-3 -top-4 group-hover:-translate-y-1/2 select-none transition-all">
-                    Creativity
+                    {t("Creativity")}
                   </span>
                 </div>
               </motion.div>
@@ -273,7 +288,7 @@ export default function Home({ meta, headings }) {
                     alt="Marketing"
                   />
                   <span className="absolute opacity-0 group-hover:block group-hover:opacity-100 bg-white dark:bg-dark dark:border-none text-xs rounded-md text-center border p-3 top-1/2 group-hover:translate-y-1/2 select-none transition-all z-50">
-                    Digital Marketing
+                    {t("Digital_Marketing")}
                   </span>
                 </div>
               </motion.div>
@@ -297,7 +312,7 @@ export default function Home({ meta, headings }) {
                     alt="Design"
                   />
                   <span className="absolute opacity-0 group-hover:block group-hover:opacity-100 bg-white dark:bg-dark dark:border-none text-xs rounded border p-3 -top-4 group-hover:-translate-y-1/2 select-none transition-all z-50">
-                    Design
+                    {t("Design")}
                   </span>
                 </div>
               </motion.div>
@@ -345,7 +360,7 @@ export default function Home({ meta, headings }) {
                     alt="Social Media"
                   />
                   <span className="absolute opacity-0 group-hover:block group-hover:opacity-100 bg-white dark:bg-dark dark:border-none text-xs rounded-md border p-3 -right-full group-hover:translate-x-1/2 select-none transition-all">
-                    Social Media
+                    {t("Social_Media")}
                   </span>
                 </div>
               </motion.div>
@@ -365,13 +380,12 @@ export default function Home({ meta, headings }) {
                   <p className="text-orange-500">
                     <span className="text-3xl">+3</span>
                     <br />
-                    Business partner
+                    {t("Business_partner")}
                   </p>
                 </Card.Header>
                 <Card.Body clasName={"my-2"}>
-                  <p className="text-sm text-muted line-clamp-3">
-                    Our business partners who support and guide us as we move
-                    ourselves and our company further
+                  <p className="text-sm text-muted dark:text-muted-dark line-clamp-3">
+                    {t("Business_partner_description")}
                   </p>
                 </Card.Body>
               </Card>
@@ -389,13 +403,12 @@ export default function Home({ meta, headings }) {
                   <p className="text-purple-500">
                     <span className="text-3xl">+7</span>
                     <br />
-                    Project
+                    {t("Project")}
                   </p>
                 </Card.Header>
                 <Card.Body clasName={"my-2"}>
-                  <p className="text-sm text-muted line-clamp-3">
-                    More than 7 projects that have been delivered and that we
-                    are still working on
+                  <p className="text-sm text-muted dark:text-muted-dark line-clamp-3">
+                    {t("Project_description")}
                   </p>
                 </Card.Body>
               </Card>
@@ -413,13 +426,12 @@ export default function Home({ meta, headings }) {
                   <p className="text-green-500">
                     <span className="text-3xl">+2</span>
                     <br />
-                    Office
+                    {t("Office")}
                   </p>
                 </Card.Header>
                 <Card.Body clasName={"my-2"}>
-                  <p className="text-sm text-muted line-clamp-3">
-                    Our head office is in Kyrenia, and we have a total of 2
-                    offices
+                  <p className="text-sm text-muted dark:text-muted-dark line-clamp-3">
+                    {t("Office_description")}
                   </p>
                 </Card.Body>
               </Card>
@@ -437,14 +449,12 @@ export default function Home({ meta, headings }) {
                   <p className="text-red-500">
                     <span className="text-3xl">+12</span>
                     <br />
-                    Employees
+                    {t("Employees")}
                   </p>
                 </Card.Header>
                 <Card.Body clasName={"my-2"}>
-                  <p className="text-sm text-muted line-clamp-3">
-                    More than 12 employees in total, whom we have trained from
-                    the infrastructure, accompanied by our expert staff in their
-                    fields
+                  <p className="text-sm text-muted dark:text-muted-dark line-clamp-3">
+                    {t("Employees_description")}
                   </p>
                 </Card.Body>
               </Card>
@@ -453,7 +463,7 @@ export default function Home({ meta, headings }) {
         </Container>
         <section className="my-48 hidden lg:block relative">
           <h1 className="text-center text-primary font-semibold text-2xl mb-4">
-            Our Teams
+            {t("Our_Teams")}
           </h1>
           <Container className={"relative"}>
             <section
@@ -483,7 +493,7 @@ export default function Home({ meta, headings }) {
                   >
                     <Card.Header clasName={"text-center"}>
                       <h1 className="text-primary text-xl mb-2">
-                        Backend Team
+                        {t("Backend_Team")}
                       </h1>
                       <section className="flex items-center justify-evenly">
                         <section className="flex items-center gap-1 text-sm">
@@ -496,7 +506,9 @@ export default function Home({ meta, headings }) {
                             className="opacity-50"
                             alt="Graduation"
                           />
-                          <span className="text-muted">Expert</span>
+                          <span className="text-muted dark:text-muted-dark">
+                            {t("Expert")}
+                          </span>
                         </section>
                         <section className="flex items-center gap-1 text-sm">
                           <Image
@@ -506,7 +518,9 @@ export default function Home({ meta, headings }) {
                             className="opacity-50"
                             alt="Idea"
                           />
-                          <span className="text-muted">Creative</span>
+                          <span className="text-muted dark:text-muted-dark">
+                            {t("Creative")}
+                          </span>
                         </section>
                         <section className="flex items-center gap-1 text-sm">
                           <Image
@@ -518,15 +532,15 @@ export default function Home({ meta, headings }) {
                             className="opacity-50"
                             alt="Engineering"
                           />
-                          <span className="text-muted">Modern</span>
+                          <span className="text-muted dark:text-muted-dark">
+                            {t("Modern")}
+                          </span>
                         </section>
                       </section>
                     </Card.Header>
                     <Card.Body clasName={"text-center my-5"}>
-                      <p className="text-muted text-sm">
-                        Our team, led by a Senior Software Engineer, is an
-                        expert in the field and has years of experience in the
-                        most up-to-date technologies.
+                      <p className="text-muted dark:text-muted-dark text-sm">
+                        {t("Backend_Team_Description")}
                       </p>
                     </Card.Body>
                     <Card.Footer>
@@ -536,7 +550,7 @@ export default function Home({ meta, headings }) {
                           variant={"primary-link"}
                           className={"flex items-center gap-2 mx-auto py-2.5"}
                         >
-                          <span>See the team</span>
+                          <span>{t("See_the_team")}</span>
                           <FontAwesomeIcon icon={faAngleRight} />
                         </Button>
                       </Link>
@@ -557,7 +571,7 @@ export default function Home({ meta, headings }) {
                   >
                     <Card.Header clasName={"text-center"}>
                       <h1 className="text-primary text-xl mb-2">
-                        Frontend Team
+                        {t("Frontend_Team")}
                       </h1>
                       <section className="flex items-center justify-evenly">
                         <section className="flex items-center gap-1 text-sm">
@@ -570,7 +584,9 @@ export default function Home({ meta, headings }) {
                             className="opacity-50"
                             alt="Graduation"
                           />
-                          <span className="text-muted">Expert</span>
+                          <span className="text-muted dark:text-muted-dark">
+                            {t("Expert")}
+                          </span>
                         </section>
                         <section className="flex items-center gap-1 text-sm">
                           <Image
@@ -580,7 +596,9 @@ export default function Home({ meta, headings }) {
                             className="opacity-50"
                             alt="Idea"
                           />
-                          <span className="text-muted">Creative</span>
+                          <span className="text-muted dark:text-muted-dark">
+                            {t("Creative")}
+                          </span>
                         </section>
                         <section className="flex items-center gap-1 text-sm">
                           <Image
@@ -592,15 +610,15 @@ export default function Home({ meta, headings }) {
                             className="opacity-50"
                             alt="Engineering"
                           />
-                          <span className="text-muted">Modern</span>
+                          <span className="text-muted dark:text-muted-dark">
+                            {t("Modern")}
+                          </span>
                         </section>
                       </section>
                     </Card.Header>
                     <Card.Body clasName={"text-center my-5"}>
-                      <p className="text-muted text-sm">
-                        Our expert frontend team works with our design team to
-                        develop the most modern interfaces, technologies and UI
-                        / UX.
+                      <p className="text-muted dark:text-muted-dark text-sm">
+                        {t("Frontend_Team_Description")}
                       </p>
                     </Card.Body>
                     <Card.Footer>
@@ -610,7 +628,7 @@ export default function Home({ meta, headings }) {
                           variant={"primary-link"}
                           className={"flex items-center gap-2 mx-auto py-2.5"}
                         >
-                          <span>See the team</span>
+                          <span>{t("See_the_team")}</span>
                           <FontAwesomeIcon icon={faAngleRight} />
                         </Button>
                       </Link>
@@ -630,7 +648,9 @@ export default function Home({ meta, headings }) {
                     }
                   >
                     <Card.Header clasName={"text-center"}>
-                      <h1 className="text-primary text-xl mb-2">Mobile Team</h1>
+                      <h1 className="text-primary text-xl mb-2">
+                        {t("Mobile_Team")}
+                      </h1>
                       <section className="flex items-center justify-evenly">
                         <section className="flex items-center gap-1 text-sm">
                           <Image
@@ -642,7 +662,9 @@ export default function Home({ meta, headings }) {
                             className="opacity-50"
                             alt="Graduation"
                           />
-                          <span className="text-muted">Expert</span>
+                          <span className="text-muted dark:text-muted-dark">
+                            {t("Expert")}
+                          </span>
                         </section>
                         <section className="flex items-center gap-1 text-sm">
                           <Image
@@ -652,7 +674,9 @@ export default function Home({ meta, headings }) {
                             className="opacity-50"
                             alt="Idea"
                           />
-                          <span className="text-muted">Creative</span>
+                          <span className="text-muted dark:text-muted-dark">
+                            {t("Creative")}
+                          </span>
                         </section>
                         <section className="flex items-center gap-1 text-sm">
                           <Image
@@ -664,15 +688,15 @@ export default function Home({ meta, headings }) {
                             className="opacity-50"
                             alt="Engineering"
                           />
-                          <span className="text-muted">Modern</span>
+                          <span className="text-muted dark:text-muted-dark">
+                            {t("Modern")}
+                          </span>
                         </section>
                       </section>
                     </Card.Header>
                     <Card.Body clasName={"text-center my-5"}>
-                      <p className="text-muted text-sm">
-                        Our team uses the most modern and high-performance
-                        application development technologies for both cross and
-                        native platforms.
+                      <p className="text-muted dark:text-muted-dark text-sm">
+                        {t("Mobile_Team_Description")}
                       </p>
                     </Card.Body>
                     <Card.Footer>
@@ -682,7 +706,7 @@ export default function Home({ meta, headings }) {
                           variant={"primary-link"}
                           className={"flex items-center gap-2 mx-auto py-2.5"}
                         >
-                          <span>See the team</span>
+                          <span>{t("See_the_team")}</span>
                           <FontAwesomeIcon icon={faAngleRight} />
                         </Button>
                       </Link>
@@ -704,7 +728,7 @@ export default function Home({ meta, headings }) {
                   >
                     <Card.Header clasName={"text-center"}>
                       <h1 className="text-primary text-xl mb-2">
-                        Social Media Team
+                        {t("Social_Media_Team")}
                       </h1>
                       <section className="flex items-center justify-evenly">
                         <section className="flex items-center gap-1 text-sm">
@@ -717,7 +741,9 @@ export default function Home({ meta, headings }) {
                             className="opacity-50"
                             alt="Graduation"
                           />
-                          <span className="text-muted">Expert</span>
+                          <span className="text-muted dark:text-muted-dark">
+                            {t("Expert")}
+                          </span>
                         </section>
                         <section className="flex items-center gap-1 text-sm">
                           <Image
@@ -727,7 +753,9 @@ export default function Home({ meta, headings }) {
                             className="opacity-50"
                             alt="Idea"
                           />
-                          <span className="text-muted">Creative</span>
+                          <span className="text-muted dark:text-muted-dark">
+                            {t("Creative")}
+                          </span>
                         </section>
                         <section className="flex items-center gap-1 text-sm">
                           <Image
@@ -739,15 +767,15 @@ export default function Home({ meta, headings }) {
                             className="opacity-50"
                             alt="Engineering"
                           />
-                          <span className="text-muted">Modern</span>
+                          <span className="text-muted dark:text-muted-dark">
+                            {t("Modern")}
+                          </span>
                         </section>
                       </section>
                     </Card.Header>
                     <Card.Body clasName={"text-center my-5"}>
-                      <p className="text-muted text-sm">
-                        With the social media consultancy we provide, we
-                        organize your posts, analyze the statistics specific to
-                        your page and offer you the best plan.
+                      <p className="text-muted dark:text-muted-dark text-sm">
+                        {t("Social_Media_Team_Description")}
                       </p>
                     </Card.Body>
                     <Card.Footer>
@@ -757,7 +785,7 @@ export default function Home({ meta, headings }) {
                           variant={"primary-link"}
                           className={"flex items-center gap-2 mx-auto py-2.5"}
                         >
-                          <span>See the team</span>
+                          <span>{t("See_the_team")}</span>
                           <FontAwesomeIcon icon={faAngleRight} />
                         </Button>
                       </Link>
@@ -771,7 +799,9 @@ export default function Home({ meta, headings }) {
                     }
                   >
                     <Card.Header clasName={"text-center"}>
-                      <h1 className="text-primary text-xl mb-2">Design Team</h1>
+                      <h1 className="text-primary text-xl mb-2">
+                        {t("Design_Team")}
+                      </h1>
                       <section className="flex items-center justify-evenly">
                         <section className="flex items-center gap-1 text-sm">
                           <Image
@@ -783,7 +813,9 @@ export default function Home({ meta, headings }) {
                             className="opacity-50"
                             alt="Graduation"
                           />
-                          <span className="text-muted">Expert</span>
+                          <span className="text-muted dark:text-muted-dark">
+                            {t("Expert")}
+                          </span>
                         </section>
                         <section className="flex items-center gap-1 text-sm">
                           <Image
@@ -793,7 +825,9 @@ export default function Home({ meta, headings }) {
                             className="opacity-50"
                             alt="Idea"
                           />
-                          <span className="text-muted">Creative</span>
+                          <span className="text-muted dark:text-muted-dark">
+                            {t("Creative")}
+                          </span>
                         </section>
                         <section className="flex items-center gap-1 text-sm">
                           <Image
@@ -805,15 +839,15 @@ export default function Home({ meta, headings }) {
                             className="opacity-50"
                             alt="Engineering"
                           />
-                          <span className="text-muted">Modern</span>
+                          <span className="text-muted dark:text-muted-dark">
+                            {t("Modern")}
+                          </span>
                         </section>
                       </section>
                     </Card.Header>
                     <Card.Body clasName={"text-center my-5"}>
-                      <p className="text-muted text-sm">
-                        Our dynamic and creative team is passionate about
-                        creativity and discovery and spends this energy on
-                        producing digital design products.
+                      <p className="text-muted dark:text-muted-dark text-sm">
+                        {t("Design_Team_Description")}
                       </p>
                     </Card.Body>
                     <Card.Footer>
@@ -823,7 +857,7 @@ export default function Home({ meta, headings }) {
                           variant={"primary-link"}
                           className={"flex items-center gap-2 mx-auto py-2.5"}
                         >
-                          <span>See the team</span>
+                          <span>{t("See_the_team")}</span>
                           <FontAwesomeIcon icon={faAngleRight} />
                         </Button>
                       </Link>
@@ -837,7 +871,9 @@ export default function Home({ meta, headings }) {
                     }
                   >
                     <Card.Header clasName={"text-center"}>
-                      <h1 className="text-primary text-xl mb-2">DevOps Team</h1>
+                      <h1 className="text-primary text-xl mb-2">
+                        {t("Devops_Team")}
+                      </h1>
                       <section className="flex items-center justify-evenly">
                         <section className="flex items-center gap-1 text-sm">
                           <Image
@@ -849,7 +885,9 @@ export default function Home({ meta, headings }) {
                             className="opacity-50"
                             alt="Graduation"
                           />
-                          <span className="text-muted">Expert</span>
+                          <span className="text-muted dark:text-muted-dark">
+                            {t("Expert")}
+                          </span>
                         </section>
                         <section className="flex items-center gap-1 text-sm">
                           <Image
@@ -859,7 +897,9 @@ export default function Home({ meta, headings }) {
                             className="opacity-50"
                             alt="Idea"
                           />
-                          <span className="text-muted">Creative</span>
+                          <span className="text-muted dark:text-muted-dark">
+                            {t("Creative")}
+                          </span>
                         </section>
                         <section className="flex items-center gap-1 text-sm">
                           <Image
@@ -871,15 +911,15 @@ export default function Home({ meta, headings }) {
                             className="opacity-50"
                             alt="Engineering"
                           />
-                          <span className="text-muted">Modern</span>
+                          <span className="text-muted dark:text-muted-dark">
+                            {t("Modern")}
+                          </span>
                         </section>
                       </section>
                     </Card.Header>
                     <Card.Body clasName={"text-center my-5"}>
-                      <p className="text-muted text-sm">
-                        The team ensures the monitoring of processes and
-                        products, the scalability, reliablity and sustainability
-                        of projects,the best version.
+                      <p className="text-muted dark:text-muted-dark text-sm">
+                        {t("Devops_Team_Description")}
                       </p>
                     </Card.Body>
                     <Card.Footer>
@@ -940,7 +980,7 @@ export default function Home({ meta, headings }) {
         </section>
         <section className="my-48 lg:hidden">
           <h1 className="text-center text-primary font-semibold text-2xl mb-4">
-            Our Teams
+            {t("Our_Teams")}
           </h1>
           <Container>
             <section
@@ -953,209 +993,12 @@ export default function Home({ meta, headings }) {
               <section className="min-w-72 snap-center snap-always">
                 <Card
                   className={
-                    "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-3"
-                  }
-                >
-                  <Card.Header clasName={"text-center"}>
-                    <h1 className="text-primary text-xl mb-2">Backend Team</h1>
-                    <section className="flex items-center justify-evenly">
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={
-                            "https://img.icons8.com/fluency/18/graduation-cap.png"
-                          }
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Graduation"
-                        />
-                        <span className="text-muted">Expert</span>
-                      </section>
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={"https://img.icons8.com/color/18/idea.png"}
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Idea"
-                        />
-                        <span className="text-muted">Creative</span>
-                      </section>
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={
-                            "https://img.icons8.com/fluency/18/engineering.png"
-                          }
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Engineering"
-                        />
-                        <span className="text-muted">Modern</span>
-                      </section>
-                    </section>
-                  </Card.Header>
-                  <Card.Body clasName={"text-center my-5"}>
-                    <p className="text-muted text-sm line-clamp-3">
-                      Our team, led by a Senior Software Engineer, is an expert
-                      in the field and has years of experience in the most
-                      up-to-date technologies.
-                    </p>
-                  </Card.Body>
-                  <Card.Footer>
-                    <Link href={"/teams/#backend"}>
-                      <Button
-                        type={"button"}
-                        variant={"primary-link"}
-                        className={"flex items-center gap-2 mx-auto py-2.5"}
-                      >
-                        <span>See the team</span>
-                        <FontAwesomeIcon icon={faAngleRight} />
-                      </Button>
-                    </Link>
-                  </Card.Footer>
-                </Card>
-              </section>
-              <section className="min-w-72 snap-center snap-always">
-                <Card
-                  className={
-                    "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-3"
-                  }
-                >
-                  <Card.Header clasName={"text-center"}>
-                    <h1 className="text-primary text-xl mb-2">Frontend Team</h1>
-                    <section className="flex items-center justify-evenly">
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={
-                            "https://img.icons8.com/fluency/18/graduation-cap.png"
-                          }
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Graduation"
-                        />
-                        <span className="text-muted">Expert</span>
-                      </section>
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={"https://img.icons8.com/color/18/idea.png"}
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Idea"
-                        />
-                        <span className="text-muted">Creative</span>
-                      </section>
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={
-                            "https://img.icons8.com/fluency/18/engineering.png"
-                          }
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Engineering"
-                        />
-                        <span className="text-muted">Modern</span>
-                      </section>
-                    </section>
-                  </Card.Header>
-                  <Card.Body clasName={"text-center my-5"}>
-                    <p className="text-muted text-sm line-clamp-3">
-                      Our expert frontend team works with our design team to
-                      develop the most modern interfaces and UI / UX.
-                    </p>
-                  </Card.Body>
-                  <Card.Footer>
-                    <Link href={"/teams/#frontend"}>
-                      <Button
-                        type={"button"}
-                        variant={"primary-link"}
-                        className={"flex items-center gap-2 mx-auto py-2.5"}
-                      >
-                        <span>See the team</span>
-                        <FontAwesomeIcon icon={faAngleRight} />
-                      </Button>
-                    </Link>
-                  </Card.Footer>
-                </Card>
-              </section>
-              <section className="min-w-72 snap-center snap-always">
-                <Card
-                  className={
-                    "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-3"
-                  }
-                >
-                  <Card.Header clasName={"text-center"}>
-                    <h1 className="text-primary text-xl mb-2">Mobile Team</h1>
-                    <section className="flex items-center justify-evenly">
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={
-                            "https://img.icons8.com/fluency/18/graduation-cap.png"
-                          }
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Graduation"
-                        />
-                        <span className="text-muted">Expert</span>
-                      </section>
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={"https://img.icons8.com/color/18/idea.png"}
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Idea"
-                        />
-                        <span className="text-muted">Creative</span>
-                      </section>
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={
-                            "https://img.icons8.com/fluency/18/engineering.png"
-                          }
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Engineering"
-                        />
-                        <span className="text-muted">Modern</span>
-                      </section>
-                    </section>
-                  </Card.Header>
-                  <Card.Body clasName={"text-center my-5"}>
-                    <p className="text-muted text-sm line-clamp-3">
-                      Our team uses the most modern and high-performance
-                      application development technologies for both cross and
-                      native platforms.
-                    </p>
-                  </Card.Body>
-                  <Card.Footer>
-                    <Link href={"/teams/#mobile"}>
-                      <Button
-                        type={"button"}
-                        variant={"primary-link"}
-                        className={"flex items-center gap-2 mx-auto py-2.5"}
-                      >
-                        <span>See the team</span>
-                        <FontAwesomeIcon icon={faAngleRight} />
-                      </Button>
-                    </Link>
-                  </Card.Footer>
-                </Card>
-              </section>
-              <section className="min-w-72 snap-center snap-always">
-                <Card
-                  className={
-                    "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-3"
+                    "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-4"
                   }
                 >
                   <Card.Header clasName={"text-center"}>
                     <h1 className="text-primary text-xl mb-2">
-                      Social Media Team
+                      {t("Backend_Team")}
                     </h1>
                     <section className="flex items-center justify-evenly">
                       <section className="flex items-center gap-1 text-sm">
@@ -1168,7 +1011,9 @@ export default function Home({ meta, headings }) {
                           className="opacity-50"
                           alt="Graduation"
                         />
-                        <span className="text-muted">Expert</span>
+                        <span className="text-muted dark:text-muted-dark">
+                          {t("Expert")}
+                        </span>
                       </section>
                       <section className="flex items-center gap-1 text-sm">
                         <Image
@@ -1178,7 +1023,9 @@ export default function Home({ meta, headings }) {
                           className="opacity-50"
                           alt="Idea"
                         />
-                        <span className="text-muted">Creative</span>
+                        <span className="text-muted dark:text-muted-dark">
+                          {t("Creative")}
+                        </span>
                       </section>
                       <section className="flex items-center gap-1 text-sm">
                         <Image
@@ -1190,15 +1037,233 @@ export default function Home({ meta, headings }) {
                           className="opacity-50"
                           alt="Engineering"
                         />
-                        <span className="text-muted">Modern</span>
+                        <span className="text-muted dark:text-muted-dark">
+                          {t("Modern")}
+                        </span>
                       </section>
                     </section>
                   </Card.Header>
                   <Card.Body clasName={"text-center my-5"}>
-                    <p className="text-muted text-sm line-clamp-3">
-                      With the social media consultancy service we provide, we
-                      organize your posts, analyze the statistics specific to
-                      your page and offer you the best plan.
+                    <p className="text-muted dark:text-muted-dark text-sm line-clamp-3">
+                      Our team, led by a Senior Software Engineer, is an expert
+                      in the field and has years of experience in the most
+                      up-to-date technologies.
+                    </p>
+                  </Card.Body>
+                  <Card.Footer>
+                    <Link href={"/teams/#backend"}>
+                      <Button
+                        type={"button"}
+                        variant={"primary-link"}
+                        className={"flex items-center gap-2 mx-auto py-2.5"}
+                      >
+                        <span>{t("See_the_team")}</span>
+                        <FontAwesomeIcon icon={faAngleRight} />
+                      </Button>
+                    </Link>
+                  </Card.Footer>
+                </Card>
+              </section>
+              <section className="min-w-72 snap-center snap-always">
+                <Card
+                  className={
+                    "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-4"
+                  }
+                >
+                  <Card.Header clasName={"text-center"}>
+                    <h1 className="text-primary text-xl mb-2">
+                      {t("Frontend_Team")}
+                    </h1>
+                    <section className="flex items-center justify-evenly">
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={
+                            "https://img.icons8.com/fluency/18/graduation-cap.png"
+                          }
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Graduation"
+                        />
+                        <span className="text-muted dark:text-muted-dark">
+                          {t("Expert")}
+                        </span>
+                      </section>
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={"https://img.icons8.com/color/18/idea.png"}
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Idea"
+                        />
+                        <span className="text-muted dark:text-muted-dark">
+                          {t("Creative")}
+                        </span>
+                      </section>
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={
+                            "https://img.icons8.com/fluency/18/engineering.png"
+                          }
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Engineering"
+                        />
+                        <span className="text-muted dark:text-muted-dark">
+                          {t("Modern")}
+                        </span>
+                      </section>
+                    </section>
+                  </Card.Header>
+                  <Card.Body clasName={"text-center my-5"}>
+                    <p className="text-muted dark:text-muted-dark text-sm line-clamp-3">
+                      {t("Frontend_Team_Description")}
+                    </p>
+                  </Card.Body>
+                  <Card.Footer>
+                    <Link href={"/teams/#frontend"}>
+                      <Button
+                        type={"button"}
+                        variant={"primary-link"}
+                        className={"flex items-center gap-2 mx-auto py-2.5"}
+                      >
+                        <span>{t("See_the_team")}</span>
+                        <FontAwesomeIcon icon={faAngleRight} />
+                      </Button>
+                    </Link>
+                  </Card.Footer>
+                </Card>
+              </section>
+              <section className="min-w-72 snap-center snap-always">
+                <Card
+                  className={
+                    "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-4"
+                  }
+                >
+                  <Card.Header clasName={"text-center"}>
+                    <h1 className="text-primary text-xl mb-2">
+                      {t("Mobile_Team")}
+                    </h1>
+                    <section className="flex items-center justify-evenly">
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={
+                            "https://img.icons8.com/fluency/18/graduation-cap.png"
+                          }
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Graduation"
+                        />
+                        <span className="text-muted dark:text-muted-dark">
+                          {t("Expert")}
+                        </span>
+                      </section>
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={"https://img.icons8.com/color/18/idea.png"}
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Idea"
+                        />
+                        <span className="text-muted dark:text-muted-dark">
+                          {t("Creative")}
+                        </span>
+                      </section>
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={
+                            "https://img.icons8.com/fluency/18/engineering.png"
+                          }
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Engineering"
+                        />
+                        <span className="text-muted dark:text-muted-dark">
+                          {t("Modern")}
+                        </span>
+                      </section>
+                    </section>
+                  </Card.Header>
+                  <Card.Body clasName={"text-center my-5"}>
+                    <p className="text-muted dark:text-muted-dark text-sm line-clamp-3">
+                      {t("Mobile_Team_Description")}
+                    </p>
+                  </Card.Body>
+                  <Card.Footer>
+                    <Link href={"/teams/#mobile"}>
+                      <Button
+                        type={"button"}
+                        variant={"primary-link"}
+                        className={"flex items-center gap-2 mx-auto py-2.5"}
+                      >
+                        <span>{t("See_the_team")}</span>
+                        <FontAwesomeIcon icon={faAngleRight} />
+                      </Button>
+                    </Link>
+                  </Card.Footer>
+                </Card>
+              </section>
+              <section className="min-w-72 snap-center snap-always">
+                <Card
+                  className={
+                    "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-4"
+                  }
+                >
+                  <Card.Header clasName={"text-center"}>
+                    <h1 className="text-primary text-xl mb-2">
+                      {t("Social_Media_Team")}
+                    </h1>
+                    <section className="flex items-center justify-evenly">
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={
+                            "https://img.icons8.com/fluency/18/graduation-cap.png"
+                          }
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Graduation"
+                        />
+                        <span className="text-muted dark:text-muted-dark">
+                          {t("Expert")}
+                        </span>
+                      </section>
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={"https://img.icons8.com/color/18/idea.png"}
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Idea"
+                        />
+                        <span className="text-muted dark:text-muted-dark">
+                          {t("Creative")}
+                        </span>
+                      </section>
+                      <section className="flex items-center gap-1 text-sm">
+                        <Image
+                          src={
+                            "https://img.icons8.com/fluency/18/engineering.png"
+                          }
+                          width={18}
+                          height={18}
+                          className="opacity-50"
+                          alt="Engineering"
+                        />
+                        <span className="text-muted dark:text-muted-dark">
+                          {t("Modern")}
+                        </span>
+                      </section>
+                    </section>
+                  </Card.Header>
+                  <Card.Body clasName={"text-center my-5"}>
+                    <p className="text-muted dark:text-muted-dark text-sm line-clamp-3">
+                      {t("Social_Media_Team_Description")}
                     </p>
                   </Card.Body>
                   <Card.Footer>
@@ -1208,7 +1273,7 @@ export default function Home({ meta, headings }) {
                         variant={"primary-link"}
                         className={"flex items-center gap-2 mx-auto py-2.5"}
                       >
-                        <span>See the team</span>
+                        <span>{t("See_the_team")}</span>
                         <FontAwesomeIcon icon={faAngleRight} />
                       </Button>
                     </Link>
@@ -1218,11 +1283,13 @@ export default function Home({ meta, headings }) {
               <section className="min-w-72 snap-center snap-always">
                 <Card
                   className={
-                    "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-3"
+                    "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-4"
                   }
                 >
                   <Card.Header clasName={"text-center"}>
-                    <h1 className="text-primary text-xl mb-2">Design Team</h1>
+                    <h1 className="text-primary text-xl mb-2">
+                      {t("Design_Team")}
+                    </h1>
                     <section className="flex items-center justify-evenly">
                       <section className="flex items-center gap-1 text-sm">
                         <Image
@@ -1234,7 +1301,9 @@ export default function Home({ meta, headings }) {
                           className="opacity-50"
                           alt="Graduation"
                         />
-                        <span className="text-muted">Expert</span>
+                        <span className="text-muted dark:text-muted-dark">
+                          {t("Expert")}
+                        </span>
                       </section>
                       <section className="flex items-center gap-1 text-sm">
                         <Image
@@ -1244,7 +1313,9 @@ export default function Home({ meta, headings }) {
                           className="opacity-50"
                           alt="Idea"
                         />
-                        <span className="text-muted">Creative</span>
+                        <span className="text-muted dark:text-muted-dark">
+                          {t("Creative")}
+                        </span>
                       </section>
                       <section className="flex items-center gap-1 text-sm">
                         <Image
@@ -1256,15 +1327,15 @@ export default function Home({ meta, headings }) {
                           className="opacity-50"
                           alt="Engineering"
                         />
-                        <span className="text-muted">Modern</span>
+                        <span className="text-muted dark:text-muted-dark">
+                          {t("Modern")}
+                        </span>
                       </section>
                     </section>
                   </Card.Header>
                   <Card.Body clasName={"text-center my-5"}>
-                    <p className="text-muted text-sm line-clamp-3">
-                      Our dynamic and creative team is passionate about
-                      creativity and discovery and spends this energy on
-                      producing digital design products.
+                    <p className="text-muted dark:text-muted-dark text-sm line-clamp-3">
+                      {t("Design_Team_Description")}
                     </p>
                   </Card.Body>
                   <Card.Footer>
@@ -1274,7 +1345,7 @@ export default function Home({ meta, headings }) {
                         variant={"primary-link"}
                         className={"flex items-center gap-2 mx-auto py-2.5"}
                       >
-                        <span>See the team</span>
+                        <span>{t("See_the_team")}</span>
                         <FontAwesomeIcon icon={faAngleRight} />
                       </Button>
                     </Link>
@@ -1284,11 +1355,13 @@ export default function Home({ meta, headings }) {
               <section className="min-w-72 snap-center snap-always">
                 <Card
                   className={
-                    "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-3"
+                    "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-4"
                   }
                 >
                   <Card.Header clasName={"text-center"}>
-                    <h1 className="text-primary text-xl mb-2">DevOps Team</h1>
+                    <h1 className="text-primary text-xl mb-2">
+                      {t("DevOps_Team")}
+                    </h1>
                     <section className="flex items-center justify-evenly">
                       <section className="flex items-center gap-1 text-sm">
                         <Image
@@ -1300,7 +1373,9 @@ export default function Home({ meta, headings }) {
                           className="opacity-50"
                           alt="Graduation"
                         />
-                        <span className="text-muted">Expert</span>
+                        <span className="text-muted dark:text-muted-dark">
+                          {t("Expert")}
+                        </span>
                       </section>
                       <section className="flex items-center gap-1 text-sm">
                         <Image
@@ -1310,7 +1385,9 @@ export default function Home({ meta, headings }) {
                           className="opacity-50"
                           alt="Idea"
                         />
-                        <span className="text-muted">Creative</span>
+                        <span className="text-muted dark:text-muted-dark">
+                          {t("Creative")}
+                        </span>
                       </section>
                       <section className="flex items-center gap-1 text-sm">
                         <Image
@@ -1322,15 +1399,15 @@ export default function Home({ meta, headings }) {
                           className="opacity-50"
                           alt="Engineering"
                         />
-                        <span className="text-muted">Modern</span>
+                        <span className="text-muted dark:text-muted-dark">
+                          {t("Modern")}
+                        </span>
                       </section>
                     </section>
                   </Card.Header>
                   <Card.Body clasName={"text-center my-5"}>
-                    <p className="text-muted text-sm line-clamp-3">
-                      The team ensures the monitoring of processes and products,
-                      the scalability and sustainability of projects,the best
-                      version.
+                    <p className="text-muted dark:text-muted-dark text-sm line-clamp-3">
+                      {t("Devops_Team_Description")}
                     </p>
                   </Card.Body>
                   <Card.Footer>
@@ -1340,7 +1417,7 @@ export default function Home({ meta, headings }) {
                         variant={"primary-link"}
                         className={"flex items-center gap-2 mx-auto py-2.5"}
                       >
-                        <span>See the team</span>
+                        <span>{t("See_the_team")}</span>
                         <FontAwesomeIcon icon={faAngleRight} />
                       </Button>
                     </Link>
@@ -1353,7 +1430,7 @@ export default function Home({ meta, headings }) {
         <section id="services" className="hidden lg:block relative my-48">
           <Container>
             <h1 className="text-center text-primary font-semibold text-2xl mb-4">
-              Our Services
+              {t("Our_Services")}
             </h1>
             <section
               className="flex items-stretch flex-nowrap overflow-x-hidden mb-8 select-none"
@@ -1381,14 +1458,13 @@ export default function Home({ meta, headings }) {
                         className="w-20 mb-4 mx-auto"
                         alt="Web Design"
                       />
-                      <h1 className="text-primary text-xl">Web Design</h1>
+                      <h1 className="text-primary text-xl">
+                        {t("Web_Design_Service")}
+                      </h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted line-clamp-4">
-                        Our own design team brings your dream website &
-                        requirements to the digital & virtual environment. We
-                        help you make your website unique, and stand out from
-                        your competitors.
+                      <p className="text-sm text-muted dark:text-muted-dark line-clamp-4">
+                        {t("Web_Design_Service_Description")}
                       </p>
                     </Card.Body>
                   </Card>
@@ -1407,14 +1483,13 @@ export default function Home({ meta, headings }) {
                         className="w-20 mb-4 mx-auto"
                         alt="Mobile Design"
                       />
-                      <h1 className="text-primary text-xl">Mobile Design</h1>
+                      <h1 className="text-primary text-xl">
+                        {t("Mobile_Design_Service")}
+                      </h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted line-clamp-4">
-                        Our own design team brings your dream mobile application
-                        to the digital ^ virtual environment. We help you make
-                        your mobile application unique and stand out from your
-                        competitors.
+                      <p className="text-sm text-muted dark:text-muted-dark line-clamp-4">
+                        {t("Mobile_Design_Service_Description")}
                       </p>
                     </Card.Body>
                   </Card>
@@ -1436,10 +1511,8 @@ export default function Home({ meta, headings }) {
                       <h1 className="text-primary text-xl">Backend</h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted line-clamp-4">
-                        You don't have to have us do your projects from start to
-                        finish. If you are not lacking in frontend and design
-                        but need help with the backend, we are here for you.
+                      <p className="text-sm text-muted dark:text-muted-dark line-clamp-4">
+                        {t("Backend_Service_Description")}
                       </p>
                     </Card.Body>
                   </Card>
@@ -1459,13 +1532,13 @@ export default function Home({ meta, headings }) {
                         alt="Logo Design"
                         priority
                       />
-                      <h1 className="text-primary text-xl">Logo Design</h1>
+                      <h1 className="text-primary text-xl">
+                        {t("Logo_Design_Service")}
+                      </h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted line-clamp-3">
-                        An impressive logo is an indispensable part of a brand.
-                        We offer you the most modern, and the best design by
-                        finding the best colors, tint and fonts for your brand.
+                      <p className="text-sm text-muted dark:text-muted-dark line-clamp-3">
+                        {t("Logo_Design_Service_Description")}
                       </p>
                     </Card.Body>
                   </Card>
@@ -1487,11 +1560,8 @@ export default function Home({ meta, headings }) {
                       <h1 className="text-primary text-xl">Frontend</h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted line-clamp-4">
-                        You may only need support in the frontend area. In this
-                        case, we help you complete your project by combining the
-                        design you presented to us and our backend and frontend
-                        knowledge.
+                      <p className="text-sm text-muted dark:text-muted-dark line-clamp-4">
+                        {t("Frontend_Service_Description")}
                       </p>
                     </Card.Body>
                   </Card>
@@ -1513,11 +1583,8 @@ export default function Home({ meta, headings }) {
                       <h1 className="text-primary text-xl">Website</h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted line-clamp-4">
-                        We create and deliver the website you want, from start
-                        to finish [A-Z] zero to expert, with design and coding,
-                        in a way that best suits, solutions, and implementations
-                        your budget & requirements.
+                      <p className="text-sm text-muted dark:text-muted-dark line-clamp-4">
+                        {t("Website_Service_Description")}
                       </p>
                     </Card.Body>
                   </Card>
@@ -1544,14 +1611,12 @@ export default function Home({ meta, headings }) {
                         alt="Social Media"
                       />
                       <h1 className="text-primary text-xl">
-                        Social Media Consultancy
+                        {t("Social_Media_Consultancy")}
                       </h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted line-clamp-3">
-                        We organize your posts with the social media consultancy
-                        we provide, and offer you the best plan by considering
-                        statistics specific to your page.
+                      <p className="text-sm text-muted dark:text-muted-dark line-clamp-3">
+                        {t("Social_Media_Consultancy_Service_Description")}
                       </p>
                     </Card.Body>
                   </Card>
@@ -1571,14 +1636,12 @@ export default function Home({ meta, headings }) {
                         alt="Web Design"
                       />
                       <h1 className="text-primary text-xl">
-                        Digital Marketing
+                        {t("Digital_Marketing_Service")}
                       </h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted line-clamp-3">
-                        Unlock the full potential of your brand with our premier
-                        digital marketing services, designed to elevate your
-                        company's online presence.
+                      <p className="text-sm text-muted dark:text-muted-dark line-clamp-3">
+                        {t("Digital_Marketing_Service_Description")}
                       </p>
                     </Card.Body>
                   </Card>
@@ -1597,14 +1660,13 @@ export default function Home({ meta, headings }) {
                         className="w-20 mb-4 mx-auto"
                         alt="Web Design"
                       />
-                      <h1 className="text-primary text-xl">SEO Consultancy</h1>
+                      <h1 className="text-primary text-xl">
+                        {t("SEO_Consultancy")}
+                      </h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted line-clamp-3">
-                        Elevate your company's online visibility and drive
-                        organic traffic with our expert SEO services. Our team
-                        of seasoned professionals employs cutting-edge
-                        techniques
+                      <p className="text-sm text-muted dark:text-muted-dark line-clamp-3">
+                        {t("SEO_Consultancy_Service_Description")}
                       </p>
                     </Card.Body>
                   </Card>
@@ -1654,7 +1716,7 @@ export default function Home({ meta, headings }) {
         <section className="block lg:hidden relative my-48">
           <Container>
             <h1 className="text-center text-primary font-semibold text-2xl mb-4">
-              Our Services
+              {t("Our_Services")}
             </h1>
             <section
               className="flex items-stretch flex-nowrap gap-3 overflow-x-scroll snap-mandatory snap-x select-none"
@@ -1678,13 +1740,13 @@ export default function Home({ meta, headings }) {
                         className="w-20 mb-4 mx-auto"
                         alt="Web Design"
                       />
-                      <h1 className="text-primary text-xl">Web Design</h1>
+                      <h1 className="text-primary text-xl">
+                        {t("Web_Design_Service")}
+                      </h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted line-clamp-4">
-                        Our own design team brings your dream website to the
-                        digital environment. We help you make your website
-                        unique and stand out from your competitors.
+                      <p className="text-sm text-muted dark:text-muted-dark line-clamp-4">
+                        {t("Web_Design_Service_Description")}
                       </p>
                     </Card.Body>
                   </Card>
@@ -1704,13 +1766,13 @@ export default function Home({ meta, headings }) {
                         className="w-20 mb-4 mx-auto"
                         alt="Web Design"
                       />
-                      <h1 className="text-primary text-xl">Mobile Design</h1>
+                      <h1 className="text-primary text-xl">
+                        {t("Mobile_Design_Service")}
+                      </h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted line-clamp-4">
-                        Our own design team brings your dream mobile application
-                        to the digital environment. We help you make your mobile
-                        application unique and stand out from your competitors.
+                      <p className="text-sm text-muted dark:text-muted-dark line-clamp-4">
+                        {t("Mobile_Design_Service_Description")}
                       </p>
                     </Card.Body>
                   </Card>
@@ -1733,10 +1795,8 @@ export default function Home({ meta, headings }) {
                       <h1 className="text-primary text-xl">Backend</h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted line-clamp-4">
-                        You don't have to have us do your projects from start to
-                        finish. If you are not lacking in frontend and design
-                        but need help with the backend, we are here for you.
+                      <p className="text-sm text-muted dark:text-muted-dark line-clamp-4">
+                        {t("Backend_Service_Description")}
                       </p>
                     </Card.Body>
                   </Card>
@@ -1756,13 +1816,13 @@ export default function Home({ meta, headings }) {
                         className="w-20 mb-4 mx-auto"
                         alt="Logo Design"
                       />
-                      <h1 className="text-primary text-xl">Logo Design</h1>
+                      <h1 className="text-primary text-xl">
+                        {t("Logo_Design_Service")}
+                      </h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted line-clamp-4">
-                        An impressive logo is an indispensable part of a brand.
-                        We offer you the most modern design by finding the best
-                        colors and fonts for your brand.
+                      <p className="text-sm text-muted dark:text-muted-dark line-clamp-4">
+                        {t("Logo_Design_Service_Description")}
                       </p>
                     </Card.Body>
                   </Card>
@@ -1787,11 +1847,8 @@ export default function Home({ meta, headings }) {
                       <h1 className="text-primary text-xl">Frontend</h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted line-clamp-4">
-                        You may only need support in the frontend area. In this
-                        case, we help you complete your project by combining the
-                        design you presented to us and our backend and frontend
-                        knowledge.
+                      <p className="text-sm text-muted dark:text-muted-dark line-clamp-4">
+                        {t("Frontend_Service_Description")}
                       </p>
                     </Card.Body>
                   </Card>
@@ -1814,10 +1871,8 @@ export default function Home({ meta, headings }) {
                       <h1 className="text-primary text-xl">Website</h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted line-clamp-4">
-                        We create and deliver the website you want, from start
-                        to finish, with design and coding, in a way that best
-                        suits your budget.
+                      <p className="text-sm text-muted dark:text-muted-dark line-clamp-4">
+                        {t("Website_Service_Description")}
                       </p>
                     </Card.Body>
                   </Card>
@@ -1838,14 +1893,12 @@ export default function Home({ meta, headings }) {
                         alt="Web Design"
                       />
                       <h1 className="text-primary text-xl">
-                        Social Media Consultancy
+                        {t("Social_Media_Consultancy_Service")}
                       </h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted line-clamp-3">
-                        We organize your posts with the social media consultancy
-                        we provide, and offer you the best plan by considering
-                        statistics specific to your page.
+                      <p className="text-sm text-muted dark:text-muted-dark line-clamp-3">
+                        {t("Social_Media_Consultancy_Service_Description")}
                       </p>
                     </Card.Body>
                   </Card>
@@ -1866,14 +1919,12 @@ export default function Home({ meta, headings }) {
                         alt="Web Design"
                       />
                       <h1 className="text-primary text-xl">
-                        Digital Marketing
+                        {t("Digital_Marketing_Service")}
                       </h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted line-clamp-4">
-                        Unlock the full potential of your brand with our premier
-                        digital marketing services, designed to elevate your
-                        company's online presence.
+                      <p className="text-sm text-muted dark:text-muted-dark line-clamp-4">
+                        {t("Digital_Marketing_Service_Description")}
                       </p>
                     </Card.Body>
                   </Card>
@@ -1895,14 +1946,13 @@ export default function Home({ meta, headings }) {
                         className="w-20 mb-4 mx-auto"
                         alt="Web Design"
                       />
-                      <h1 className="text-primary text-xl">SEO Consultancy</h1>
+                      <h1 className="text-primary text-xl">
+                        {t("SEO_Consultancy_Service")}
+                      </h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
-                      <p className="text-sm text-muted line-clamp-4">
-                        Elevate your company's online visibility and drive
-                        organic traffic with our expert SEO services. Our team
-                        of seasoned professionals employs cutting-edge
-                        techniques
+                      <p className="text-sm text-muted dark:text-muted-dark line-clamp-4">
+                        {t("SEO_Consultancy_Service_Description")}
                       </p>
                     </Card.Body>
                   </Card>
@@ -1922,7 +1972,7 @@ export default function Home({ meta, headings }) {
                 alt="Kibrisevim"
               />
               <h1 className="text-2xl lg:text-3xl text-center font-semibold">
-                Kıbrısevim | Apartments for sale & rent, and houses
+                {t("kibrisevim_lead_title")}
               </h1>
             </section>
             <section className="lg:grid lg:grid-cols-12 lg:gap-6 mb-32">
@@ -1943,10 +1993,7 @@ export default function Home({ meta, headings }) {
               </motion.section>
               <section className="lg:col-span-8 flex flex-col lg:items-end">
                 <p className="text-3xl lg:text-6xl font-semibold text-center lg:text-end leading-snug mb-24">
-                  House <strong className="text-primary">rental</strong>
-                  and&nbsp;
-                  <strong className="text-primary">buying</strong> application
-                  is now in Cyprus! Moreover, all regions are supported!
+                  {t("kibrisevim_lead_description")}
                 </p>
                 <ul className="list-disc lg:ps-6 self-center text-xl mb-24">
                   <motion.li
@@ -1954,28 +2001,28 @@ export default function Home({ meta, headings }) {
                     transition={{ ease: "easeOut", duration: 0.5, delay: 0.15 }}
                     viewport={{ once: true }}
                   >
-                    Rent a house
+                    {t("kibrisevim_lead_paragraphs.0")}
                   </motion.li>
                   <motion.li
                     whileInView={{ opacity: [0, 1], y: [50, 0] }}
                     transition={{ ease: "easeOut", duration: 0.5, delay: 0.25 }}
                     viewport={{ once: true }}
                   >
-                    Buy a house
+                    {t("kibrisevim_lead_paragraphs.1")}
                   </motion.li>
                   <motion.li
                     whileInView={{ opacity: [0, 1], y: [50, 0] }}
                     transition={{ ease: "easeOut", duration: 0.5, delay: 0.35 }}
                     viewport={{ once: true }}
                   >
-                    Filter as you wish!
+                    {t("kibrisevim_lead_paragraphs.2")}
                   </motion.li>
                   <motion.li
                     whileInView={{ opacity: [0, 1], y: [50, 0] }}
                     transition={{ ease: "easeOut", duration: 0.5, delay: 0.5 }}
                     viewport={{ once: true }}
                   >
-                    Find cheapest prices!
+                    {t("kibrisevim_lead_paragraphs.3")}
                   </motion.li>
                 </ul>
                 <Link
@@ -1988,7 +2035,7 @@ export default function Home({ meta, headings }) {
                     variant={"primary-outline"}
                     className={"flex items-center gap-2"}
                   >
-                    <span>Go to the App!</span>
+                    <span>{t("Go_to_the_App")}</span>
                     <FontAwesomeIcon icon={faAngleRight} size="lg" />
                   </Button>
                 </Link>
@@ -2001,7 +2048,7 @@ export default function Home({ meta, headings }) {
                   variant={"primary-inverse"}
                   className={"flex items-center gap-2 mx-auto !font-semibold"}
                 >
-                  <span className="text-xs">Show More Projects</span>
+                  <span className="text-xs">{t("Show_More_Projects")}</span>
                   <FontAwesomeIcon icon={faAngleRight} size="lg" />
                 </Button>
               </Link>
@@ -2019,17 +2066,17 @@ export default function Home({ meta, headings }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ locale }) {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API}/meta/home`);
 
   const { data } = await response.json();
 
-  const { meta, headings } = data;
+  const { meta } = data;
 
   return {
     props: {
       meta,
-      headings,
+      ...(await serverSideTranslations(locale, ["common"])),
     },
   };
 }

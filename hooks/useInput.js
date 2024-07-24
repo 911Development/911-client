@@ -25,7 +25,7 @@ const reducer = (state, action) => {
               ? value.toLowerCase().trim()
               : payload.toLowerCase().trim(),
             isValid,
-            errorMessage: !isValid ? "Invalid email address." : null,
+            errorMessage: !isValid ? "invalid_email_address" : null,
           };
         }
 

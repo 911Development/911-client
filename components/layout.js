@@ -18,12 +18,12 @@ const Layout = ({ Poppins_400, children }) => {
 
     if (themeState.theme === "dark") {
       html.classList.add("dark");
-      body.className = "bg-black text-white";
+      body.className = "bg-black text-white transition-all";
     }
 
     if (themeState.theme === "light") {
       html.classList.remove("dark");
-      body.className = "bg-white text-dark";
+      body.className = "bg-white text-dark transition-all";
     }
   }, [themeState]);
 
@@ -34,22 +34,22 @@ const Layout = ({ Poppins_400, children }) => {
         <Shadow
           variant={"primary-lighter"}
           position={{ top: "5%", left: "10%" }}
-          opacity={0.05}
+          opacity={0.035}
         />
         <Shadow
           variant={"secondary-lighter"}
           position={{ top: "20%", right: "5%" }}
-          opacity={0.05}
+          opacity={0.035}
         />
         <Shadow
           variant={"secondary-lighter"}
           position={{ top: "50%", left: "10%" }}
-          opacity={0.05}
+          opacity={0.035}
         />
         <Shadow
           variant={"primary-lighter"}
           position={{ top: "90%", right: "0%" }}
-          opacity={0.05}
+          opacity={0.035}
         />
         {children}
       </main>

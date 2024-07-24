@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const HeaderDropdown = ({ show }) => {
   const [display, setDisplay] = useState("none");
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (show) setDisplay("block");
@@ -25,42 +27,46 @@ const HeaderDropdown = ({ show }) => {
       >
         <section className="grid grid-cols-12 p-8 mb-4">
           <section className="col-span-4 text-primary">
-            <h1 className="text-primary text-lg mb-4">Design</h1>
+            <h1 className="text-primary text-lg mb-4">{t("Design")}</h1>
             <section className="grid grid-cols-12 gap-3">
               <section className="col-span-6">
-                <ul className="text-muted space-y-4">
-                  <li className="inline-block bg-blue-100 dark:bg-primary-darkest text-primary-darker dark:text-light rounded-md">
-                    <span className="block px-1 text-nowrap">Web Design</span>
+                <ul className="text-muted dark:text-muted-dark space-y-4">
+                  <li className="inline-block bg-blue-100 dark:bg-primary-darkest text-primary-darker dark:text-light rounded-full">
+                    <span className="block px-1 text-nowrap">
+                      {t("Web_Design_Service")}
+                    </span>
                   </li>
-                  <li className="text-nowrap">Mobile Design</li>
-                  <li className="inline-block bg-blue-100 dark:bg-primary-darkest text-primary-darker dark:text-light rounded-md">
+                  <li className="text-nowrap">{t("Mobile_Design_Service")}</li>
+                  <li className="inline-block bg-blue-100 dark:bg-primary-darkest text-primary-darker dark:text-light rounded-full">
                     <span className="block px-1 text-nowrap">UI / UX</span>
                   </li>
                 </ul>
               </section>
               <section className="col-span-6">
-                <ul className="text-muted space-y-4">
-                  <li>Logo Design</li>
+                <ul className="text-muted dark:text-muted-dark space-y-4">
+                  <li>{t("Logo_Design_Service")}</li>
                   <li>Photoshop</li>
                 </ul>
               </section>
             </section>
           </section>
           <section className="col-span-5 text-center">
-            <h1 className="text-primary text-lg mb-4">Development</h1>
+            <h1 className="text-primary text-lg mb-4">{t("Development")}</h1>
             <section className="grid grid-cols-12">
               <section className="col-span-6">
-                <ul className="text-muted space-y-4">
+                <ul className="text-muted dark:text-muted-dark space-y-4">
                   <li>Website</li>
                   <li>Frontend</li>
                   <li>Backend</li>
                 </ul>
               </section>
               <section className="col-span-6">
-                <ul className="text-muted space-y-4">
-                  <li>Mobile Apps</li>
-                  <li className="inline-block bg-blue-100 dark:bg-primary-darkest text-primary-darker dark:text-light rounded-md">
-                    <span className="block px-1 text-nowrap">Web Apps</span>
+                <ul className="text-muted dark:text-muted-dark space-y-4">
+                  <li>{t("Mobile_Apps")}</li>
+                  <li className="inline-block bg-blue-100 dark:bg-primary-darkest text-primary-darker dark:text-light rounded-full">
+                    <span className="block px-1 text-nowrap">
+                      {t("Web_Apps")}
+                    </span>
                   </li>
                   <li>Wordpress</li>
                 </ul>
@@ -68,23 +74,22 @@ const HeaderDropdown = ({ show }) => {
             </section>
           </section>
           <section className="col-span-3 text-end">
-            <h1 className="text-primary text-lg text-end mb-4">Other</h1>
-            <ul className="text-muted space-y-4 ms-auto">
-              <li className="text-nowrap">Social Media</li>
-              <li className="inline-block bg-blue-100 dark:bg-primary-darkest text-primary-darker dark:text-light rounded-md">
+            <h1 className="text-primary text-lg text-end mb-4">
+              {t("Others")}
+            </h1>
+            <ul className="text-muted dark:text-muted-dark space-y-4 ms-auto">
+              <li className="text-nowrap">{t("Social_Media")}</li>
+              <li className="inline-block bg-blue-100 dark:bg-primary-darkest text-primary-darker dark:text-light rounded-full">
                 <span className="block px-1 text-nowrap">
-                  Digital Marketing
+                  {t("Digital_Marketing_Service")}
                 </span>
               </li>
-              <li className="text-nowrap">SEO Analysis</li>
+              <li className="text-nowrap">{t("SEO_Analysis")}</li>
             </ul>
           </section>
         </section>
         <div className="flex items-center justify-center px-8 bg-gradient-to-r from-primary-darkest to-primary text-white py-6">
-          <p>
-            All our services are prepared professionally with the most
-            up-to-date technologies.
-          </p>
+          <p>{t("header_dropdown_description")}</p>
         </div>
       </motion.div>
     </div>

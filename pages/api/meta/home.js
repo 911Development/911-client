@@ -40,17 +40,10 @@ export default function handler(req, res) {
       "911 CAD Systems | 911 Creativity & Software Development Company | Where creativity meets code",
   };
 
-  const headings = {
-    title: "911 CAD | CREATIVITY & SOFTWARE DEVELOPMENT",
-    description:
-      "911 Development: Where creativity  meets code, innovative solutions are born, transforming ideas into reality and pushing the boundaries of what's possible in the digital world with 911 cad systems.",
-  };
-
   res.status(200).json({
     status: "success",
     data: {
       meta,
-      headings,
     },
   });
 }

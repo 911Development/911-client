@@ -19,7 +19,7 @@ const ContactPage = ({ meta }) => (
           <h1 className="text-3xl text-center text-primary mb-3">
             Let's get to know you
           </h1>
-          <p className="text text-center text-muted">
+          <p className="text text-center text-muted dark:text-muted-dark">
             Contact us for your projects or questions. We will get back to you
             as soon as possible.
           </p>

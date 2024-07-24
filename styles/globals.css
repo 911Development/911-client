@@ -16,7 +16,8 @@
   --color-danger: 200, 0, 54;
   --color-danger-dark: 160, 0, 43;
   --color-success: 5, 146, 18;
-  --color-muted: 120, 120, 120;
+  --color-muted: 0, 0, 0, 0.5;
+  --color-muted-dark: 255, 255, 255, 0.5;
 }
 
 body {
