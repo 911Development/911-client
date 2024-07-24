@@ -29,7 +29,6 @@ export default function handler(req, res) {
     status: "success",
     data: {
       meta,
-      headings,
     },
   });
 }

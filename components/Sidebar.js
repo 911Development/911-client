@@ -223,7 +223,7 @@ const SidebarBody = ({ handleSidebar }) => {
               src={themeIcon}
               width={96}
               height={96}
-              className="w-8 cursor-pointer rounded transition-all p-1"
+              className="w-9 cursor-pointer rounded transition-all p-1"
               alt="Theme Icon"
             />
             <span className="text-lg">{t("switch_theme")}</span>
@@ -238,7 +238,7 @@ const SidebarBody = ({ handleSidebar }) => {
             }}
           >
             <section className="flex items-center gap-3 px-2">
-              <FontAwesomeIcon icon={faEarth} />
+              <FontAwesomeIcon icon={faEarth} size="lg" />
               <span className="text-lg">{t("switch_language")}</span>
             </section>
             <FontAwesomeIcon icon={faAngleRight} />
