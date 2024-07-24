@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleLeft,
   faAngleRight,
+  faCheck,
+  faEarth,
   faGears,
   faHome,
   faInfoCircle,
@@ -20,6 +22,7 @@ import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import Card from "./ui/Card";
 import Image from "next/image";
 import { themeSliceActions } from "@/store/theme-slice/theme-slice";
+import { useTranslation } from "react-i18next";
 
 const SidebarHeader = ({ handleSidebar }) => {
   return (
@@ -57,10 +60,15 @@ const SidebarHeader = ({ handleSidebar }) => {
 const SidebarBody = ({ handleSidebar }) => {
   const router = useRouter();
 
+  const { t, i18n } = useTranslation();
+
   const themeState = useSelector((state) => state.theme);
   const dispatch = useDispatch();
 
+  const [currentLanguage, setCurrentLanguage] = useState("");
   const [themeIcon, setThemeICon] = useState("/icons/themes/dark.png");
+  const [servicesDisplay, setServicesDisplay] = useState("none");
+  const [languagesDisplay, setLanguagesDisplay] = useState("none");
   const [currentSidebarBodyPage, setCurrentSidebarBodyPage] = useState(0);
 
   const handleNextSidebarBodyPage = () => {
@@ -76,13 +84,29 @@ const SidebarBody = ({ handleSidebar }) => {
   const handleSwitchTheme = () =>
     dispatch(themeSliceActions.setTheme(theme === "dark" ? "light" : "dark"));
 
+  const handleSwitchLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    router.push(router.asPath, router.asPath, { locale: lng });
+
+    handleSidebar();
+    setCurrentSidebarBodyPage(0);
+  };
+
   const { pathname } = router;
+  const { language } = i18n;
   const { theme } = themeState;
 
   useEffect(() => {
     if (theme === "dark") setThemeICon("/icons/themes/light.png");
     if (theme === "light") setThemeICon("/icons/themes/dark_white.png");
   }, [theme]);
+
+  useEffect(
+    function () {
+      setCurrentLanguage(language);
+    },
+    [language]
+  );
 
   return (
     <div className="offcanvas-body flex overflow-x-hidden">
@@ -102,7 +126,7 @@ const SidebarBody = ({ handleSidebar }) => {
               <FontAwesomeIcon icon={faInstagram} className="text-purple-500" />
               <span className="font-semibold">Instagram</span>
             </section>
-            <p className="text-sm text-muted">See our posts on Instagram</p>
+            <p className="text-sm text-muted-dark">{t("see_on_instagram")}</p>
           </Link>
           <Link
             href={"https://www.linkedin.com/company/911development/"}
@@ -113,9 +137,7 @@ const SidebarBody = ({ handleSidebar }) => {
               <FontAwesomeIcon icon={faLinkedin} className="text-blue-500" />
               <span className="font-semibold">LinkedIn</span>
             </section>
-            <p className="text-sm text-muted">
-              Visit our business page on LinkedIn
-            </p>
+            <p className="text-sm text-muted-dark">{t("see_on_linkedin")}</p>
           </Link>
         </section>
         <hr className="border-gray-500 my-8" />
@@ -129,7 +151,7 @@ const SidebarBody = ({ handleSidebar }) => {
               onClick={() => handleSidebar()}
             >
               <FontAwesomeIcon icon={faHome} />
-              <span className="text-lg">Home</span>
+              <span className="text-lg">{t("Home")}</span>
             </Link>
           </li>
           <li>
@@ -146,10 +168,15 @@ const SidebarBody = ({ handleSidebar }) => {
           </li>
           <li
             className="flex items-center gap-2 rounded active:text-primary active:bg-dark py-3 px-4"
-            onClick={handleNextSidebarBodyPage}
+            onClick={function () {
+              setServicesDisplay("block");
+              setLanguagesDisplay("none");
+
+              handleNextSidebarBodyPage();
+            }}
           >
             <FontAwesomeIcon icon={faGears} />
-            <span className="text-lg">Services</span>
+            <span className="text-lg">{t("Services")}</span>
             <FontAwesomeIcon icon={faAngleRight} />
           </li>
           <li>
@@ -164,7 +191,7 @@ const SidebarBody = ({ handleSidebar }) => {
               }}
             >
               <FontAwesomeIcon icon={faUsers} />
-              <span className="text-lg">Teams</span>
+              <span className="text-lg">{t("Teams")}</span>
             </Link>
           </li>
           <li>
@@ -179,14 +206,14 @@ const SidebarBody = ({ handleSidebar }) => {
               }}
             >
               <FontAwesomeIcon icon={faProjectDiagram} />
-              <span className="text-lg">Projects</span>
+              <span className="text-lg">{t("Projects")}</span>
             </Link>
           </li>
         </ul>
         <hr className="border-gray-500 mt-8 mb-4" />
-        <ul>
+        <ul className="space-y-3">
           <li
-            className="flex items-center gap-2 rounded bg-dark py-3 px-4"
+            className="flex items-center gap-1 rounded bg-dark py-3 px-4"
             onClick={() => {
               handleSwitchTheme();
               handleSidebar();
@@ -196,19 +223,31 @@ const SidebarBody = ({ handleSidebar }) => {
               src={themeIcon}
               width={96}
               height={96}
-              className="w-9 cursor-pointer rounded transition-all p-1"
+              className="w-8 cursor-pointer rounded transition-all p-1"
               alt="Theme Icon"
             />
-            <span className="text-lg">Switch Theme</span>
+            <span className="text-lg">{t("switch_theme")}</span>
+          </li>
+          <li
+            className="flex items-center justify-between rounded bg-dark py-3 px-4"
+            onClick={() => {
+              setLanguagesDisplay("block");
+              setServicesDisplay("none");
+
+              handleNextSidebarBodyPage();
+            }}
+          >
+            <section className="flex items-center gap-3 px-2">
+              <FontAwesomeIcon icon={faEarth} />
+              <span className="text-lg">{t("switch_language")}</span>
+            </section>
+            <FontAwesomeIcon icon={faAngleRight} />
           </li>
         </ul>
         <hr className="border-gray-500 mt-4 mb-8" />
         <section>
-          <h1 className="font-semibold mb-2">Contact us</h1>
-          <p className="mb-4">
-            If you cannot find the service you are looking for, you can contact
-            us.
-          </p>
+          <h1 className="font-semibold mb-2">{t("Contact_Us")}</h1>
+          <p className="mb-4">{t("Contact_Us_Description")}</p>
           <Link href={"/contact"}>
             <Button
               type={"button"}
@@ -217,13 +256,14 @@ const SidebarBody = ({ handleSidebar }) => {
               onClick={handleSidebar}
             >
               <FontAwesomeIcon icon={faPaperPlane} />
-              <span>Contact</span>
+              <span>{t("Contact")}</span>
             </Button>
           </Link>
         </section>
         <section style={{ height: "120px" }} />
       </motion.section>
       <motion.section
+        style={{ display: servicesDisplay }}
         animate={{
           translateX: `${currentSidebarBodyPage * -100}%`,
         }}
@@ -240,23 +280,27 @@ const SidebarBody = ({ handleSidebar }) => {
           <Link href={"/#services"} scroll={false} onClick={handleSidebar}>
             <Card className="rounded shadow !py-4 mb-8 bg-dark">
               <Card.Header clasName={"mb-4"}>
-                <h1 className="text-primary text-xl">Design</h1>
+                <h1 className="text-primary text-xl">{t("Design")}</h1>
               </Card.Header>
               <Card.Body clasName={"grid grid-cols-12"}>
                 <section className="col-span-6">
-                  <ul className="text-muted space-y-2">
+                  <ul className="text-muted-dark space-y-2">
                     <li className="inline-block bg-primary-darkest text-light rounded-md">
-                      <span className="block px-1 text-nowrap">Web Design</span>
+                      <span className="block px-1 text-nowrap">
+                        {t("Web_Design_Service")}
+                      </span>
                     </li>
-                    <li className="text-nowrap">Mobile Design</li>
+                    <li className="text-nowrap">
+                      {t("Mobile_Design_Service")}
+                    </li>
                     <li className="inline-block bg-primary-darkest text-light rounded-md">
                       <span className="block px-1 text-nowrap">UI / UX</span>
                     </li>
                   </ul>
                 </section>
                 <section className="col-span-6">
-                  <ul className="text-muted space-y-2">
-                    <li>Logo Design</li>
+                  <ul className="text-muted-dark space-y-2">
+                    <li>{t("Logo_Design_Service")}</li>
                     <li>Photoshop</li>
                   </ul>
                 </section>
@@ -266,21 +310,23 @@ const SidebarBody = ({ handleSidebar }) => {
           <Link href={"/#services"} scroll={false} onClick={handleSidebar}>
             <Card className="rounded shadow !py-4 mb-8 bg-dark">
               <Card.Header clasName={"mb-4"}>
-                <h1 className="text-primary text-xl">Development</h1>
+                <h1 className="text-primary text-xl">{t("Development")}</h1>
               </Card.Header>
               <Card.Body clasName={"grid grid-cols-12"}>
                 <section className="col-span-6">
-                  <ul className="text-muted space-y-2">
+                  <ul className="text-muted-dark space-y-2">
                     <li>Website</li>
                     <li>Frontend</li>
                     <li>Backend</li>
                   </ul>
                 </section>
                 <section className="col-span-6">
-                  <ul className="text-muted space-y-2">
-                    <li>Mobile Apps</li>
+                  <ul className="text-muted-dark space-y-2">
+                    <li>{t("Mobile_Apps")}</li>
                     <li className="inline-block bg-primary-darkest text-light rounded-md">
-                      <span className="block px-1 text-nowrap">Web Apps</span>
+                      <span className="block px-1 text-nowrap">
+                        {t("Web_Apps")}
+                      </span>
                     </li>
                     <li>Wordpress</li>
                   </ul>
@@ -291,17 +337,17 @@ const SidebarBody = ({ handleSidebar }) => {
           <Link href={"/#services"} scroll={false} onClick={handleSidebar}>
             <Card className="rounded shadow !py-4 bg-dark">
               <Card.Header clasName={"mb-4"}>
-                <h1 className="text-primary text-xl">Other</h1>
+                <h1 className="text-primary text-xl">{t("Others")}</h1>
               </Card.Header>
               <Card.Body clasName={"grid grid-cols-12"}>
-                <ul className="text-muted space-y-4 ms-auto">
-                  <li className="text-nowrap">Social Media</li>
+                <ul className="text-muted-dark space-y-4 ms-auto">
+                  <li className="text-nowrap">{t("Social_Media")}</li>
                   <li className="inline-block bg-primary-darkest text-light rounded-md">
                     <span className="block px-1 text-nowrap">
-                      Digital Marketing
+                      {t("Digital_Marketing")}
                     </span>
                   </li>
-                  <li className="text-nowrap">SEO Analysis</li>
+                  <li className="text-nowrap">{t("SEO_Analysis")}</li>
                 </ul>
               </Card.Body>
             </Card>
@@ -309,17 +355,64 @@ const SidebarBody = ({ handleSidebar }) => {
         </section>
         <section style={{ height: "120px" }} />
       </motion.section>
+      <motion.section
+        style={{ display: languagesDisplay }}
+        animate={{
+          translateX: `${currentSidebarBodyPage * -100}%`,
+        }}
+        className="min-w-full py-6 px-4"
+      >
+        <section
+          className="flex items-center gap-1 mb-8 px-3"
+          onClick={handlePreviousSidebarBodyPage}
+        >
+          <FontAwesomeIcon icon={faAngleLeft} size="lg" />
+          <span className="text-lg">Back</span>
+        </section>
+        <ul className="space-y-6">
+          <li
+            className={`flex items-center justify-between rounded py-3 px-4 ${
+              currentLanguage === "en" && "bg-dark text-primary"
+            }`}
+            onClick={() => {
+              handleSwitchLanguage("en");
+            }}
+          >
+            English
+            {currentLanguage === "en" && (
+              <FontAwesomeIcon icon={faCheck} className="text-primary" />
+            )}
+          </li>
+          <li
+            className={`flex items-center justify-between rounded py-3 px-4 ${
+              currentLanguage === "tr" && "bg-dark text-primary"
+            }`}
+            onClick={() => {
+              handleSwitchLanguage("tr");
+            }}
+          >
+            Turkish
+            {currentLanguage === "tr" && (
+              <FontAwesomeIcon icon={faCheck} className="text-primary" />
+            )}
+          </li>
+        </ul>
+      </motion.section>
     </div>
   );
 };
 
-const SidebarFooter = () => (
-  <div className="offcanvas-footer mt-auto p-4">
-    <p className="text-sm lg:hidden">
-      © 911 CAD {new Date().getFullYear()}, All rights reserved.
-    </p>
-  </div>
-);
+const SidebarFooter = () => {
+  const { t } = useTranslation();
+
+  return (
+    <div className="offcanvas-footer mt-auto p-4">
+      <p className="text-sm lg:hidden">
+        © 911 CAD {new Date().getFullYear()}, {t("rights_reserved")}.
+      </p>
+    </div>
+  );
+};
 
 const Sidebar = ({ show, handleSidebar }) => {
   useEffect(() => {

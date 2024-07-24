@@ -7,8 +7,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Head from "next/head";
+import { useTranslation } from "react-i18next";
 
 const ProjectsPage = ({ meta }) => {
+  const { t } = useTranslation();
+
   const themeState = useSelector((state) => state.theme);
   const [kibrisevimIcon, setKibrisevimIcon] = useState("");
 
@@ -89,16 +92,13 @@ const ProjectsPage = ({ meta }) => {
               </motion.section>
               <section className="mb-6">
                 <h1 className="text-2xl text-center lg:text-end mb-6 lg:mb-2">
-                  <strong className="text-dark dark:text-white">Kıbrıs</strong>
-                  <strong>evim |</strong> Real Estate Application
+                  {t("kibrisevim_project_title")}
                 </h1>
-                <p className="text-lg text-muted text-center mx-auto block lg:hidden">
-                  Find the real estate you are looking for among thousands of
-                  listings now! Filter them and find the cheapest prices!
+                <p className="text-lg text-muted dark:text-muted-dark text-center mx-auto block lg:hidden">
+                  {t("kibrisevim_project_description")}
                 </p>
-                <p className="text-lg text-muted w-2/3 ms-auto hidden lg:block">
-                  Find the real estate you are looking for among thousands of
-                  listings now! Filter them and find the cheapest prices!
+                <p className="text-lg text-muted dark:text-muted-dark w-2/3 ms-auto hidden lg:block">
+                  {t("kibrisevim_project_description")}
                 </p>
               </section>
               <section>
@@ -108,14 +108,14 @@ const ProjectsPage = ({ meta }) => {
                     variant={"primary"}
                     className={"hidden lg:flex items-center gap-2 ms-auto"}
                   >
-                    <span>Go to the proejct</span>
+                    <span>{t("Go_to_the_project")}</span>
                   </Button>
                   <Button
                     type={"button"}
                     variant={"primary"}
                     className={"flex lg:hidden items-center gap-2 mx-auto"}
                   >
-                    <span>Go to the proejct</span>
+                    <span>{t("Go_to_the_project")}</span>
                   </Button>
                 </Link>
               </section>
@@ -169,15 +169,14 @@ const ProjectsPage = ({ meta }) => {
               </motion.section>
               <section className="text-center lg:text-end mb-6">
                 <h1 className="text-2xl mb-6 lg:mb-2">
-                  <strong>ELLIE |</strong> Smart Home Assistant
+                  {/* <strong>ELLIE |</strong> Smart Home Assistant */}
+                  {t("ellie_project_title")}
                 </h1>
-                <p className="block lg:hidden text-lg text-muted text-center mx-auto">
-                  Build your perfect smart home with Ellie Smart Home Assistant.
-                  Your home, smarter than ever before!
+                <p className="block lg:hidden text-lg text-muted-dark text-center mx-auto">
+                  {t("ellie_project_description")}
                 </p>
-                <p className="hidden lg:block text-lg text-muted w-2/3 ms-auto">
-                  Build your perfect smart home with Ellie Smart Home Assistant.
-                  Your home, smarter than ever before!
+                <p className="hidden lg:block text-lg text-muted-dark w-2/3 ms-auto">
+                  {t("ellie_project_description")}
                 </p>
               </section>
               <section>
@@ -187,14 +186,14 @@ const ProjectsPage = ({ meta }) => {
                     variant={"primary-outline"}
                     className={"flex lg:hidden items-center gap-2 mx-auto"}
                   >
-                    <span>Go to the proejct</span>
+                    <span>{t("Go_to_the_project")}</span>
                   </Button>
                   <Button
                     type={"button"}
                     variant={"primary-outline"}
                     className={"hidden lg:flex items-center gap-2 ms-auto"}
                   >
-                    <span>Go to the proejct</span>
+                    <span>{t("Go_to_the_project")}</span>
                   </Button>
                 </Link>
               </section>
@@ -226,15 +225,14 @@ const ProjectsPage = ({ meta }) => {
               </motion.section>
               <section className="mb-6">
                 <h1 className="text-2xl mb-2">
-                  <strong>Aristocrat |</strong> Golf Club
+                  {/* <strong>Aristocrat |</strong> Golf Club */}
+                  {t("aristocratgolf_project_title")}
                 </h1>
-                <p className="text-lg text-muted w-2/3">
-                  Stay Updated with Aristocrat Tourism!
+                <p className="text-lg text-muted dark:text-muted-dark w-2/3">
+                  {t("aristocratgolf_project_descriptions.0")}
                 </p>
-                <p className="text-lg text-muted w-2/3">
-                  Aristocrat Tourism served as a gathering spot for local
-                  golfers, but it quickly began to attract interest from
-                  surrounding regions.
+                <p className="text-lg text-muted dark:text-muted-dark w-2/3">
+                  {t("aristocratgolf_project_descriptions.1")}
                 </p>
               </section>
               <section>
@@ -244,7 +242,7 @@ const ProjectsPage = ({ meta }) => {
                     variant={"primary"}
                     className={"flex items-center gap-2"}
                   >
-                    <span>Go to the proejct</span>
+                    <span>{t("Go_to_the_project")}</span>
                   </Button>
                 </Link>
               </section>
@@ -309,15 +307,13 @@ const ProjectsPage = ({ meta }) => {
               </motion.section>
               <section className="text-center mb-6">
                 <h1 className="text-2xl mb-2">
-                  <strong>Aristocrat |</strong> Golf Club
+                  {t("aristocratgolf_project_title")}
                 </h1>
-                <p className="text-lg text-muted">
-                  Stay Updated with Aristocrat Tourism!
+                <p className="text-lg text-muted dark:text-muted-dark">
+                  {t("aristocratgolf_project_descriptions.0")}
                 </p>
-                <p className="text-lg text-muted">
-                  Aristocrat Tourism served as a gathering spot for local
-                  golfers, but it quickly began to attract interest from
-                  surrounding regions.
+                <p className="text-lg text-muted dark:text-muted-dark">
+                  {t("aristocratgolf_project_descriptions.1")}
                 </p>
               </section>
               <section>
@@ -327,7 +323,7 @@ const ProjectsPage = ({ meta }) => {
                     variant={"primary"}
                     className={"flex items-center gap-2 mx-auto"}
                   >
-                    <span>Go to the proejct</span>
+                    <span>{t("Go_to_the_project")}</span>
                   </Button>
                 </Link>
               </section>

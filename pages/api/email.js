@@ -11,20 +11,28 @@ export default async function handler(req, res) {
       if (await Email.findOne({ email }))
         return res.status(409).json({
           status: "fail",
-          message: "We've already been contacted via this email.",
+          message: {
+            en: "We've already been contacted via this email.",
+            tr: "Bu e-posta aracılığıyla bizimle zaten iletişime geçildi.",
+          },
         });
 
       await Email.create({ email });
 
       res.status(201).json({
         status: "success",
-        message: "Your email address has sent successfully, we'll contact you.",
+        message: {
+          en: "We've received your e-mail address! Thank you for contacting us.",
+          tr: "E-posta adresiniz aldık! Bizimle iletişime geçtiğiniz için teşekkür ederiz.",
+        },
       });
     } catch (e) {
       res.status(500).json({
         status: "fail",
-        message:
-          "Something went wrong. Please check if your email address is valid.",
+        message: {
+          en: "Something went wrong! Please check if your email address is valid.",
+          tr: "Lütfen e-posta adresinizin geçerli olup olmadığını kontrol edin.",
+        },
       });
     }
   }

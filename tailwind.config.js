@@ -32,7 +32,11 @@ module.exports = {
         },
 
         success: "rgb(var(--color-success))",
-        muted: "rgb(var(--color-muted))",
+
+        muted: {
+          DEFAULT: "rgba(var(--color-muted))",
+          dark: "rgba(var(--color-muted-dark))",
+        },
       },
       borderRadius: {
         DEFAULT: "1rem",
