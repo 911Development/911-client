@@ -226,7 +226,7 @@ const SidebarBody = ({ handleSidebar }) => {
               className="w-9 cursor-pointer rounded transition-all p-1"
               alt="Theme Icon"
             />
-            <span className="text-lg">{t("switch_theme")}</span>
+            <span>{t("switch_theme")}</span>
           </li>
           <li
             className="flex items-center justify-between rounded bg-dark py-3 px-4"
@@ -239,7 +239,7 @@ const SidebarBody = ({ handleSidebar }) => {
           >
             <section className="flex items-center gap-3 px-2">
               <FontAwesomeIcon icon={faEarth} size="lg" />
-              <span className="text-lg">{t("switch_language")}</span>
+              <span>{t("switch_language")}</span>
             </section>
             <FontAwesomeIcon icon={faAngleRight} />
           </li>
@@ -430,7 +430,7 @@ const Sidebar = ({ show, handleSidebar }) => {
       animate={{
         translateX: show ? "0%" : "100%",
       }}
-      className="offcanvas bg-black text-white fixed w-screen h-screen flex flex-col top-0 overflow-y-scroll z-50"
+      className="offcanvas bg-black text-white fixed w-screen h-screen flex flex-col top-0 overflow-y-scroll select-none z-50"
     >
       <SidebarHeader handleSidebar={handleSidebar} />
       <SidebarBody handleSidebar={handleSidebar} />
