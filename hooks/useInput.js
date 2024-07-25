@@ -63,6 +63,22 @@ const reducer = (state, action) => {
       }
     }
 
+    case "onClear": {
+      switch (name) {
+        case "firstname":
+        case "lastname":
+        case "email":
+        case "message": {
+          return {
+            value: "",
+            isValid: null,
+            isError: null,
+            errorMessage: null,
+          };
+        }
+      }
+    }
+
     default:
       throw new Error(`Unknown type: ${type}`);
   }
@@ -88,7 +104,9 @@ const useInput = () => {
     dispatch({ type: "onBlur", name });
   };
 
-  return { state, handleOnChange, handleOnBlur };
+  const handleOnClear = (name) => dispatch({ type: "onClear", name });
+
+  return { state, handleOnChange, handleOnBlur, handleOnClear };
 };
 
 export default useInput;

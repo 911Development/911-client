@@ -13,69 +13,87 @@ import { createQutoe } from "@/utils/helpers";
 import Toast from "./ui/Toast";
 
 const quoteReducer = (state, action) => {
-  const { name, payload } = action;
+  const { type, name, payload } = action;
 
-  switch (name) {
-    case "web_design": {
-      return {
-        ...state,
-        web_design: payload,
-      };
+  switch (type) {
+    case "toggle": {
+      switch (name) {
+        case "web_design": {
+          return {
+            ...state,
+            web_design: payload,
+          };
+        }
+
+        case "mobile_app": {
+          return {
+            ...state,
+            mobile_app: payload,
+          };
+        }
+
+        case "logo_design": {
+          return {
+            ...state,
+            logo_design: payload,
+          };
+        }
+
+        case "backend": {
+          return {
+            ...state,
+            backend: payload,
+          };
+        }
+
+        case "frontend": {
+          return {
+            ...state,
+            frontend: payload,
+          };
+        }
+
+        case "social_media": {
+          return {
+            ...state,
+            social_media: payload,
+          };
+        }
+
+        case "website": {
+          return {
+            ...state,
+            website: payload,
+          };
+        }
+
+        case "photoshop": {
+          return {
+            ...state,
+            photoshop: payload,
+          };
+        }
+
+        case "seo": {
+          return {
+            ...state,
+            seo: payload,
+          };
+        }
+      }
     }
 
-    case "mobile_app": {
+    case "clear": {
       return {
-        ...state,
-        mobile_app: payload,
-      };
-    }
-
-    case "logo_design": {
-      return {
-        ...state,
-        logo_design: payload,
-      };
-    }
-
-    case "backend": {
-      return {
-        ...state,
-        backend: payload,
-      };
-    }
-
-    case "frontend": {
-      return {
-        ...state,
-        frontend: payload,
-      };
-    }
-
-    case "social_media": {
-      return {
-        ...state,
-        social_media: payload,
-      };
-    }
-
-    case "website": {
-      return {
-        ...state,
-        website: payload,
-      };
-    }
-
-    case "photoshop": {
-      return {
-        ...state,
-        photoshop: payload,
-      };
-    }
-
-    case "seo": {
-      return {
-        ...state,
-        seo: payload,
+        web_design: false,
+        mobile_app: false,
+        logo_design: false,
+        backend: false,
+        frontend: false,
+        social_media: false,
+        website: false,
+        photoshop: false,
+        seo: false,
       };
     }
   }
@@ -118,6 +136,7 @@ const Quote = () => {
     },
     handleOnChange: handleFirstnameOnChange,
     handleOnBlur: handleFirstnameOnBlur,
+    handleOnClear: handleFirstnameOnClear,
   } = useInput();
 
   const {
@@ -129,6 +148,7 @@ const Quote = () => {
     },
     handleOnChange: handleLastnameOnChange,
     handleOnBlur: handleLastnameOnBlur,
+    handleOnClear: handleLastnameOnClear,
   } = useInput();
 
   const {
@@ -140,6 +160,7 @@ const Quote = () => {
     },
     handleOnChange: handleEmailOnChange,
     handleOnBlur: handleEmailOnBlur,
+    handleOnClear: handleEmailOnClear,
   } = useInput();
 
   const {
@@ -150,6 +171,7 @@ const Quote = () => {
     },
     handleOnChange: handleMessageOnChange,
     handleOnBlur: handleMessageOnBlur,
+    handleOnClear: handleMessageOnClear,
   } = useInput();
 
   const { language } = i18n;
@@ -163,6 +185,14 @@ const Quote = () => {
         currentLanguage === "en" ? data.message.en : data.message.tr
       );
       setToastVariant(data.status);
+
+      if (data.status === "success") {
+        quoteStateDispatch({ type: "clear" });
+        handleFirstnameOnClear("firstname");
+        handleLastnameOnClear("lastname");
+        handleEmailOnClear("email");
+        handleMessageOnClear("message");
+      }
     },
   });
 
@@ -229,6 +259,7 @@ const Quote = () => {
                 } hover:bg-primary hover:text-white rounded-full text-sm py-1 px-4 transition-all`}
                 onClick={() =>
                   quoteStateDispatch({
+                    type: "toggle",
                     name: "web_design",
                     payload: !quoteState.web_design,
                   })
@@ -246,6 +277,7 @@ const Quote = () => {
                 } hover:bg-primary hover:text-white rounded-full text-sm py-1 px-4 transition-all`}
                 onClick={() =>
                   quoteStateDispatch({
+                    type: "toggle",
                     name: "mobile_app",
                     payload: !quoteState.mobile_app,
                   })
@@ -263,6 +295,7 @@ const Quote = () => {
                 } hover:bg-primary hover:text-white rounded-full text-sm py-1 px-4 transition-all`}
                 onClick={() =>
                   quoteStateDispatch({
+                    type: "toggle",
                     name: "logo_design",
                     payload: !quoteState.logo_design,
                   })
@@ -280,6 +313,7 @@ const Quote = () => {
                 } hover:bg-primary hover:text-white rounded-full text-sm py-1 px-4 transition-all`}
                 onClick={() =>
                   quoteStateDispatch({
+                    type: "toggle",
                     name: "backend",
                     payload: !quoteState.backend,
                   })
@@ -297,6 +331,7 @@ const Quote = () => {
                 } hover:bg-primary hover:text-white rounded-full text-sm py-1 px-4 transition-all`}
                 onClick={() =>
                   quoteStateDispatch({
+                    type: "toggle",
                     name: "frontend",
                     payload: !quoteState.frontend,
                   })
@@ -314,6 +349,7 @@ const Quote = () => {
                 } hover:bg-primary hover:text-white rounded-full text-sm py-1 px-4 transition-all`}
                 onClick={() =>
                   quoteStateDispatch({
+                    type: "toggle",
                     name: "social_media",
                     payload: !quoteState.social_media,
                   })
@@ -331,6 +367,7 @@ const Quote = () => {
                 } hover:bg-primary hover:text-white rounded-full text-sm py-1 px-4 transition-all`}
                 onClick={() =>
                   quoteStateDispatch({
+                    type: "toggle",
                     name: "website",
                     payload: !quoteState.website,
                   })
@@ -348,6 +385,7 @@ const Quote = () => {
                 } hover:bg-primary hover:text-white rounded-full text-sm py-1 px-4 transition-all`}
                 onClick={() =>
                   quoteStateDispatch({
+                    type: "toggle",
                     name: "photoshop",
                     payload: !quoteState.photoshop,
                   })
@@ -364,7 +402,11 @@ const Quote = () => {
                     : "bg-blue-50 text-blue-900"
                 } hover:bg-primary hover:text-white rounded-full text-sm py-1 px-4 transition-all`}
                 onClick={() =>
-                  quoteStateDispatch({ name: "seo", payload: !quoteState.seo })
+                  quoteStateDispatch({
+                    type: "toggle",
+                    name: "seo",
+                    payload: !quoteState.seo,
+                  })
                 }
               >
                 <span>SEO</span>
