@@ -18,7 +18,7 @@ import {
   faMoon,
   faSun,
 } from "@fortawesome/free-solid-svg-icons";
-import HeaderDropdown from "../HeaderDropdown";
+import HeaderDropdown from "./HeaderDropdown";
 import MenuIcon from "./MenuIcon";
 import Sidebar from "../Sidebar";
 import { themeSliceActions } from "@/store/theme-slice/theme-slice";
@@ -123,7 +123,7 @@ const Navbar = () => {
   return (
     <nav className="relative">
       <Container className={"flex lg:grid lg:grid-cols-12 items-center"}>
-        <section className="lg:col-span-3">
+        <section className="lg:col-span-2">
           <Link href={"/"}>
             <Image
               src={"/logo.png"}
@@ -135,7 +135,7 @@ const Navbar = () => {
           </Link>
         </section>
         <ul
-          className={`hidden lg:flex lg:col-span-6 lg:items-center mx-auto gap-12 text-sm`}
+          className={`hidden lg:flex lg:col-span-8 lg:items-center mx-auto gap-6 xl:gap-12 text-sm`}
         >
           <li className="transition-all">
             <Link
@@ -191,7 +191,7 @@ const Navbar = () => {
             </Link>
           </li>
         </ul>
-        <section className="relative hidden lg:flex items-center gap-4 col-span-3 ms-auto">
+        <section className="relative hidden lg:flex items-center gap-4 col-span-2 ms-auto">
           <FontAwesomeIcon
             icon={faGear}
             size="lg"
@@ -223,7 +223,7 @@ const Navbar = () => {
                       className="dropdown"
                     />
                     <span className="dropdown dark:font-semibold">
-                      Settings
+                      {t("Settings")}
                     </span>
                   </h6>
                 </section>
@@ -239,7 +239,9 @@ const Navbar = () => {
                   >
                     <section className="dropdown flex items-center gap-2">
                       <FontAwesomeIcon icon={faMoon} className="dropdown" />
-                      <span className="dropdown dark:font-semibold">Theme</span>
+                      <span className="dropdown dark:font-semibold">
+                        {t("Theme")}
+                      </span>
                     </section>
                     <FontAwesomeIcon icon={faAngleRight} className="dropdown" />
                   </li>
@@ -254,7 +256,7 @@ const Navbar = () => {
                     <section className="dropdown flex items-center gap-2">
                       <FontAwesomeIcon icon={faEarth} />
                       <span className="dropdown dark:font-semibold">
-                        Language
+                        {t("Language")}
                       </span>
                     </section>
                     <FontAwesomeIcon icon={faAngleRight} className="dropdown" />
@@ -281,7 +283,9 @@ const Navbar = () => {
                         size="sm"
                         className="dropdown"
                       />
-                      <span className="dropdown dark:font-semibold">Back</span>
+                      <span className="dropdown dark:font-semibold">
+                        {t("Back")}
+                      </span>
                     </h6>
                   </section>
                   <hr className="dropdown bg-muted dark:bg-muted-dark opacity-30 border-none h-[1px] my-2 mx-4" />
@@ -299,7 +303,7 @@ const Navbar = () => {
                         <section className="dropdown flex items-center gap-2">
                           <FontAwesomeIcon icon={faSun} />
                           <span className="dropdown dark:font-semibold">
-                            Light
+                            {t("Light_Theme")}
                           </span>
                         </section>
                         {currentTheme === "light" && (
@@ -323,7 +327,7 @@ const Navbar = () => {
                         <section className="dropdown flex items-center gap-2">
                           <FontAwesomeIcon icon={faMoon} />
                           <span className="dropdown dark:font-semibold">
-                            Dark
+                            {t("Dark_Theme")}
                           </span>
                         </section>
                         {currentTheme === "dark" && (
@@ -352,7 +356,9 @@ const Navbar = () => {
                         size="sm"
                         className="dropdown"
                       />
-                      <span className="dropdown dark:font-semibold">Back</span>
+                      <span className="dropdown dark:font-semibold">
+                        {t("Back")}
+                      </span>
                     </h6>
                   </section>
                   <hr className="dropdown bg-muted dark:bg-muted-dark opacity-30 border-none h-[1px] my-2 mx-4" />
@@ -368,7 +374,7 @@ const Navbar = () => {
                     >
                       <section className="dropdown flex items-center justify-between w-full">
                         <span className="dropdown dark:font-semibold">
-                          English
+                          {t("English")}
                         </span>
                         {currentLanguage === "en" && (
                           <FontAwesomeIcon
@@ -389,7 +395,7 @@ const Navbar = () => {
                     >
                       <section className="dropdown flex items-center justify-between w-full">
                         <span className="dropdown dark:font-semibold">
-                          Turkish
+                          {t("Turkish")}
                         </span>
                         {currentLanguage === "tr" && (
                           <FontAwesomeIcon

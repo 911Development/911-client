@@ -35,7 +35,12 @@ body {
   scrollbar-width: none !important;
 }
 
+button[disabled].bg-primary {
+  background-color: rgb(var(--color-primary-lighter)) !important;
+  cursor: default !important;
+}
+
 button[disabled].bg-primary:hover {
-  background-color: rgb(var(--color-primary));
-  cursor: default;
+  background-color: rgb(var(--color-primary-lighter)) !important;
+  cursor: default !important;
 }
