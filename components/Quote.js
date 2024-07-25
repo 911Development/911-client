@@ -491,7 +491,7 @@ const Quote = () => {
                     type={"submit"}
                     variant={"primary"}
                     className={
-                      "flex items-center justify-center gap-2 w-full lg:w-1/5 lg:ms-auto"
+                      "flex items-center justify-center gap-2 w-full lg:w-1/5 lg:ms-auto py-3 lg:py-2.5"
                     }
                     disabled={
                       !isQuoteFormValid || quoteMutation.status === "loading"
