@@ -9,15 +9,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { motion } from "framer-motion";
 import Card from "@/components/ui/Card";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { faAngleRight, faCheck } from "@fortawesome/free-solid-svg-icons";
 import useInput from "@/hooks/useInput";
 import { useMutation } from "react-query";
 import { sendEmail } from "@/utils/helpers";
 import Toast from "@/components/ui/Toast";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Quote from "@/components/Quote";
 
-const reducer = (state, action) => {
+const carouselReducer = (state, action) => {
   const { type } = action;
 
   switch (type) {
@@ -73,7 +74,7 @@ const reducer = (state, action) => {
   return state;
 };
 
-const initialState = {
+const carouselInitialState = {
   team: 0,
   service: 0,
 };
@@ -82,7 +83,10 @@ export default function Home({ meta }) {
   const router = useRouter();
   const { t, i18n } = useTranslation();
 
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [carouselState, carouselStateDispatch] = useReducer(
+    carouselReducer,
+    carouselInitialState
+  );
 
   const [currentLanguage, setCurrentLanguage] = useState("");
   const [toast, setToast] = useState(false);
@@ -475,7 +479,7 @@ export default function Home({ meta }) {
             >
               <motion.section
                 animate={{
-                  translateX: `${state.team * -100}%`,
+                  translateX: `${carouselState.team * -100}%`,
                 }}
                 className="grid grid-cols-12 gap-4 min-w-full"
               >
@@ -716,7 +720,7 @@ export default function Home({ meta }) {
               </motion.section>
               <motion.section
                 animate={{
-                  translateX: `${state.team * -100}%`,
+                  translateX: `${carouselState.team * -100}%`,
                 }}
                 className="grid grid-cols-12 gap-4 min-w-full"
               >
@@ -941,15 +945,15 @@ export default function Home({ meta }) {
             <section className="flex items-center justify-center gap-2">
               <span
                 className={`inline-block ${
-                  state.team === 0 ? "bg-primary" : "bg-muted"
+                  carouselState.team === 0 ? "bg-primary" : "bg-muted"
                 } rounded-full cursor-pointer p-1.5 transition-all`}
-                onClick={() => dispatch({ type: "previousTeam" })}
+                onClick={() => carouselStateDispatch({ type: "previousTeam" })}
               />
               <span
                 className={`inline-block ${
-                  state.team === 1 ? "bg-primary" : "bg-muted"
+                  carouselState.team === 1 ? "bg-primary" : "bg-muted"
                 } rounded-full cursor-pointer p-1.5 transition-all`}
-                onClick={() => dispatch({ type: "nextTeam" })}
+                onClick={() => carouselStateDispatch({ type: "nextTeam" })}
               />
             </section>
           </Container>
@@ -961,7 +965,7 @@ export default function Home({ meta }) {
               width={48}
               height={48}
               className="absolute top-1/2 left-6 -translate-y-1/2 cursor-pointer rotate-90 hover:scale-110 opacity-40 dark:opacity-90 hover:dark:opacity-100 hover:opacity-90 transition-all"
-              onClick={() => dispatch({ type: "previousTeam" })}
+              onClick={() => carouselStateDispatch({ type: "previousTeam" })}
               alt="Previous"
             />
           </span>
@@ -973,7 +977,7 @@ export default function Home({ meta }) {
               width={48}
               height={48}
               className="absolute top-1/2 right-6 -translate-y-1/2 cursor-pointer -rotate-90 hover:scale-110 opacity-40 dark:opacity-90 hover:dark:opacity-100 hover:opacity-90 transition-all"
-              onClick={() => dispatch({ type: "nextTeam" })}
+              onClick={() => carouselStateDispatch({ type: "nextTeam" })}
               alt="Next"
             />
           </span>
@@ -1440,7 +1444,7 @@ export default function Home({ meta }) {
             >
               <motion.section
                 animate={{
-                  translateX: `${state.service * -100}%`,
+                  translateX: `${carouselState.service * -100}%`,
                 }}
                 className="min-w-full grid grid-cols-12 items-stretch gap-6 px-2"
               >
@@ -1484,7 +1488,7 @@ export default function Home({ meta }) {
                         alt="Mobile Design"
                       />
                       <h1 className="text-primary text-xl">
-                        {t("Mobile_Design_Service")}
+                        {t("Mobile_Apps")}
                       </h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
@@ -1592,7 +1596,7 @@ export default function Home({ meta }) {
               </motion.section>
               <motion.section
                 animate={{
-                  translateX: `${state.service * -100}%`,
+                  translateX: `${carouselState.service * -100}%`,
                 }}
                 className="min-w-full grid grid-cols-12 gap-6 px-2"
               >
@@ -1611,7 +1615,7 @@ export default function Home({ meta }) {
                         alt="Social Media"
                       />
                       <h1 className="text-primary text-xl">
-                        {t("Social_Media_Consultancy")}
+                        {t("Social_Media_Consultancy_Service")}
                       </h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
@@ -1661,7 +1665,7 @@ export default function Home({ meta }) {
                         alt="Web Design"
                       />
                       <h1 className="text-primary text-xl">
-                        {t("SEO_Consultancy")}
+                        {t("SEO_Consultancy_Service")}
                       </h1>
                     </Card.Header>
                     <Card.Body clasName={"my-4"}>
@@ -1680,7 +1684,9 @@ export default function Home({ meta }) {
                   width={48}
                   height={48}
                   className="absolute top-1/2 left-6 -translate-y-1/2 cursor-pointer rotate-90 hover:scale-110 opacity-40 dark:opacity-90 hover:dark:opacity-100 hover:opacity-90 transition-all"
-                  onClick={() => dispatch({ type: "previousService" })}
+                  onClick={() =>
+                    carouselStateDispatch({ type: "previousService" })
+                  }
                   alt="Previous"
                 />
               </span>
@@ -1692,7 +1698,7 @@ export default function Home({ meta }) {
                   width={48}
                   height={48}
                   className="absolute top-1/2 right-6 -translate-y-1/2 cursor-pointer -rotate-90 hover:scale-110 opacity-40 dark:opacity-90 hover:dark:opacity-100 hover:opacity-90 transition-all"
-                  onClick={() => dispatch({ type: "nextService" })}
+                  onClick={() => carouselStateDispatch({ type: "nextService" })}
                   alt="Next"
                 />
               </span>
@@ -1700,15 +1706,17 @@ export default function Home({ meta }) {
             <section className="flex items-center justify-center gap-2">
               <span
                 className={`inline-block ${
-                  state.service === 0 ? "bg-primary" : "bg-muted"
+                  carouselState.service === 0 ? "bg-primary" : "bg-muted"
                 } rounded-full cursor-pointer p-1.5 transition-all`}
-                onClick={() => dispatch({ type: "previousService" })}
+                onClick={() =>
+                  carouselStateDispatch({ type: "previousService" })
+                }
               />
               <span
                 className={`inline-block ${
-                  state.service === 1 ? "bg-primary" : "bg-muted"
+                  carouselState.service === 1 ? "bg-primary" : "bg-muted"
                 } rounded-full cursor-pointer p-1.5 transition-all`}
-                onClick={() => dispatch({ type: "nextService" })}
+                onClick={() => carouselStateDispatch({ type: "nextService" })}
               />
             </section>
           </Container>
@@ -1961,6 +1969,7 @@ export default function Home({ meta }) {
             </section>
           </Container>
         </section>
+        <Quote />
         <section className="bg-black dark:!bg-transparent text-white my-48 py-24 lg:py-32">
           <Container>
             <section className="flex flex-col lg:flex-row items-center justify-center mb-24 lg:mb-32">
