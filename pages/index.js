@@ -99,9 +99,12 @@ export default function Home({ meta }) {
     state: {
       value: email,
       isValid: isEmailValid,
+      isError: isEmailError,
       errorMessage: emailErrorMessage,
     },
     handleOnChange: handleEmailOnChange,
+    handleOnBlur: handleEmailOnBlur,
+    handleOnClear: handleEmailOnClear,
   } = useInput();
 
   const { language } = i18n;
@@ -115,16 +118,17 @@ export default function Home({ meta }) {
         currentLanguage === "en" ? data.message.en : data.message.tr
       );
       setToastVariant(data.status);
+
+      if (data.status === "success") handleEmailOnClear("email");
     },
   });
 
   function handleEmailSubmit(e) {
     e.preventDefault();
 
-    if (!isEmailValid) setShowEmailError(true);
+    if (isEmailError) setShowEmailError(true);
     else {
       setShowEmailError(false);
-
       if (isFormValid) sendEmailMutation.mutate({ email });
     }
   }
@@ -175,6 +179,7 @@ export default function Home({ meta }) {
                   className="w-full border rounded-full outline-none text-sm bg-white dark:bg-dark dark:border-gray-600 focus:border-primary focus:dark:border-primary-darker p-4 transition-all"
                   value={email}
                   onChange={handleEmailOnChange}
+                  onBlur={handleEmailOnBlur}
                 />
                 <section className="flex items-center gap-3 absolute top-1/2 -translate-y-1/2 right-2">
                   {showEmailError && (
