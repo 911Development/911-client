@@ -5,11 +5,12 @@ import connectMongoDb from "@/lib/mongodb";
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
-      const { firstname, lastname, email, message, fields } = req.body;
+      const { fullname, phone, email, message, fields } = req.body;
 
       await connectMongoDb();
 
       const findEmailDocument = await Email.findOne({ email });
+      const findPhoneDocument = await Quote.findOne({ phone });
 
       if (findEmailDocument)
         return res.status(409).json({
@@ -20,11 +21,20 @@ export default async function handler(req, res) {
           },
         });
 
+      if (findPhoneDocument)
+        return res.status(409).json({
+          status: "fail",
+          message: {
+            en: "We've already been contacted via this phone number.",
+            tr: "Bu telefon numarası aracılığıyla bizimle zaten iletişime geçildi.",
+          },
+        });
+
       const emailDocument = await Email.create({ email });
 
       await Quote.create({
-        firstname,
-        lastname,
+        fullname,
+        phone,
         email: emailDocument,
         message,
         fields,

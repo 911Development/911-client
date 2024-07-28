@@ -111,8 +111,10 @@
   "Dark_Theme": "Dark",
   "English": "English",
   "Turkish": "Turkish",
-  "invalid_firstname": "Invalid firstname",
-  "invalid_lastname": "Invalid lastname",
+  "invalid_fullname": "Invalid name",
   "invalid_email": "Invalid email",
-  "invalid_message": "Invalid message"
+  "invalid_message": "Invalid message",
+  "contactpage_title": "Let's get to know you",
+  "contactpage_description": "Contact us for your projects or questions. We will get back to you as soon as possible.",
+  "optional": "optional"
 }

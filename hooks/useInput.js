@@ -8,11 +8,17 @@ const reducer = (state, action) => {
   switch (type) {
     case "onChange": {
       switch (name) {
-        case "firstname":
-        case "lastname": {
+        case "fullname": {
           return {
             value: payload,
             isValid: payload.length >= 3,
+          };
+        }
+
+        case "phone": {
+          return {
+            value: payload,
+            isValid: validator.isMobilePhone(payload),
           };
         }
 
@@ -50,8 +56,8 @@ const reducer = (state, action) => {
 
     case "onBlur": {
       switch (name) {
-        case "firstname":
-        case "lastname":
+        case "fullname":
+        case "phone":
         case "email":
         case "message": {
           return {
@@ -65,8 +71,7 @@ const reducer = (state, action) => {
 
     case "onClear": {
       switch (name) {
-        case "firstname":
-        case "lastname":
+        case "fullname":
         case "email":
         case "message": {
           return {
@@ -104,9 +109,18 @@ const useInput = () => {
     dispatch({ type: "onBlur", name });
   };
 
+  const handlePhoneOnChange = (value) =>
+    dispatch({ type: "onChange", name: "phone", payload: value });
+
   const handleOnClear = (name) => dispatch({ type: "onClear", name });
 
-  return { state, handleOnChange, handleOnBlur, handleOnClear };
+  return {
+    state,
+    handleOnChange,
+    handlePhoneOnChange,
+    handleOnBlur,
+    handleOnClear,
+  };
 };
 
 export default useInput;

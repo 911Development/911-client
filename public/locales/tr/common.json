@@ -111,8 +111,10 @@
   "Dark_Theme": "Koyu",
   "English": "İngilizce",
   "Turkish": "Türkçe",
-  "invalid_firstname": "Geçersiz ad",
-  "invalid_lastname": "Geçersiz soyad",
+  "invalid_fullname": "Geçersiz isim",
   "invalid_email": "Geçersiz e-posta",
-  "invalid_message": "Geçersiz mesaj"
+  "invalid_message": "Geçersiz mesaj",
+  "contactpage_title": "Seni tanıyalım",
+  "contactpage_description": "Projeleriniz veya sorularınız için bizimle iletişime geçin. En kısa sürede size geri dönüş yapacağız.",
+  "optional": "opsiyonel"
 }
