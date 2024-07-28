@@ -56,6 +56,7 @@ const ContactPage = ({ meta }) => {
     state: {
       value: message,
       isError: isMessageError,
+      isValid: isMessageValid,
       errorMessage: messageErrorMessage,
     },
     handleOnChange: handleMessageOnChange,
@@ -102,11 +103,18 @@ const ContactPage = ({ meta }) => {
   useEffect(
     function () {
       if (phone === "90" || phone === "")
-        setIsContactFormValid(isFullnameValid && isEmailValid);
+        setIsContactFormValid(
+          isFullnameValid && isEmailValid && message.length <= 255
+        );
       else
-        setIsContactFormValid(isFullnameValid && isPhoneValid && isEmailValid);
+        setIsContactFormValid(
+          isFullnameValid &&
+            isPhoneValid &&
+            isEmailValid &&
+            message.length <= 255
+        );
     },
-    [isFullnameValid, phone, isPhoneValid, isEmailValid]
+    [isFullnameValid, phone, isPhoneValid, isEmailValid, message]
   );
 
   useEffect(
@@ -199,16 +207,29 @@ const ContactPage = ({ meta }) => {
                 </section>
               </section>
               <section className="col-span-6">
-                <TextArea
-                  inputMode={"text"}
-                  name={"message"}
-                  placeholder={"Your message"}
-                  className={"mb-4 lg:mb-1"}
-                  value={message}
-                  onChange={handleMessageOnChange}
-                  onBlur={handleMessageOnBlur}
-                  onKeyDown={handleOnKeyDown}
-                />
+                <section className="relative">
+                  <TextArea
+                    inputMode={"text"}
+                    name={"message"}
+                    placeholder={"Your message"}
+                    className={`mb-4 lg:mb-1 ${
+                      isMessageError && "!border-danger"
+                    }`}
+                    value={message}
+                    onChange={handleMessageOnChange}
+                    onBlur={handleMessageOnBlur}
+                    onKeyDown={handleOnKeyDown}
+                  />
+                  <span
+                    className={`absolute bottom-4 right-4 text-xs ${
+                      isMessageError
+                        ? "text-danger"
+                        : "text-muted dark:text-muted-dark"
+                    }`}
+                  >
+                    {message.length}/255
+                  </span>
+                </section>
                 <Button
                   type={"submit"}
                   variant={"primary"}
