@@ -220,13 +220,29 @@ const Quote = () => {
   useEffect(
     function () {
       if (phone === "90" || phone === "")
-        setIsQuoteFormValid(isFullnameValid && isEmailValid && isServicesValid);
+        setIsQuoteFormValid(
+          isFullnameValid &&
+            isEmailValid &&
+            isServicesValid &&
+            message.length <= 255
+        );
       else
         setIsQuoteFormValid(
-          isFullnameValid && isPhoneValid && isEmailValid && isServicesValid
+          isFullnameValid &&
+            isPhoneValid &&
+            isEmailValid &&
+            isServicesValid &&
+            message.length <= 255
         );
     },
-    [isFullnameValid, phone, isPhoneValid, isEmailValid, isServicesValid]
+    [
+      isFullnameValid,
+      phone,
+      isPhoneValid,
+      isEmailValid,
+      isServicesValid,
+      message,
+    ]
   );
 
   useEffect(
@@ -485,11 +501,21 @@ const Quote = () => {
                     inputMode={"text"}
                     name={"message"}
                     placeholder={"Your message"}
+                    className={`${isMessageError && "!border-danger"}`}
                     value={message}
                     onChange={handleMessageOnChange}
                     onBlur={handleMessageOnBlur}
                     onKeyDown={handleOnKeyDown}
                   />
+                  <span
+                    className={`absolute bottom-4 right-4 text-xs ${
+                      isMessageError
+                        ? "text-danger"
+                        : "text-muted dark:text-muted-dark"
+                    }`}
+                  >
+                    {message.length}/255
+                  </span>
                 </section>
                 <section>
                   <Button
