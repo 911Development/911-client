@@ -1369,7 +1369,7 @@ export default function Home({ meta }) {
                 >
                   <Card.Header clasName={"text-center"}>
                     <h1 className="text-primary text-xl mb-2">
-                      {t("DevOps_Team")}
+                      {t("Devops_Team")}
                     </h1>
                     <section className="flex items-center justify-evenly">
                       <section className="flex items-center gap-1 text-sm">

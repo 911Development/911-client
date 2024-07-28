@@ -42,7 +42,7 @@ module.exports = {
         DEFAULT: "1rem",
       },
       transitionDuration: {
-        DEFAULT: "0.5s",
+        DEFAULT: "0.25s",
       },
     },
   },
