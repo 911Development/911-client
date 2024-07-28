@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import { useMutation } from "react-query";
 import { createQutoe } from "@/utils/helpers";
 import Toast from "./ui/Toast";
+import PhoneInput from "react-phone-input-2";
 
 const quoteReducer = (state, action) => {
   const { type, name, payload } = action;
@@ -129,26 +130,20 @@ const Quote = () => {
 
   const {
     state: {
-      value: firstname,
-      isValid: isFirstnameValid,
-      isError: isFirstnameError,
-      errorMessage: firstnameErrorMessage,
+      value: fullname,
+      isValid: isFullnameValid,
+      isError: isFullnameError,
+      errorMessage: fullnameErrorMessage,
     },
-    handleOnChange: handleFirstnameOnChange,
-    handleOnBlur: handleFirstnameOnBlur,
-    handleOnClear: handleFirstnameOnClear,
+    handleOnChange: handleFullnameOnChange,
+    handleOnBlur: handleFullnameOnBlur,
+    handleOnClear: handleFullnameOnClear,
   } = useInput();
 
   const {
-    state: {
-      value: lastname,
-      isValid: isLastnameValid,
-      isError: isLastnameError,
-      errorMessage: lastnameErrorMessage,
-    },
-    handleOnChange: handleLastnameOnChange,
-    handleOnBlur: handleLastnameOnBlur,
-    handleOnClear: handleLastnameOnClear,
+    state: { value: phone, isValid: isPhoneValid },
+    handlePhoneOnChange: handlePhoneOnChange,
+    handleOnBlur: handlePhoneOnBlur,
   } = useInput();
 
   const {
@@ -180,6 +175,8 @@ const Quote = () => {
     mutationKey: "quoteForm",
     mutationFn: createQutoe,
     onSuccess: function (data) {
+      console.log("data: ", data);
+
       setToast(true);
       setToastMessage(
         currentLanguage === "en" ? data.message.en : data.message.tr
@@ -188,8 +185,7 @@ const Quote = () => {
 
       if (data.status === "success") {
         quoteStateDispatch({ type: "clear" });
-        handleFirstnameOnClear("firstname");
-        handleLastnameOnClear("lastname");
+        handleFullnameOnClear("fullname");
         handleEmailOnClear("email");
         handleMessageOnClear("message");
       }
@@ -200,19 +196,22 @@ const Quote = () => {
     e.preventDefault();
 
     quoteMutation.mutate({
-      firstname,
-      lastname,
+      fullname,
+      phone: phone === "90" || phone === "" ? null : phone,
       email,
       message,
       fields,
     });
   }
 
+  const handleOnKeyDown = (e) => {
+    if (e.key === "Enter") e.preventDefault();
+  };
+
   useEffect(
     function () {
       const valid = Object.values(quoteState).some((value) => value);
       setIsServicesValid(valid);
-
       setFields(
         Object.keys(quoteState).filter((property) => quoteState[property])
       );
@@ -222,11 +221,14 @@ const Quote = () => {
 
   useEffect(
     function () {
-      setIsQuoteFormValid(
-        isFirstnameValid && isLastnameValid && isEmailValid && isServicesValid
-      );
+      if (phone === "90" || phone === "")
+        setIsQuoteFormValid(isFullnameValid && isEmailValid && isServicesValid);
+      else
+        setIsQuoteFormValid(
+          isFullnameValid && isPhoneValid && isEmailValid && isServicesValid
+        );
     },
-    [isFirstnameValid, isLastnameValid, isEmailValid, isServicesValid]
+    [isFullnameValid, phone, isPhoneValid, isEmailValid, isServicesValid]
   );
 
   useEffect(
@@ -425,33 +427,42 @@ const Quote = () => {
                   <section className="relative w-full">
                     <Input
                       type={"text"}
-                      name={"firstname"}
-                      placeholder={"Firstname"}
-                      label={"Firstname"}
-                      value={firstname}
-                      onChange={handleFirstnameOnChange}
-                      onBlur={handleFirstnameOnBlur}
+                      name={"fullname"}
+                      placeholder={"Fullname"}
+                      label={"Fullname"}
+                      value={fullname}
+                      onChange={handleFullnameOnChange}
+                      onBlur={handleFullnameOnBlur}
                     />
-                    {isFirstnameError && (
+                    {isFullnameError && (
                       <p className="absolute top-1/2 text-xs right-4 text-danger -translate-y-1/2">
-                        {t(firstnameErrorMessage)}
+                        {t(fullnameErrorMessage)}
                       </p>
                     )}
                   </section>
                   <section className="relative w-full">
-                    <Input
-                      type={"text"}
-                      name={"lastname"}
-                      placeholder={"Lastname"}
-                      label={"Lastname"}
-                      value={lastname}
-                      onChange={handleLastnameOnChange}
-                      onBlur={handleLastnameOnBlur}
+                    <PhoneInput
+                      inputProps={{
+                        name: "phone",
+                      }}
+                      country={"tr"}
+                      countryCodeEditable={false}
+                      inputClass={`form-input peer bg-white dark:bg-black w-full border dark:border-gray-600 rounded-md shadow-sm border-gray-300 placeholder:text-white placeholder:dark:text-black text-sm placeholder-opacity-0 focus:ring-0 focus:!border-primary text-dark dark:text-light py-3 px-2.5 outline-none transition-all ${
+                        phone !== "90" &&
+                        phone !== "" &&
+                        isPhoneValid === false &&
+                        "!border-red-500"
+                      }`}
+                      isValid
+                      specialLabel={false}
+                      value={phone}
+                      onChange={(value) => handlePhoneOnChange(value)}
+                      onBlur={handlePhoneOnBlur}
                     />
-                    {isLastnameError && (
-                      <p className="absolute top-1/2 text-xs right-4 text-danger -translate-y-1/2">
-                        {t(lastnameErrorMessage)}
-                      </p>
+                    {(phone === "90" || phone === "") && (
+                      <span className="absolute top-1/2 right-2.5 -translate-y-1/2 text-xs text-muted dark:text-muted-dark">
+                        ({t("optional")})
+                      </span>
                     )}
                   </section>
                 </section>
@@ -479,6 +490,7 @@ const Quote = () => {
                     value={message}
                     onChange={handleMessageOnChange}
                     onBlur={handleMessageOnBlur}
+                    onKeyDown={handleOnKeyDown}
                   />
                   {isMessageError && (
                     <p className="absolute top-1/2 text-xs right-4 text-danger -translate-y-1/2">
