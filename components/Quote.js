@@ -144,6 +144,7 @@ const Quote = () => {
     state: { value: phone, isValid: isPhoneValid },
     handlePhoneOnChange: handlePhoneOnChange,
     handleOnBlur: handlePhoneOnBlur,
+    handleOnClear: handlePhoneOnClear,
   } = useInput();
 
   const {
@@ -186,6 +187,7 @@ const Quote = () => {
         handleFullnameOnClear("fullname");
         handleEmailOnClear("email");
         handleMessageOnClear("message");
+        handlePhoneOnClear("phone");
       }
     },
   });
