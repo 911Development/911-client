@@ -175,8 +175,6 @@ const Quote = () => {
     mutationKey: "quoteForm",
     mutationFn: createQutoe,
     onSuccess: function (data) {
-      console.log("data: ", data);
-
       setToast(true);
       setToastMessage(
         currentLanguage === "en" ? data.message.en : data.message.tr
@@ -492,11 +490,6 @@ const Quote = () => {
                     onBlur={handleMessageOnBlur}
                     onKeyDown={handleOnKeyDown}
                   />
-                  {isMessageError && (
-                    <p className="absolute top-1/2 text-xs right-4 text-danger -translate-y-1/2">
-                      {t(messageErrorMessage)}
-                    </p>
-                  )}
                 </section>
                 <section>
                   <Button

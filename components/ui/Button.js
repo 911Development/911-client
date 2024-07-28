@@ -1,7 +1,7 @@
 import { Poppins_400 } from "@/pages/_app";
 
 const Button = ({ type, variant, className, onClick, disabled, children }) => {
-  let classes = `button rounded shadow text-sm font-semibold transition-all cursor-pointer py-2.5 px-5 ${Poppins_400.className} ${className} `;
+  let classes = `button rounded shadow text-sm font-semibold transition-all cursor-pointer select-none py-2.5 px-5 ${Poppins_400.className} ${className} `;
 
   switch (variant) {
     case "primary":

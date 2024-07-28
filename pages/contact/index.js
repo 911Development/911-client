@@ -1,14 +1,120 @@
+import Head from "next/head";
+import { useEffect, useState } from "react";
+import { useMutation } from "react-query";
+import { useTranslation } from "react-i18next";
+import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Container from "@/components/Container";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
-import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Head from "next/head";
-import Image from "next/image";
-import { useTranslation } from "react-i18next";
+import TextArea from "@/components/ui/TextArea";
+import Toast from "@/components/ui/Toast";
+import PhoneInput from "react-phone-input-2";
+import useInput from "@/hooks/useInput";
+import { createContact } from "@/utils/helpers";
 
 const ContactPage = ({ meta }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  const [isContactFormValid, setIsContactFormValid] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState("");
+  const [toast, setToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastVariant, setToastVariant] = useState("");
+
+  const {
+    state: {
+      value: fullname,
+      isValid: isFullnameValid,
+      isError: isFullnameError,
+      errorMessage: fullnameErrorMessage,
+    },
+    handleOnChange: handleFullnameOnChange,
+    handleOnBlur: handleFullnameOnBlur,
+    handleOnClear: handleFullnameOnClear,
+  } = useInput();
+
+  const {
+    state: { value: phone, isValid: isPhoneValid },
+    handlePhoneOnChange: handlePhoneOnChange,
+    handleOnBlur: handlePhoneOnBlur,
+  } = useInput();
+
+  const {
+    state: {
+      value: email,
+      isValid: isEmailValid,
+      isError: isEmailError,
+      errorMessage: emailErrorMessage,
+    },
+    handleOnChange: handleEmailOnChange,
+    handleOnBlur: handleEmailOnBlur,
+    handleOnClear: handleEmailOnClear,
+  } = useInput();
+
+  const {
+    state: {
+      value: message,
+      isError: isMessageError,
+      errorMessage: messageErrorMessage,
+    },
+    handleOnChange: handleMessageOnChange,
+    handleOnBlur: handleMessageOnBlur,
+    handleOnClear: handleMessageOnClear,
+  } = useInput();
+
+  const { language } = i18n;
+
+  const contactMutation = useMutation({
+    mutationKey: "contactForm",
+    mutationFn: createContact,
+    onSuccess: function (data) {
+      setToast(true);
+      setToastMessage(
+        currentLanguage === "en" ? data.message.en : data.message.tr
+      );
+      setToastVariant(data.status);
+
+      if (data.status === "success") {
+        quoteStateDispatch({ type: "clear" });
+        handleFullnameOnClear("fullname");
+        handleEmailOnClear("email");
+        handleMessageOnClear("message");
+      }
+    },
+  });
+
+  function handleContactOnSubmit(e) {
+    e.preventDefault();
+
+    contactMutation.mutate({
+      fullname,
+      phone: phone === "90" || phone === "" ? null : phone,
+      email,
+      message,
+    });
+  }
+
+  const handleOnKeyDown = (e) => {
+    if (e.key === "Enter") e.preventDefault();
+  };
+
+  useEffect(
+    function () {
+      if (phone === "90" || phone === "")
+        setIsContactFormValid(isFullnameValid && isEmailValid);
+      else
+        setIsContactFormValid(isFullnameValid && isPhoneValid && isEmailValid);
+    },
+    [isFullnameValid, phone, isPhoneValid, isEmailValid]
+  );
+
+  useEffect(
+    function () {
+      setCurrentLanguage(language);
+    },
+    [language]
+  );
 
   return (
     <>
@@ -28,7 +134,11 @@ const ContactPage = ({ meta }) => {
             </p>
           </section>
           <section>
-            <section className="lg:grid lg:grid-cols-12 lg:gap-3 lg:w-3/4 mx-auto">
+            <form
+              noValidate
+              className="lg:grid lg:grid-cols-12 lg:gap-3 lg:w-3/4 lg:items-start mx-auto"
+              onSubmit={handleContactOnSubmit}
+            >
               <section className="col-span-6">
                 <section className="relative mb-4">
                   <Input
@@ -36,7 +146,15 @@ const ContactPage = ({ meta }) => {
                     name={"fullname"}
                     placeholder={"Fullname"}
                     label={"Fullname"}
+                    value={fullname}
+                    onChange={handleFullnameOnChange}
+                    onBlur={handleFullnameOnBlur}
                   />
+                  {isFullnameError && (
+                    <p className="absolute top-1/2 text-xs right-4 text-danger -translate-y-1/2">
+                      {t(fullnameErrorMessage)}
+                    </p>
+                  )}
                 </section>
                 <section className="relative mb-4">
                   <Input
@@ -44,30 +162,81 @@ const ContactPage = ({ meta }) => {
                     name={"email"}
                     placeholder={"Email"}
                     label={"Email"}
+                    value={email}
+                    onChange={handleEmailOnChange}
+                    onBlur={handleEmailOnBlur}
                   />
+                  {isEmailError && (
+                    <p className="absolute top-1/2 text-xs right-4 text-danger -translate-y-1/2">
+                      {t(emailErrorMessage)}
+                    </p>
+                  )}
+                </section>
+                <section className="relative mb-4">
+                  <PhoneInput
+                    inputProps={{
+                      name: "phone",
+                    }}
+                    country={"tr"}
+                    countryCodeEditable={false}
+                    inputClass={`form-input peer bg-white dark:bg-black w-full border dark:border-gray-600 rounded-md shadow-sm border-gray-300 placeholder:text-white placeholder:dark:text-black text-sm placeholder-opacity-0 focus:ring-0 focus:!border-primary text-dark dark:text-light py-3 px-2.5 outline-none transition-all ${
+                      phone !== "90" &&
+                      phone !== "" &&
+                      isPhoneValid === false &&
+                      "!border-red-500"
+                    }`}
+                    isValid
+                    specialLabel={false}
+                    value={phone}
+                    onChange={(value) => handlePhoneOnChange(value)}
+                    onBlur={handlePhoneOnBlur}
+                  />
+                  {(phone === "90" || phone === "") && (
+                    <span className="absolute top-1/2 right-2.5 -translate-y-1/2 text-xs text-muted dark:text-muted-dark">
+                      ({t("optional")})
+                    </span>
+                  )}
                 </section>
               </section>
               <section className="col-span-6">
-                <textarea
-                  placeholder="Your message"
-                  className="w-full h-full bg-white dark:bg-black text-sm rounded-md border dark:border-gray-600 focus:border-primary outline-none transition-all py-3 px-2.5 mb-3"
-                  style={{ resize: "none" }}
+                <TextArea
+                  inputMode={"text"}
+                  name={"message"}
+                  placeholder={"Your message"}
+                  className={"mb-4 lg:mb-1"}
+                  value={message}
+                  onChange={handleMessageOnChange}
+                  onBlur={handleMessageOnBlur}
+                  onKeyDown={handleOnKeyDown}
                 />
                 <Button
-                  type={"button"}
+                  type={"submit"}
                   variant={"primary"}
                   className={
                     "flex items-center justify-center gap-2 w-full py-4"
                   }
+                  disabled={
+                    !isContactFormValid || contactMutation.status === "loading"
+                  }
                 >
-                  <span>Send</span>
+                  <span>
+                    {contactMutation.status === "loading"
+                      ? t("Sending")
+                      : t("Send")}
+                  </span>
                   <FontAwesomeIcon icon={faPaperPlane} />
                 </Button>
               </section>
-            </section>
+            </form>
           </section>
         </Container>
       </section>
+      <Toast
+        show={toast}
+        setToast={setToast}
+        message={toastMessage}
+        variant={toastVariant}
+      />
     </>
   );
 };

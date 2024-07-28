@@ -1,3 +1,4 @@
+import Contact from "@/lib/models/Contact";
 import Email from "@/lib/models/Email";
 import Quote from "@/lib/models/Quote";
 import connectMongoDb from "@/lib/mongodb";
@@ -5,16 +6,7 @@ import connectMongoDb from "@/lib/mongodb";
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
-      const { fullname, phone, email, message, fields } = req.body;
-
-      if (!fields || fields.length < 1)
-        return res.status(403).json({
-          status: "fail",
-          message: {
-            en: "Please specify at least one field that you want to get request is required.",
-            tr: "Lütfen destek veya fiyat teklifi almak istediğiniz en az bir alan belirtin.",
-          },
-        });
+      const { fullname, email, phone, message } = req.body;
 
       await connectMongoDb();
 
@@ -41,12 +33,11 @@ export default async function handler(req, res) {
 
       const emailDocument = await Email.create({ email });
 
-      await Quote.create({
+      await Contact.create({
         fullname,
-        phone,
         email: emailDocument,
+        phone,
         message,
-        fields,
       });
 
       res.status(201).json({

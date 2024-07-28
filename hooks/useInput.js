@@ -1,5 +1,4 @@
 import { useReducer } from "react";
-import { isError } from "react-query";
 import validator from "validator";
 
 const reducer = (state, action) => {
@@ -9,9 +8,13 @@ const reducer = (state, action) => {
     case "onChange": {
       switch (name) {
         case "fullname": {
+          let isValid = null;
+
+          if (payload.length >= 1) isValid = payload.length >= 3;
+
           return {
             value: payload,
-            isValid: payload.length >= 3,
+            isValid,
           };
         }
 
