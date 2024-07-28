@@ -84,6 +84,13 @@ const reducer = (state, action) => {
             errorMessage: null,
           };
         }
+
+        case "phone": {
+          return {
+            value: "+90",
+            isValid: null,
+          };
+        }
       }
     }
 

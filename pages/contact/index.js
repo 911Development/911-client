@@ -38,6 +38,7 @@ const ContactPage = ({ meta }) => {
     state: { value: phone, isValid: isPhoneValid },
     handlePhoneOnChange: handlePhoneOnChange,
     handleOnBlur: handlePhoneOnBlur,
+    handleOnClear: handlePhoneOnClear,
   } = useInput();
 
   const {
@@ -53,12 +54,7 @@ const ContactPage = ({ meta }) => {
   } = useInput();
 
   const {
-    state: {
-      value: message,
-      isError: isMessageError,
-      isValid: isMessageValid,
-      errorMessage: messageErrorMessage,
-    },
+    state: { value: message, isError: isMessageError },
     handleOnChange: handleMessageOnChange,
     handleOnBlur: handleMessageOnBlur,
     handleOnClear: handleMessageOnClear,
@@ -76,11 +72,13 @@ const ContactPage = ({ meta }) => {
       );
       setToastVariant(data.status);
 
+      console.log("data: ", data);
+
       if (data.status === "success") {
-        quoteStateDispatch({ type: "clear" });
         handleFullnameOnClear("fullname");
         handleEmailOnClear("email");
         handleMessageOnClear("message");
+        handlePhoneOnClear("phone");
       }
     },
   });
