@@ -72,8 +72,6 @@ const ContactPage = ({ meta }) => {
       );
       setToastVariant(data.status);
 
-      console.log("data: ", data);
-
       if (data.status === "success") {
         handleFullnameOnClear("fullname");
         handleEmailOnClear("email");
