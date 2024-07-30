@@ -9,6 +9,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import "@/i18n";
 import { appWithTranslation } from "next-i18next";
 
+export const Poppins_900 = Poppins({ subsets: ["latin"], weight: "700" });
 export const Poppins_400 = Poppins({ subsets: ["latin"], weight: "400" });
 export const Poppins_300 = Poppins({ subsets: ["latin"], weight: "300" });
 export const Exo2_700 = Exo_2({ subsets: ["latin"], weight: "700" });

@@ -24,15 +24,20 @@ import Sidebar from "../Sidebar";
 import { themeSliceActions } from "@/store/theme-slice/theme-slice";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
+import { Poppins_400 } from "@/pages/_app";
+import { intersectingSliceActions } from "@/store/intersecting-slice/intersecting-slice";
 
 const Navbar = () => {
   const router = useRouter();
 
   const { t, i18n } = useTranslation();
 
+  const intersectingState = useSelector((state) => state.intersecting);
   const themeState = useSelector((state) => state.theme);
+
   const dispatch = useDispatch();
 
+  const [navbarVariant, setNavbarVariant] = useState("backdrop-blur");
   const [currentLanguage, setCurrentLanguage] = useState("");
   const [currentTheme, setCurrentTheme] = useState("");
   const [headerDropdown, setHeaderDropdown] = useState(false);
@@ -49,6 +54,7 @@ const Navbar = () => {
 
   const { pathname } = router;
   const { language } = i18n;
+  const { isHeaderIntersecting } = intersectingState;
   const { theme } = themeState;
 
   const handleSettingsDropdown = () => setSettingsDropdown(!settingsDropdown);
@@ -120,8 +126,22 @@ const Navbar = () => {
     [theme]
   );
 
+  useEffect(
+    function () {
+      console.log(isHeaderIntersecting);
+
+      if (!isHeaderIntersecting) setNavbarVariant("bg-white dark:bg-black");
+      else setNavbarVariant("bg-none backdrop-blur");
+    },
+    [isHeaderIntersecting]
+  );
+
+  // bg-white dark:bg-black
+
   return (
-    <nav className="relative">
+    <nav
+      className={`fixed top-0 left-0 w-full py-6 ${navbarVariant} z-50 transition-all ${Poppins_400.className}`}
+    >
       <Container className={"flex lg:grid lg:grid-cols-12 items-center"}>
         <section className="lg:col-span-2">
           <Link href={"/"}>
@@ -150,15 +170,17 @@ const Navbar = () => {
           <li className="transition-all">
             <Link
               href={"/about"}
-              className={`hover:text-primary transition-all ${
-                pathname === "/about" && "text-primary"
-              }`}
+              className={`hover:text-primary ${
+                isHeaderIntersecting && "text-white"
+              } transition-all ${pathname === "/about" && "text-primary"}`}
             >
               {t("About_Us")}
             </Link>
           </li>
           <li
-            className="hover:bg-blue-100 hover:dark:bg-primary-darkest hover:text-primary-darker hover:dark:text-blue-100 hover:rounded hover:py-1.5 hover:px-3 transition-all"
+            className={`hover:bg-blue-100 ${
+              isHeaderIntersecting && "text-white"
+            } hover:dark:bg-primary-darkest hover:text-primary-darker hover:dark:text-blue-100 hover:rounded hover:py-1.5 hover:px-3 cursor-pointer transition-all`}
             onMouseEnter={handleHeaderDropdown}
             onMouseLeave={handleHeaderDropdown}
           >
@@ -174,8 +196,8 @@ const Navbar = () => {
             <Link
               href={"/teams"}
               className={`hover:text-primary transition-all ${
-                pathname === "/teams" && "text-primary"
-              }`}
+                isHeaderIntersecting && "text-white"
+              } ${pathname === "/teams" && "text-primary"}`}
             >
               {t("Teams")}
             </Link>
@@ -184,8 +206,8 @@ const Navbar = () => {
             <Link
               href={"/projects"}
               className={`hover:text-primary transition-all ${
-                pathname === "/projects" && "text-primary"
-              }`}
+                isHeaderIntersecting && "text-white"
+              } ${pathname === "/projects" && "text-primary"}`}
             >
               {t("Projects")}
             </Link>
@@ -195,7 +217,7 @@ const Navbar = () => {
           <FontAwesomeIcon
             icon={faGear}
             size="lg"
-            className="cursor-pointer"
+            className={`cursor-pointer ${isHeaderIntersecting && "text-white"}`}
             ref={dropdownRef}
             onClick={handleSettingsDropdown}
           />
@@ -209,7 +231,7 @@ const Navbar = () => {
                 scale: settingsDropdown ? [0.9, 1] : [1, 0.9],
                 opacity: settingsDropdown ? [0, 1] : [1, 0],
               }}
-              className="dropdown w-[200px] bg-white dark:bg-dark rounded-lg shadow-lg dark:shadow-xl border dark:border-none flex overflow-x-hidden py-4 "
+              className="dropdown bg-white dark:bg-dark w-[200px] rounded-lg shadow-lg dark:shadow-xl border dark:border-none flex overflow-x-hidden py-4 "
             >
               <motion.div
                 animate={{ translateX: `-${currentSettingsPage * 100}%` }}
@@ -413,7 +435,9 @@ const Navbar = () => {
           <Link href={"/contact"}>
             <Button
               type={"button"}
-              variant={"primary"}
+              variant={
+                isHeaderIntersecting ? "primary-outline-inverse" : "primary"
+              }
               className={"flex items-center gap-2"}
             >
               <FontAwesomeIcon icon={faPaperPlane} />
