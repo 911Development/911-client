@@ -37,7 +37,7 @@ const Navbar = () => {
 
   const dispatch = useDispatch();
 
-  const [navbarVariant, setNavbarVariant] = useState("backdrop-blur");
+  const [navbarVariant, setNavbarVariant] = useState("");
   const [currentLanguage, setCurrentLanguage] = useState("");
   const [currentTheme, setCurrentTheme] = useState("");
   const [headerDropdown, setHeaderDropdown] = useState(false);
@@ -131,7 +131,7 @@ const Navbar = () => {
       console.log(isHeaderIntersecting);
 
       if (!isHeaderIntersecting) setNavbarVariant("bg-white dark:bg-black");
-      else setNavbarVariant("bg-none backdrop-blur");
+      else setNavbarVariant("bg-none");
     },
     [isHeaderIntersecting]
   );

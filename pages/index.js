@@ -96,7 +96,7 @@ export default function Home({ meta }) {
   const [headerRef, isHeaderRefIntersecting] = useIntersectionObserver({
     root: null,
     rootMargin: "0px",
-    threshold: 0.1,
+    threshold: 1,
   });
 
   const [carouselState, carouselStateDispatch] = useReducer(
