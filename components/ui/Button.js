@@ -11,7 +11,7 @@ const Button = ({ type, variant, className, onClick, disabled, children }) => {
 
     case "primary-outline":
       classes +=
-        "bg-none bg-transparent shadow-none text-primary hover:text-white border border-primary hover:bg-primary";
+        "bg-none backdrop-blur bg-transparent shadow-none text-primary hover:text-white border border-primary hover:bg-primary";
       break;
 
     case "primary-inverse":
@@ -19,9 +19,19 @@ const Button = ({ type, variant, className, onClick, disabled, children }) => {
         "bg-white text-primary hover:bg-primary hover:text-white shadow-none";
       break;
 
+    case "primary-outline-inverse":
+      classes +=
+        "bg-none bg-transparent shadow-none text-white hover:text-primary border border-white hover:bg-white";
+      break;
+
     case "primary-link":
       classes +=
         "bg-none shadow-none border-none text-primary hover:text-primary-darker py-0 px-0";
+      break;
+
+    case "secondary":
+      classes +=
+        "bg-secondary hover:bg-secondary-darker text-white shadow-secondary hover:shadow-none";
       break;
 
     case "link":

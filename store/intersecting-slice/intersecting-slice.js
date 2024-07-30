@@ -1,15 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const intersectingSlice = createSlice({
-  name: "intersecting",
+  name: "isIntersecting",
   initialState: {
-    isInterSectingOnDark: false,
+    isHeaderIntersecting: true,
   },
   reducers: {
-    setIntersectingOnDark(state, action) {
+    setisHeaderIntersecting(state, action) {
       const { payload } = action;
 
-      state.isInterSectingOnDark = payload;
+      state.isHeaderIntersecting = payload;
 
       return state;
     },

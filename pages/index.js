@@ -9,7 +9,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { motion } from "framer-motion";
 import Card from "@/components/ui/Card";
-import { faAngleRight, faCheck } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleDown,
+  faAngleRight,
+  faCheck,
+} from "@fortawesome/free-solid-svg-icons";
 import useInput from "@/hooks/useInput";
 import { useMutation } from "react-query";
 import { sendEmail } from "@/utils/helpers";
@@ -17,6 +21,10 @@ import Toast from "@/components/ui/Toast";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Quote from "@/components/Quote";
+import useIntersectionObserver from "@/hooks/useIntersectionObserver";
+import { useDispatch } from "react-redux";
+import { intersectingSliceActions } from "@/store/intersecting-slice/intersecting-slice";
+import { Poppins_900 } from "./_app";
 
 const carouselReducer = (state, action) => {
   const { type } = action;
@@ -82,6 +90,14 @@ const carouselInitialState = {
 export default function Home({ meta }) {
   const router = useRouter();
   const { t, i18n } = useTranslation();
+
+  const dispatch = useDispatch();
+
+  const [headerRef, isHeaderRefIntersecting] = useIntersectionObserver({
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.1,
+  });
 
   const [carouselState, carouselStateDispatch] = useReducer(
     carouselReducer,
@@ -151,6 +167,19 @@ export default function Home({ meta }) {
     [language]
   );
 
+  useEffect(
+    function () {
+      console.log(isHeaderRefIntersecting);
+
+      dispatch(
+        intersectingSliceActions.setisHeaderIntersecting(
+          isHeaderRefIntersecting
+        )
+      );
+    },
+    [isHeaderRefIntersecting]
+  );
+
   return (
     <>
       <Head>
@@ -161,9 +190,96 @@ export default function Home({ meta }) {
           creativity meets code
         </title>
       </Head>
+      <header
+        ref={headerRef}
+        className="relative w-full h-[90vh] lg:h-[70vh] xl:h-[80vh] overflow-hidden"
+      >
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover object-center xl:object-right"
+        >
+          <source src="/banner.mp4" type="video/mp4" />
+        </video>
+        <section className="absolute  rounded-lg xl:backdrop-blur-0 py-24 xl:py-0 w-full lg:w-3/4 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
+          <Container className={"lg:!px-0"}>
+            <section>
+              <section className="text-center xl:text-start mb-8">
+                <h2
+                  className={`text-sm inline-block text-secondary drop-shadow-2xl tracking-[.35rem] mb-12 xl:mb-6 ${Poppins_900.className}`}
+                >
+                  {t("homepage_subtitle")}
+                </h2>
+                <h1 className="text-4xl font-semibold text-primary mb-6">
+                  {t("homepage_title")}
+                </h1>
+                <p className="xl:w-1/2 lg:w-3/4 text-center mx-auto xl:text-justify xl:ms-0 text-white xl:text-muted-dark">
+                  {t("homepage_description")}
+                </p>
+              </section>
+              <section className="w-11/12 xl:w-1/2 mx-auto xl:ms-0 mb-8">
+                <section className="relative lg:mb-0">
+                  <form onSubmit={handleEmailSubmit}>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder={t("send_your_email")}
+                      className="w-full border rounded-full outline-none text-sm bg-white dark:bg-dark dark:border-gray-600 focus:border-primary focus:dark:border-primary-darker p-4 transition-all"
+                      value={email}
+                      onChange={handleEmailOnChange}
+                      onBlur={handleEmailOnBlur}
+                    />
+                    <section className="flex items-center gap-3 absolute top-1/2 -translate-y-1/2 right-2">
+                      {showEmailError && (
+                        <p className="text-xs text-red-500 hidden lg:block">
+                          {t(emailErrorMessage)}
+                        </p>
+                      )}
+                      <Button
+                        type={"submit"}
+                        variant={"primary"}
+                        className={"flex items-center gap-2 rounded-full"}
+                        disabled={sendEmailMutation.status === "loading"}
+                      >
+                        <FontAwesomeIcon icon={faPaperPlane} />
+                        <span>
+                          {sendEmailMutation.status === "loading"
+                            ? t("Sending")
+                            : t("Send")}
+                        </span>
+                      </Button>
+                    </section>
+                  </form>
+                </section>
+                {showEmailError && (
+                  <p className="text-center text-xs text-red-500 block lg:hidden">
+                    {t(emailErrorMessage)}
+                  </p>
+                )}
+              </section>
+              <section className="flex items-center justify-center xl:block">
+                <Link href={"#quote"} className="inline-block">
+                  <Button
+                    type={"button"}
+                    variant={"primary-outline"}
+                    className={
+                      "flex items-center justify-center gap-2 rounded-md py-3"
+                    }
+                  >
+                    <span>{t("quote")}</span>
+                    <FontAwesomeIcon icon={faAngleDown} />
+                  </Button>
+                </Link>
+              </section>
+            </section>
+          </Container>
+        </section>
+      </header>
       <section className="py-16 lg:py-24">
         <Container>
-          <section className="text-center mb-16">
+          {/* <section className="text-center mb-16">
             <h1 className="text-4xl font-semibold text-primary mb-8">
               {t("homepage_title")}
             </h1>
@@ -208,8 +324,8 @@ export default function Home({ meta }) {
                 {t(emailErrorMessage)}
               </p>
             )}
-          </section>
-          <section className="w-3/4 lg:w-1/3 mx-auto my-32">
+          </section> */}
+          {/* <section className="w-3/4 lg:w-1/3 mx-auto my-32">
             <section className="flex items-center justify-center mb-2">
               <motion.div
                 initial={{ opacity: 0 }}
@@ -374,8 +490,8 @@ export default function Home({ meta }) {
                 </div>
               </motion.div>
             </section>
-          </section>
-          <section className="grid grid-cols-12 items-stretch gap-4 my-48">
+          </section> */}
+          <section className="grid grid-cols-12 items-stretch gap-4 my-24">
             <motion.section
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}

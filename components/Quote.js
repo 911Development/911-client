@@ -256,7 +256,7 @@ const Quote = () => {
 
   return (
     <>
-      <section className="my-48">
+      <section id="quote" className="my-48">
         <Container>
           <section className="text-center mb-12">
             <h1 className="text-primary text-2xl lg:text-3xl font-semibold mb-4">

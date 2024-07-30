@@ -7,9 +7,9 @@
   --color-primary-lighter: 123, 170, 247;
   --color-primary-darker: 53, 106, 195;
   --color-primary-darkest: 20, 40, 73;
-  --color-secondary: 190, 52, 255;
-  --color-secondary-darker: 171, 47, 230;
-  --color-secondary-lighter: 203, 93, 255;
+  --color-secondary: 190, 24, 93;
+  --color-secondary-darker: 152, 19, 74;
+  --color-secondary-lighter: 203, 70, 125;
   --color-black: 24, 24, 24;
   --color-dark: 32, 32, 32;
   --color-light: 248, 248, 248;
@@ -43,4 +43,8 @@ button[disabled].bg-primary {
 button[disabled].bg-primary:hover {
   background-color: rgb(var(--color-primary-lighter)) !important;
   cursor: default !important;
+}
+
+video {
+  pointer-events: none;
 }

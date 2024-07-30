@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Header from "./ui/Header";
 import Footer from "./ui/Footer";
 import Shadow from "./ui/Shadow";
+import Navbar from "./ui/Navbar";
 
 const Layout = ({ Poppins_400, children }) => {
   const themeState = useSelector((state) => state.theme);
@@ -28,9 +29,10 @@ const Layout = ({ Poppins_400, children }) => {
   }, [themeState]);
 
   return (
-    <>
-      <Header />
+    <div id="App" className="relative">
+      {/* <Header /> */}
       <main className={`relative ${Poppins_400.className}`}>
+        <Navbar />
         <Shadow
           variant={"primary-lighter"}
           position={{ top: "5%", left: "10%" }}
@@ -70,7 +72,7 @@ const Layout = ({ Poppins_400, children }) => {
         {children}
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 
