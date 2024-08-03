@@ -26,7 +26,7 @@ import { useTranslation } from "react-i18next";
 
 const SidebarHeader = ({ handleSidebar }) => {
   return (
-    <section className="offcanvas-header flex items-center sticky top-0 py-6 p-4 bg-black shadow-sm">
+    <section className="offcanvas-header flex items-center sticky top-0 py-6 p-4 bg-black shadow-sm z-50">
       <Link
         href={"/"}
         // className="text-primary text-2xl font-semibold"
@@ -126,7 +126,7 @@ const SidebarBody = ({ handleSidebar }) => {
               <FontAwesomeIcon icon={faInstagram} className="text-purple-500" />
               <span className="font-semibold">Instagram</span>
             </section>
-            <p className="text-sm text-muted-dark">{t("see_on_instagram")}</p>
+            <p className="text-xs text-muted-dark">{t("see_on_instagram")}</p>
           </Link>
           <Link
             href={"https://www.linkedin.com/company/911development/"}
@@ -137,7 +137,7 @@ const SidebarBody = ({ handleSidebar }) => {
               <FontAwesomeIcon icon={faLinkedin} className="text-blue-500" />
               <span className="font-semibold">LinkedIn</span>
             </section>
-            <p className="text-sm text-muted-dark">{t("see_on_linkedin")}</p>
+            <p className="text-xs text-muted-dark">{t("see_on_linkedin")}</p>
           </Link>
         </section>
         <hr className="border-gray-500 my-8" />
