@@ -415,6 +415,21 @@ const SidebarFooter = () => {
 };
 
 const Sidebar = ({ show, handleSidebar }) => {
+  const [display, setDisplay] = useState("none");
+
+  useEffect(
+    function () {
+      const identifier = setTimeout(function () {
+        if (!show) setDisplay("none");
+      }, 100);
+
+      if (show) setDisplay("block");
+
+      return () => clearTimeout(identifier);
+    },
+    [show]
+  );
+
   useEffect(() => {
     const body = document.querySelector("body");
 
@@ -426,6 +441,7 @@ const Sidebar = ({ show, handleSidebar }) => {
 
   return (
     <motion.div
+      style={{ display }}
       initial={{ translateX: "100%" }}
       animate={{
         translateX: show ? "0%" : "100%",

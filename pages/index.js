@@ -96,7 +96,7 @@ export default function Home({ meta }) {
   const [headerRef, isHeaderRefIntersecting] = useIntersectionObserver({
     root: null,
     rootMargin: "0px",
-    threshold: 1,
+    threshold: 0.9,
   });
 
   const [carouselState, carouselStateDispatch] = useReducer(
@@ -192,7 +192,7 @@ export default function Home({ meta }) {
       </Head>
       <header
         ref={headerRef}
-        className="relative w-full h-[90vh] lg:h-[70vh] xl:h-[80vh] overflow-hidden"
+        className="relative w-full h-screen lg:h-[70vh] xl:h-[80vh] overflow-hidden"
       >
         <video
           autoPlay

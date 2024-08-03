@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { createPortal } from "react-dom";
 
 const Toast = ({ show, setToast, variant, message, className }) => {
+  if (typeof document === "undefined") return;
+
   const [display, setDisplay] = useState("none");
 
   let classes = `fixed left-1/2 -translate-x-1/2 bottom-0 lg:bottom-8 w-5/6 lg:w-3/4 lg:w-auto px-8 py-2 rounded dark:border dark:border-dark shadow z-50 ${className} `;
@@ -48,7 +51,7 @@ const Toast = ({ show, setToast, variant, message, className }) => {
     [show]
   );
 
-  return (
+  return createPortal(
     <div id="toast-overlay" style={{ display }}>
       <motion.div
         initial={{ opacity: 0 }}
@@ -65,7 +68,8 @@ const Toast = ({ show, setToast, variant, message, className }) => {
       >
         <p className="text-sm text-center select-none">{message}</p>
       </motion.div>
-    </div>
+    </div>,
+    document.getElementById("toast-backdrop")
   );
 };
 
