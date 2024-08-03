@@ -37,7 +37,9 @@ const Navbar = () => {
 
   const dispatch = useDispatch();
 
-  const [navbarVariant, setNavbarVariant] = useState("");
+  const [navbarVariant, setNavbarVariant] = useState(
+    "backdrop-blur text-dark dark:text-white"
+  );
   const [currentLanguage, setCurrentLanguage] = useState("");
   const [currentTheme, setCurrentTheme] = useState("");
   const [headerDropdown, setHeaderDropdown] = useState(false);
@@ -128,10 +130,11 @@ const Navbar = () => {
 
   useEffect(
     function () {
-      console.log(isHeaderIntersecting);
-
       if (!isHeaderIntersecting) setNavbarVariant("bg-white dark:bg-black");
-      else setNavbarVariant("bg-none");
+      else {
+        if (pathname === "/") setNavbarVariant("backdrop-blur");
+        else setNavbarVariant("bg-white dark:bg-black");
+      }
     },
     [isHeaderIntersecting]
   );
@@ -139,318 +142,330 @@ const Navbar = () => {
   // bg-white dark:bg-black
 
   return (
-    <nav
-      className={`fixed top-0 left-0 w-full py-6 ${navbarVariant} z-50 transition-all ${Poppins_400.className}`}
-    >
-      <Container className={"flex lg:grid lg:grid-cols-12 items-center"}>
-        <section className="lg:col-span-2">
-          <Link href={"/"}>
-            <Image
-              src={"/logo.png"}
-              width={350}
-              height={234}
-              className="w-16"
-              alt="Logo"
-            />
-          </Link>
-        </section>
-        <ul
-          className={`hidden lg:flex lg:col-span-8 lg:items-center mx-auto gap-6 xl:gap-12 text-sm`}
-        >
-          <li className="transition-all">
-            <Link
-              href={"/"}
-              className={`hover:text-primary transition-all ${
-                pathname === "/" && "text-primary"
+    <>
+      <nav
+        className={`fixed top-0 left-0 w-full py-6 ${navbarVariant} z-50 transition-all ${Poppins_400.className}`}
+      >
+        <Container className={"flex lg:grid lg:grid-cols-12 items-center"}>
+          <section className="lg:col-span-2">
+            <Link href={"/"}>
+              <Image
+                src={"/logo.png"}
+                width={350}
+                height={234}
+                className="w-16"
+                alt="Logo"
+              />
+            </Link>
+          </section>
+          <ul
+            className={`hidden lg:flex lg:col-span-8 lg:items-center mx-auto gap-6 xl:gap-12 text-sm`}
+          >
+            <li className="transition-all">
+              <Link
+                href={"/"}
+                className={`hover:text-primary transition-all ${
+                  pathname === "/" && isHeaderIntersecting && "text-white"
+                } ${pathname === "/" && "!text-primary"}`}
+              >
+                {t("Home")}
+              </Link>
+            </li>
+            <li className="transition-all">
+              <Link
+                href={"/about"}
+                className={`hover:text-primary transition-all ${
+                  pathname === "/" && isHeaderIntersecting && "text-white"
+                } ${pathname === "/about" && "!text-primary"}`}
+              >
+                {t("About_Us")}
+              </Link>
+            </li>
+            <li
+              className={`hover:bg-blue-100 hover:dark:bg-primary-darkest hover:text-primary-darker hover:dark:text-blue-100 hover:rounded hover:py-1.5 hover:px-3 cursor-pointer transition-all ${
+                pathname === "/" && isHeaderIntersecting && "text-white"
               }`}
+              onMouseEnter={handleHeaderDropdown}
+              onMouseLeave={handleHeaderDropdown}
             >
-              {t("Home")}
-            </Link>
-          </li>
-          <li className="transition-all">
-            <Link
-              href={"/about"}
-              className={`hover:text-primary ${
-                isHeaderIntersecting && "text-white"
-              } transition-all ${pathname === "/about" && "text-primary"}`}
-            >
-              {t("About_Us")}
-            </Link>
-          </li>
-          <li
-            className={`hover:bg-blue-100 ${
-              isHeaderIntersecting && "text-white"
-            } hover:dark:bg-primary-darkest hover:text-primary-darker hover:dark:text-blue-100 hover:rounded hover:py-1.5 hover:px-3 cursor-pointer transition-all`}
-            onMouseEnter={handleHeaderDropdown}
-            onMouseLeave={handleHeaderDropdown}
-          >
-            <Link href={"/#services"} scroll={false}>
-              <span className="flex items-center gap-2 relative">
-                <span className="cursor-pointer">{t("Services")}</span>
-                <FontAwesomeIcon icon={faAngleDown} />
-              </span>
-              <HeaderDropdown show={headerDropdown} theme={currentTheme} />
-            </Link>
-          </li>
-          <li className="transition-all">
-            <Link
-              href={"/teams"}
-              className={`hover:text-primary transition-all ${
-                isHeaderIntersecting && "text-white"
-              } ${pathname === "/teams" && "text-primary"}`}
-            >
-              {t("Teams")}
-            </Link>
-          </li>
-          <li className="transition-all">
-            <Link
-              href={"/projects"}
-              className={`hover:text-primary transition-all ${
-                isHeaderIntersecting && "text-white"
-              } ${pathname === "/projects" && "text-primary"}`}
-            >
-              {t("Projects")}
-            </Link>
-          </li>
-        </ul>
-        <section className="relative hidden lg:flex items-center gap-4 col-span-2 ms-auto">
-          <FontAwesomeIcon
-            icon={faGear}
-            size="lg"
-            className={`cursor-pointer ${isHeaderIntersecting && "text-white"}`}
-            ref={dropdownRef}
-            onClick={handleSettingsDropdown}
-          />
-          <div
-            style={{ display: settingsDropdownDisplay }}
-            className="dropdown absolute top-full right-full select-none transition-all"
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{
-                scale: settingsDropdown ? [0.9, 1] : [1, 0.9],
-                opacity: settingsDropdown ? [0, 1] : [1, 0],
-              }}
-              className="dropdown bg-white dark:bg-dark w-[200px] rounded-lg shadow-lg dark:shadow-xl border dark:border-none flex overflow-x-hidden py-4 "
+              <Link href={"/#services"} scroll={false}>
+                <span className="flex items-center gap-2 relative">
+                  <span className="cursor-pointer">{t("Services")}</span>
+                  <FontAwesomeIcon icon={faAngleDown} />
+                </span>
+                <HeaderDropdown show={headerDropdown} theme={currentTheme} />
+              </Link>
+            </li>
+            <li className="transition-all">
+              <Link
+                href={"/teams"}
+                className={`hover:text-primary transition-all ${
+                  pathname === "/" && isHeaderIntersecting && "text-white"
+                } ${pathname === "/teams" && "!text-primary"}`}
+              >
+                {t("Teams")}
+              </Link>
+            </li>
+            <li className="transition-all">
+              <Link
+                href={"/projects"}
+                className={`hover:text-primary transition-all ${
+                  pathname === "/" && isHeaderIntersecting && "text-white"
+                } ${pathname === "/projects" && "!text-primary"}`}
+              >
+                {t("Projects")}
+              </Link>
+            </li>
+          </ul>
+          <section className="relative hidden lg:flex items-center gap-4 col-span-2 ms-auto">
+            <FontAwesomeIcon
+              icon={faGear}
+              size="lg"
+              className={`cursor-pointer ${
+                pathname === "/" && isHeaderIntersecting && "text-white"
+              }`}
+              ref={dropdownRef}
+              onClick={handleSettingsDropdown}
+            />
+            <div
+              style={{ display: settingsDropdownDisplay }}
+              className="dropdown absolute top-full right-full select-none transition-all"
             >
               <motion.div
-                animate={{ translateX: `-${currentSettingsPage * 100}%` }}
-                className="dropdown min-w-full"
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{
+                  scale: settingsDropdown ? [0.9, 1] : [1, 0.9],
+                  opacity: settingsDropdown ? [0, 1] : [1, 0],
+                }}
+                className="dropdown bg-white dark:bg-dark w-[200px] rounded-lg shadow-lg dark:shadow-xl border dark:border-none flex overflow-x-hidden py-4 "
               >
-                <section className="dropdown px-6">
-                  <h6 className="dropdown flex text-sm items-center gap-2">
-                    <FontAwesomeIcon
-                      icon={faGears}
-                      size="sm"
-                      className="dropdown"
-                    />
-                    <span className="dropdown dark:font-semibold">
-                      {t("Settings")}
-                    </span>
-                  </h6>
-                </section>
-                <hr className="dropdown bg-muted dark:bg-muted-dark opacity-30 border-none h-[1px] my-2 mx-4" />
-                <ul className="dropdown space-y-1">
-                  <li
-                    className="dropdown flex items-center justify-between gap-2 text-sm hover:bg-gray-300 hover:dark:bg-black cursor-pointer px-6 py-2"
-                    onClick={function () {
-                      setThemeSettingsDisplay("block");
-                      setLanguageSettingsDisplay("none");
-                      setCurrentSettingsPage(1);
-                    }}
-                  >
-                    <section className="dropdown flex items-center gap-2">
-                      <FontAwesomeIcon icon={faMoon} className="dropdown" />
-                      <span className="dropdown dark:font-semibold">
-                        {t("Theme")}
-                      </span>
-                    </section>
-                    <FontAwesomeIcon icon={faAngleRight} className="dropdown" />
-                  </li>
-                  <li
-                    className="dropdown flex items-center justify-between gap-2 text-sm hover:bg-gray-300 hover:dark:bg-black cursor-pointer px-6 py-2"
-                    onClick={function () {
-                      setThemeSettingsDisplay("none");
-                      setLanguageSettingsDisplay("block");
-                      setCurrentSettingsPage(1);
-                    }}
-                  >
-                    <section className="dropdown flex items-center gap-2">
-                      <FontAwesomeIcon icon={faEarth} />
-                      <span className="dropdown dark:font-semibold">
-                        {t("Language")}
-                      </span>
-                    </section>
-                    <FontAwesomeIcon icon={faAngleRight} className="dropdown" />
-                  </li>
-                </ul>
-              </motion.div>
-              <motion.div
-                animate={{ translateX: `-${currentSettingsPage * 100}%` }}
-                className="dropdown min-w-full"
-              >
-                <section
-                  style={{ display: themeSettingsDisplay }}
-                  className="dropdown"
+                <motion.div
+                  animate={{ translateX: `-${currentSettingsPage * 100}%` }}
+                  className="dropdown min-w-full"
                 >
                   <section className="dropdown px-6">
-                    <h6
-                      className="dropdown flex text-sm items-center gap-2 hover:text-primary cursor-pointer"
-                      onClick={function () {
-                        setCurrentSettingsPage(0);
-                      }}
-                    >
+                    <h6 className="dropdown flex text-sm items-center gap-2">
                       <FontAwesomeIcon
-                        icon={faAngleLeft}
+                        icon={faGears}
                         size="sm"
                         className="dropdown"
                       />
                       <span className="dropdown dark:font-semibold">
-                        {t("Back")}
+                        {t("Settings")}
                       </span>
                     </h6>
                   </section>
                   <hr className="dropdown bg-muted dark:bg-muted-dark opacity-30 border-none h-[1px] my-2 mx-4" />
                   <ul className="dropdown space-y-1">
                     <li
-                      className={`dropdown flex items-center justify-between gap-2 text-sm ${
-                        currentTheme === "light" &&
-                        "!bg-primary-darker hover:!bg-primary-darker text-white"
-                      } hover:bg-gray-300 hover:dark:bg-black cursor-pointer px-6 py-2`}
+                      className="dropdown flex items-center justify-between gap-2 text-sm hover:bg-gray-300 hover:dark:bg-black cursor-pointer px-6 py-2"
                       onClick={function () {
-                        handleSwitchTheme("light");
+                        setThemeSettingsDisplay("block");
+                        setLanguageSettingsDisplay("none");
+                        setCurrentSettingsPage(1);
                       }}
                     >
-                      <section className="dropdown flex items-center justify-between w-full">
-                        <section className="dropdown flex items-center gap-2">
-                          <FontAwesomeIcon icon={faSun} />
-                          <span className="dropdown dark:font-semibold">
-                            {t("Light_Theme")}
-                          </span>
-                        </section>
-                        {currentTheme === "light" && (
-                          <FontAwesomeIcon
-                            icon={faCheck}
-                            className="dropdown text-white dark:text-primary-darker"
-                          />
-                        )}
+                      <section className="dropdown flex items-center gap-2">
+                        <FontAwesomeIcon icon={faMoon} className="dropdown" />
+                        <span className="dropdown dark:font-semibold">
+                          {t("Theme")}
+                        </span>
                       </section>
-                    </li>
-                    <li
-                      className={`dropdown flex items-center justify-between gap-2 text-sm ${
-                        currentTheme === "dark" &&
-                        "!bg-primary-darkest hover:!bg-primary-darkest text-white"
-                      } hover:bg-gray-300 hover:dark:bg-black cursor-pointer px-6 py-2`}
-                      onClick={function () {
-                        handleSwitchTheme("dark");
-                      }}
-                    >
-                      <section className="dropdown flex items-center justify-between w-full">
-                        <section className="dropdown flex items-center gap-2">
-                          <FontAwesomeIcon icon={faMoon} />
-                          <span className="dropdown dark:font-semibold">
-                            {t("Dark_Theme")}
-                          </span>
-                        </section>
-                        {currentTheme === "dark" && (
-                          <FontAwesomeIcon
-                            icon={faCheck}
-                            className="dropdown text-white dark:text-primary-darker"
-                          />
-                        )}
-                      </section>
-                    </li>
-                  </ul>
-                </section>
-                <section
-                  style={{ display: languageSettingsDisplay }}
-                  className="dropdown"
-                >
-                  <section className="dropdown px-6">
-                    <h6
-                      className="dropdown flex text-sm items-center gap-2 hover:text-primary cursor-pointer"
-                      onClick={function () {
-                        setCurrentSettingsPage(0);
-                      }}
-                    >
                       <FontAwesomeIcon
-                        icon={faAngleLeft}
-                        size="sm"
+                        icon={faAngleRight}
                         className="dropdown"
                       />
-                      <span className="dropdown dark:font-semibold">
-                        {t("Back")}
-                      </span>
-                    </h6>
-                  </section>
-                  <hr className="dropdown bg-muted dark:bg-muted-dark opacity-30 border-none h-[1px] my-2 mx-4" />
-                  <ul className="dropdown space-y-1">
-                    <li
-                      className={`dropdown flex items-center justify-between gap-2 text-sm hover:bg-gray-300 hover:dark:bg-black ${
-                        currentLanguage === "en" &&
-                        "!bg-primary-darker dark:!bg-primary-darkest hover:!bg-primary-darker text-white"
-                      } cursor-pointer px-6 py-2`}
-                      onClick={function () {
-                        handleLanguageChange("en");
-                      }}
-                    >
-                      <section className="dropdown flex items-center justify-between w-full">
-                        <span className="dropdown dark:font-semibold">
-                          {t("English")}
-                        </span>
-                        {currentLanguage === "en" && (
-                          <FontAwesomeIcon
-                            icon={faCheck}
-                            className="dropdown text-white dark:text-primary"
-                          />
-                        )}
-                      </section>
                     </li>
                     <li
-                      className={`dropdown flex items-center justify-between gap-2 text-sm hover:bg-gray-300 hover:dark:bg-black ${
-                        currentLanguage === "tr" &&
-                        "!bg-primary-darker dark:!bg-primary-darkest hover:!bg-primary-darker text-white"
-                      } cursor-pointer px-6 py-2`}
+                      className="dropdown flex items-center justify-between gap-2 text-sm hover:bg-gray-300 hover:dark:bg-black cursor-pointer px-6 py-2"
                       onClick={function () {
-                        handleLanguageChange("tr");
+                        setThemeSettingsDisplay("none");
+                        setLanguageSettingsDisplay("block");
+                        setCurrentSettingsPage(1);
                       }}
                     >
-                      <section className="dropdown flex items-center justify-between w-full">
+                      <section className="dropdown flex items-center gap-2">
+                        <FontAwesomeIcon icon={faEarth} />
                         <span className="dropdown dark:font-semibold">
-                          {t("Turkish")}
+                          {t("Language")}
                         </span>
-                        {currentLanguage === "tr" && (
-                          <FontAwesomeIcon
-                            icon={faCheck}
-                            className="dropdown text-white dark:text-primary"
-                          />
-                        )}
                       </section>
+                      <FontAwesomeIcon
+                        icon={faAngleRight}
+                        className="dropdown"
+                      />
                     </li>
                   </ul>
-                </section>
+                </motion.div>
+                <motion.div
+                  animate={{ translateX: `-${currentSettingsPage * 100}%` }}
+                  className="dropdown min-w-full"
+                >
+                  <section
+                    style={{ display: themeSettingsDisplay }}
+                    className="dropdown"
+                  >
+                    <section className="dropdown px-6">
+                      <h6
+                        className="dropdown flex text-sm items-center gap-2 hover:text-primary cursor-pointer"
+                        onClick={function () {
+                          setCurrentSettingsPage(0);
+                        }}
+                      >
+                        <FontAwesomeIcon
+                          icon={faAngleLeft}
+                          size="sm"
+                          className="dropdown"
+                        />
+                        <span className="dropdown dark:font-semibold">
+                          {t("Back")}
+                        </span>
+                      </h6>
+                    </section>
+                    <hr className="dropdown bg-muted dark:bg-muted-dark opacity-30 border-none h-[1px] my-2 mx-4" />
+                    <ul className="dropdown space-y-1">
+                      <li
+                        className={`dropdown flex items-center justify-between gap-2 text-sm ${
+                          currentTheme === "light" &&
+                          "!bg-primary-darker hover:!bg-primary-darker text-white"
+                        } hover:bg-gray-300 hover:dark:bg-black cursor-pointer px-6 py-2`}
+                        onClick={function () {
+                          handleSwitchTheme("light");
+                        }}
+                      >
+                        <section className="dropdown flex items-center justify-between w-full">
+                          <section className="dropdown flex items-center gap-2">
+                            <FontAwesomeIcon icon={faSun} />
+                            <span className="dropdown dark:font-semibold">
+                              {t("Light_Theme")}
+                            </span>
+                          </section>
+                          {currentTheme === "light" && (
+                            <FontAwesomeIcon
+                              icon={faCheck}
+                              className="dropdown text-white dark:text-primary-darker"
+                            />
+                          )}
+                        </section>
+                      </li>
+                      <li
+                        className={`dropdown flex items-center justify-between gap-2 text-sm ${
+                          currentTheme === "dark" &&
+                          "!bg-primary-darkest hover:!bg-primary-darkest text-white"
+                        } hover:bg-gray-300 hover:dark:bg-black cursor-pointer px-6 py-2`}
+                        onClick={function () {
+                          handleSwitchTheme("dark");
+                        }}
+                      >
+                        <section className="dropdown flex items-center justify-between w-full">
+                          <section className="dropdown flex items-center gap-2">
+                            <FontAwesomeIcon icon={faMoon} />
+                            <span className="dropdown dark:font-semibold">
+                              {t("Dark_Theme")}
+                            </span>
+                          </section>
+                          {currentTheme === "dark" && (
+                            <FontAwesomeIcon
+                              icon={faCheck}
+                              className="dropdown text-white dark:text-primary-darker"
+                            />
+                          )}
+                        </section>
+                      </li>
+                    </ul>
+                  </section>
+                  <section
+                    style={{ display: languageSettingsDisplay }}
+                    className="dropdown"
+                  >
+                    <section className="dropdown px-6">
+                      <h6
+                        className="dropdown flex text-sm items-center gap-2 hover:text-primary cursor-pointer"
+                        onClick={function () {
+                          setCurrentSettingsPage(0);
+                        }}
+                      >
+                        <FontAwesomeIcon
+                          icon={faAngleLeft}
+                          size="sm"
+                          className="dropdown"
+                        />
+                        <span className="dropdown dark:font-semibold">
+                          {t("Back")}
+                        </span>
+                      </h6>
+                    </section>
+                    <hr className="dropdown bg-muted dark:bg-muted-dark opacity-30 border-none h-[1px] my-2 mx-4" />
+                    <ul className="dropdown space-y-1">
+                      <li
+                        className={`dropdown flex items-center justify-between gap-2 text-sm hover:bg-gray-300 hover:dark:bg-black ${
+                          currentLanguage === "en" &&
+                          "!bg-primary-darker dark:!bg-primary-darkest hover:!bg-primary-darker text-white"
+                        } cursor-pointer px-6 py-2`}
+                        onClick={function () {
+                          handleLanguageChange("en");
+                        }}
+                      >
+                        <section className="dropdown flex items-center justify-between w-full">
+                          <span className="dropdown dark:font-semibold">
+                            {t("English")}
+                          </span>
+                          {currentLanguage === "en" && (
+                            <FontAwesomeIcon
+                              icon={faCheck}
+                              className="dropdown text-white dark:text-primary"
+                            />
+                          )}
+                        </section>
+                      </li>
+                      <li
+                        className={`dropdown flex items-center justify-between gap-2 text-sm hover:bg-gray-300 hover:dark:bg-black ${
+                          currentLanguage === "tr" &&
+                          "!bg-primary-darker dark:!bg-primary-darkest hover:!bg-primary-darker text-white"
+                        } cursor-pointer px-6 py-2`}
+                        onClick={function () {
+                          handleLanguageChange("tr");
+                        }}
+                      >
+                        <section className="dropdown flex items-center justify-between w-full">
+                          <span className="dropdown dark:font-semibold">
+                            {t("Turkish")}
+                          </span>
+                          {currentLanguage === "tr" && (
+                            <FontAwesomeIcon
+                              icon={faCheck}
+                              className="dropdown text-white dark:text-primary"
+                            />
+                          )}
+                        </section>
+                      </li>
+                    </ul>
+                  </section>
+                </motion.div>
               </motion.div>
-            </motion.div>
-          </div>
-          <Link href={"/contact"}>
-            <Button
-              type={"button"}
-              variant={
-                isHeaderIntersecting ? "primary-outline-inverse" : "primary"
-              }
-              className={"flex items-center gap-2"}
-            >
-              <FontAwesomeIcon icon={faPaperPlane} />
-              <span>{t("Contact")}</span>
-            </Button>
-          </Link>
-        </section>
-        <section className="block lg:hidden ms-auto">
-          <MenuIcon onClick={handleSidebar} />
-        </section>
-      </Container>
+            </div>
+            <Link href={"/contact"}>
+              <Button
+                type={"button"}
+                variant={
+                  pathname === "/" && isHeaderIntersecting
+                    ? "primary-outline-inverse"
+                    : "primary"
+                }
+                className={"flex items-center gap-2"}
+              >
+                <FontAwesomeIcon icon={faPaperPlane} />
+                <span>{t("Contact")}</span>
+              </Button>
+            </Link>
+          </section>
+          <section className="block lg:hidden ms-auto">
+            <MenuIcon onClick={handleSidebar} />
+          </section>
+        </Container>
+      </nav>
       <Sidebar show={sidebar} handleSidebar={handleSidebar} />
-    </nav>
+    </>
   );
 };
 

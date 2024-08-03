@@ -96,7 +96,7 @@ export default function Home({ meta }) {
   const [headerRef, isHeaderRefIntersecting] = useIntersectionObserver({
     root: null,
     rootMargin: "0px",
-    threshold: 0.9,
+    threshold: 0.1,
   });
 
   const [carouselState, carouselStateDispatch] = useReducer(
@@ -169,8 +169,6 @@ export default function Home({ meta }) {
 
   useEffect(
     function () {
-      console.log(isHeaderRefIntersecting);
-
       dispatch(
         intersectingSliceActions.setisHeaderIntersecting(
           isHeaderRefIntersecting

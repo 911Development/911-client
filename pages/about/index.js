@@ -15,7 +15,7 @@ const AboutPage = ({ meta }) => {
         <meta name="keywords" content={meta.keywords.join(", ")} />
         <title>{meta.title}</title>
       </Head>
-      <section className="py-16 lg:py-24">
+      <section className="py-32 lg:py-48">
         <Container>
           <section>
             <h1 className="text-2xl text-primary text-center font-semibold mb-8">

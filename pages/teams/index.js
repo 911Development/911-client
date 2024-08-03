@@ -16,7 +16,7 @@ const TeamsPage = ({ meta }) => {
         <meta name="keywords" content={meta.keywords.join(", ")} />
         <title>{meta.title}</title>
       </Head>
-      <section className="py-16 lg:py-24">
+      <section className="py-32 lg:py-48">
         <Container className={"overflow-hidden"}>
           <section className="mb-12 lg:mb-24">
             <p className="text-center lg:w-3/4 lg:mx-auto text-xl">
