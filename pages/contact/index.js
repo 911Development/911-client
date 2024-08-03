@@ -127,7 +127,7 @@ const ContactPage = ({ meta }) => {
         <meta name="keywords" content={meta.keywords.join(", ")} />
         <title>{meta.title}</title>
       </Head>
-      <section className="py-16 lg:py-24">
+      <section className="py-32 lg:py-48">
         <Container>
           <section className="mb-12">
             <h1 className="text-3xl text-center text-primary mb-3">
