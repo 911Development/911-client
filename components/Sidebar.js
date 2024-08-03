@@ -23,6 +23,7 @@ import Card from "./ui/Card";
 import Image from "next/image";
 import { themeSliceActions } from "@/store/theme-slice/theme-slice";
 import { useTranslation } from "react-i18next";
+import { createPortal } from "react-dom";
 
 const SidebarHeader = ({ handleSidebar }) => {
   return (
@@ -415,7 +416,11 @@ const SidebarFooter = () => {
 };
 
 const Sidebar = ({ show, handleSidebar }) => {
+  if (typeof document === "undefined") return;
+
   const [display, setDisplay] = useState("none");
+
+  console.log("a");
 
   useEffect(
     function () {
@@ -439,19 +444,22 @@ const Sidebar = ({ show, handleSidebar }) => {
     return () => (document.body.style.overflow = "auto");
   }, [show]);
 
-  return (
-    <motion.div
-      style={{ display }}
-      initial={{ translateX: "100%" }}
-      animate={{
-        translateX: show ? "0%" : "100%",
-      }}
-      className="offcanvas bg-black text-white fixed w-screen h-screen flex flex-col top-0 overflow-y-scroll select-none z-50"
-    >
-      <SidebarHeader handleSidebar={handleSidebar} />
-      <SidebarBody handleSidebar={handleSidebar} />
-      <SidebarFooter />
-    </motion.div>
+  return createPortal(
+    <div id="sidebar-overlay" style={{ display }}>
+      <motion.div
+        style={{ display }}
+        initial={{ translateX: "100%" }}
+        animate={{
+          translateX: show ? "0%" : "100%",
+        }}
+        className="offcanvas bg-black text-white fixed w-screen h-screen flex flex-col top-0 overflow-y-scroll select-none z-50"
+      >
+        <SidebarHeader handleSidebar={handleSidebar} />
+        <SidebarBody handleSidebar={handleSidebar} />
+        <SidebarFooter />
+      </motion.div>
+    </div>,
+    document.getElementById("sidebar-backdrop")
   );
 };
 

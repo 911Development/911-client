@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const intersectingSlice = createSlice({
   name: "isIntersecting",
   initialState: {
-    isHeaderIntersecting: true,
+    isHeaderIntersecting: null,
   },
   reducers: {
     setisHeaderIntersecting(state, action) {
