@@ -30,7 +30,6 @@ const Layout = ({ Poppins_400, children }) => {
 
   return (
     <div id="App" className="relative">
-      {/* <Header /> */}
       <main className={`relative ${Poppins_400.className}`}>
         <Navbar />
         <Shadow

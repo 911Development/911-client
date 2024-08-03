@@ -7,7 +7,7 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
-        <div id="toast-backdrop" />
+        <div id="toast-backdrop"></div>
       </body>
     </Html>
   );
