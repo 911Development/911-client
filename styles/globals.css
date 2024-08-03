@@ -20,10 +20,10 @@
   --color-muted-dark: 255, 255, 255, 0.5;
 }
 
-body {
+/* body {
   overflow-x: hidden !important;
   min-width: 100% !important;
-}
+} */
 
 #teams::-webkit-scrollbar {
   width: 0px !important;
