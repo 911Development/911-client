@@ -198,6 +198,7 @@ export default function Home({ meta }) {
           muted
           playsInline
           className="w-full h-full object-cover object-center xl:object-right"
+          poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
         >
           <source src="/banner.mp4" type="video/mp4" />
         </video>
@@ -1101,454 +1102,453 @@ export default function Home({ meta }) {
             />
           </span>
         </section>
-        <section className="my-48 lg:hidden">
+        <section className="my-48 lg:hidden px-2">
           <h1 className="text-center text-primary font-semibold text-2xl mb-4">
             {t("Our_Teams")}
           </h1>
-          <Container>
-            <section
-              id="teams"
-              className="flex items-center flex-nowrap gap-4 overflow-x-scroll snap-mandatory snap-x select-none"
-              style={{
-                scrollbarWidth: "none",
-              }}
-            >
-              <section className="min-w-72 snap-center snap-always">
-                <Card
-                  className={
-                    "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-4"
-                  }
-                >
-                  <Card.Header clasName={"text-center"}>
-                    <h1 className="text-primary text-xl mb-2">
-                      {t("Backend_Team")}
-                    </h1>
-                    <section className="flex items-center justify-evenly">
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={
-                            "https://img.icons8.com/fluency/18/graduation-cap.png"
-                          }
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Graduation"
-                        />
-                        <span className="text-muted dark:text-muted-dark">
-                          {t("Expert")}
-                        </span>
-                      </section>
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={"https://img.icons8.com/color/18/idea.png"}
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Idea"
-                        />
-                        <span className="text-muted dark:text-muted-dark">
-                          {t("Creative")}
-                        </span>
-                      </section>
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={
-                            "https://img.icons8.com/fluency/18/engineering.png"
-                          }
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Engineering"
-                        />
-                        <span className="text-muted dark:text-muted-dark">
-                          {t("Modern")}
-                        </span>
-                      </section>
+
+          <section
+            id="teams"
+            className="flex items-center flex-nowrap gap-4 overflow-x-scroll snap-mandatory snap-x select-none"
+            style={{
+              scrollbarWidth: "none",
+            }}
+          >
+            <section className="min-w-72 snap-center snap-always">
+              <Card
+                className={
+                  "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-4"
+                }
+              >
+                <Card.Header clasName={"text-center"}>
+                  <h1 className="text-primary text-xl mb-2">
+                    {t("Backend_Team")}
+                  </h1>
+                  <section className="flex items-center justify-evenly">
+                    <section className="flex items-center gap-1 text-sm">
+                      <Image
+                        src={
+                          "https://img.icons8.com/fluency/18/graduation-cap.png"
+                        }
+                        width={18}
+                        height={18}
+                        className="opacity-50"
+                        alt="Graduation"
+                      />
+                      <span className="text-muted dark:text-muted-dark">
+                        {t("Expert")}
+                      </span>
                     </section>
-                  </Card.Header>
-                  <Card.Body clasName={"text-center my-5"}>
-                    <p className="text-muted dark:text-muted-dark text-sm line-clamp-3">
-                      Our team, led by a Senior Software Engineer, is an expert
-                      in the field and has years of experience in the most
-                      up-to-date technologies.
-                    </p>
-                  </Card.Body>
-                  <Card.Footer>
-                    <Link href={"/teams/#backend"}>
-                      <Button
-                        type={"button"}
-                        variant={"primary-link"}
-                        className={"flex items-center gap-2 mx-auto py-2.5"}
-                      >
-                        <span>{t("See_the_team")}</span>
-                        <FontAwesomeIcon icon={faAngleRight} />
-                      </Button>
-                    </Link>
-                  </Card.Footer>
-                </Card>
-              </section>
-              <section className="min-w-72 snap-center snap-always">
-                <Card
-                  className={
-                    "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-4"
-                  }
-                >
-                  <Card.Header clasName={"text-center"}>
-                    <h1 className="text-primary text-xl mb-2">
-                      {t("Frontend_Team")}
-                    </h1>
-                    <section className="flex items-center justify-evenly">
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={
-                            "https://img.icons8.com/fluency/18/graduation-cap.png"
-                          }
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Graduation"
-                        />
-                        <span className="text-muted dark:text-muted-dark">
-                          {t("Expert")}
-                        </span>
-                      </section>
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={"https://img.icons8.com/color/18/idea.png"}
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Idea"
-                        />
-                        <span className="text-muted dark:text-muted-dark">
-                          {t("Creative")}
-                        </span>
-                      </section>
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={
-                            "https://img.icons8.com/fluency/18/engineering.png"
-                          }
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Engineering"
-                        />
-                        <span className="text-muted dark:text-muted-dark">
-                          {t("Modern")}
-                        </span>
-                      </section>
+                    <section className="flex items-center gap-1 text-sm">
+                      <Image
+                        src={"https://img.icons8.com/color/18/idea.png"}
+                        width={18}
+                        height={18}
+                        className="opacity-50"
+                        alt="Idea"
+                      />
+                      <span className="text-muted dark:text-muted-dark">
+                        {t("Creative")}
+                      </span>
                     </section>
-                  </Card.Header>
-                  <Card.Body clasName={"text-center my-5"}>
-                    <p className="text-muted dark:text-muted-dark text-sm line-clamp-3">
-                      {t("Frontend_Team_Description")}
-                    </p>
-                  </Card.Body>
-                  <Card.Footer>
-                    <Link href={"/teams/#frontend"}>
-                      <Button
-                        type={"button"}
-                        variant={"primary-link"}
-                        className={"flex items-center gap-2 mx-auto py-2.5"}
-                      >
-                        <span>{t("See_the_team")}</span>
-                        <FontAwesomeIcon icon={faAngleRight} />
-                      </Button>
-                    </Link>
-                  </Card.Footer>
-                </Card>
-              </section>
-              <section className="min-w-72 snap-center snap-always">
-                <Card
-                  className={
-                    "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-4"
-                  }
-                >
-                  <Card.Header clasName={"text-center"}>
-                    <h1 className="text-primary text-xl mb-2">
-                      {t("Mobile_Team")}
-                    </h1>
-                    <section className="flex items-center justify-evenly">
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={
-                            "https://img.icons8.com/fluency/18/graduation-cap.png"
-                          }
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Graduation"
-                        />
-                        <span className="text-muted dark:text-muted-dark">
-                          {t("Expert")}
-                        </span>
-                      </section>
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={"https://img.icons8.com/color/18/idea.png"}
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Idea"
-                        />
-                        <span className="text-muted dark:text-muted-dark">
-                          {t("Creative")}
-                        </span>
-                      </section>
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={
-                            "https://img.icons8.com/fluency/18/engineering.png"
-                          }
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Engineering"
-                        />
-                        <span className="text-muted dark:text-muted-dark">
-                          {t("Modern")}
-                        </span>
-                      </section>
+                    <section className="flex items-center gap-1 text-sm">
+                      <Image
+                        src={
+                          "https://img.icons8.com/fluency/18/engineering.png"
+                        }
+                        width={18}
+                        height={18}
+                        className="opacity-50"
+                        alt="Engineering"
+                      />
+                      <span className="text-muted dark:text-muted-dark">
+                        {t("Modern")}
+                      </span>
                     </section>
-                  </Card.Header>
-                  <Card.Body clasName={"text-center my-5"}>
-                    <p className="text-muted dark:text-muted-dark text-sm line-clamp-3">
-                      {t("Mobile_Team_Description")}
-                    </p>
-                  </Card.Body>
-                  <Card.Footer>
-                    <Link href={"/teams/#mobile"}>
-                      <Button
-                        type={"button"}
-                        variant={"primary-link"}
-                        className={"flex items-center gap-2 mx-auto py-2.5"}
-                      >
-                        <span>{t("See_the_team")}</span>
-                        <FontAwesomeIcon icon={faAngleRight} />
-                      </Button>
-                    </Link>
-                  </Card.Footer>
-                </Card>
-              </section>
-              <section className="min-w-72 snap-center snap-always">
-                <Card
-                  className={
-                    "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-4"
-                  }
-                >
-                  <Card.Header clasName={"text-center"}>
-                    <h1 className="text-primary text-xl mb-2">
-                      {t("Social_Media_Team")}
-                    </h1>
-                    <section className="flex items-center justify-evenly">
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={
-                            "https://img.icons8.com/fluency/18/graduation-cap.png"
-                          }
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Graduation"
-                        />
-                        <span className="text-muted dark:text-muted-dark">
-                          {t("Expert")}
-                        </span>
-                      </section>
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={"https://img.icons8.com/color/18/idea.png"}
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Idea"
-                        />
-                        <span className="text-muted dark:text-muted-dark">
-                          {t("Creative")}
-                        </span>
-                      </section>
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={
-                            "https://img.icons8.com/fluency/18/engineering.png"
-                          }
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Engineering"
-                        />
-                        <span className="text-muted dark:text-muted-dark">
-                          {t("Modern")}
-                        </span>
-                      </section>
-                    </section>
-                  </Card.Header>
-                  <Card.Body clasName={"text-center my-5"}>
-                    <p className="text-muted dark:text-muted-dark text-sm line-clamp-3">
-                      {t("Social_Media_Team_Description")}
-                    </p>
-                  </Card.Body>
-                  <Card.Footer>
-                    <Link href={"/teams/#social"}>
-                      <Button
-                        type={"button"}
-                        variant={"primary-link"}
-                        className={"flex items-center gap-2 mx-auto py-2.5"}
-                      >
-                        <span>{t("See_the_team")}</span>
-                        <FontAwesomeIcon icon={faAngleRight} />
-                      </Button>
-                    </Link>
-                  </Card.Footer>
-                </Card>
-              </section>
-              <section className="min-w-72 snap-center snap-always">
-                <Card
-                  className={
-                    "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-4"
-                  }
-                >
-                  <Card.Header clasName={"text-center"}>
-                    <h1 className="text-primary text-xl mb-2">
-                      {t("Design_Team")}
-                    </h1>
-                    <section className="flex items-center justify-evenly">
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={
-                            "https://img.icons8.com/fluency/18/graduation-cap.png"
-                          }
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Graduation"
-                        />
-                        <span className="text-muted dark:text-muted-dark">
-                          {t("Expert")}
-                        </span>
-                      </section>
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={"https://img.icons8.com/color/18/idea.png"}
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Idea"
-                        />
-                        <span className="text-muted dark:text-muted-dark">
-                          {t("Creative")}
-                        </span>
-                      </section>
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={
-                            "https://img.icons8.com/fluency/18/engineering.png"
-                          }
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Engineering"
-                        />
-                        <span className="text-muted dark:text-muted-dark">
-                          {t("Modern")}
-                        </span>
-                      </section>
-                    </section>
-                  </Card.Header>
-                  <Card.Body clasName={"text-center my-5"}>
-                    <p className="text-muted dark:text-muted-dark text-sm line-clamp-3">
-                      {t("Design_Team_Description")}
-                    </p>
-                  </Card.Body>
-                  <Card.Footer>
-                    <Link href={"/teams/#design"}>
-                      <Button
-                        type={"button"}
-                        variant={"primary-link"}
-                        className={"flex items-center gap-2 mx-auto py-2.5"}
-                      >
-                        <span>{t("See_the_team")}</span>
-                        <FontAwesomeIcon icon={faAngleRight} />
-                      </Button>
-                    </Link>
-                  </Card.Footer>
-                </Card>
-              </section>
-              <section className="min-w-72 snap-center snap-always">
-                <Card
-                  className={
-                    "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-4"
-                  }
-                >
-                  <Card.Header clasName={"text-center"}>
-                    <h1 className="text-primary text-xl mb-2">
-                      {t("Devops_Team")}
-                    </h1>
-                    <section className="flex items-center justify-evenly">
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={
-                            "https://img.icons8.com/fluency/18/graduation-cap.png"
-                          }
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Graduation"
-                        />
-                        <span className="text-muted dark:text-muted-dark">
-                          {t("Expert")}
-                        </span>
-                      </section>
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={"https://img.icons8.com/color/18/idea.png"}
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Idea"
-                        />
-                        <span className="text-muted dark:text-muted-dark">
-                          {t("Creative")}
-                        </span>
-                      </section>
-                      <section className="flex items-center gap-1 text-sm">
-                        <Image
-                          src={
-                            "https://img.icons8.com/fluency/18/engineering.png"
-                          }
-                          width={18}
-                          height={18}
-                          className="opacity-50"
-                          alt="Engineering"
-                        />
-                        <span className="text-muted dark:text-muted-dark">
-                          {t("Modern")}
-                        </span>
-                      </section>
-                    </section>
-                  </Card.Header>
-                  <Card.Body clasName={"text-center my-5"}>
-                    <p className="text-muted dark:text-muted-dark text-sm line-clamp-3">
-                      {t("Devops_Team_Description")}
-                    </p>
-                  </Card.Body>
-                  <Card.Footer>
-                    <Link href={"/teams/#devops"}>
-                      <Button
-                        type={"button"}
-                        variant={"primary-link"}
-                        className={"flex items-center gap-2 mx-auto py-2.5"}
-                      >
-                        <span>{t("See_the_team")}</span>
-                        <FontAwesomeIcon icon={faAngleRight} />
-                      </Button>
-                    </Link>
-                  </Card.Footer>
-                </Card>
-              </section>
+                  </section>
+                </Card.Header>
+                <Card.Body clasName={"text-center my-5"}>
+                  <p className="text-muted dark:text-muted-dark text-sm line-clamp-3">
+                    Our team, led by a Senior Software Engineer, is an expert in
+                    the field and has years of experience in the most up-to-date
+                    technologies.
+                  </p>
+                </Card.Body>
+                <Card.Footer>
+                  <Link href={"/teams/#backend"}>
+                    <Button
+                      type={"button"}
+                      variant={"primary-link"}
+                      className={"flex items-center gap-2 mx-auto py-2.5"}
+                    >
+                      <span>{t("See_the_team")}</span>
+                      <FontAwesomeIcon icon={faAngleRight} />
+                    </Button>
+                  </Link>
+                </Card.Footer>
+              </Card>
             </section>
-          </Container>
+            <section className="min-w-72 snap-center snap-always">
+              <Card
+                className={
+                  "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-4"
+                }
+              >
+                <Card.Header clasName={"text-center"}>
+                  <h1 className="text-primary text-xl mb-2">
+                    {t("Frontend_Team")}
+                  </h1>
+                  <section className="flex items-center justify-evenly">
+                    <section className="flex items-center gap-1 text-sm">
+                      <Image
+                        src={
+                          "https://img.icons8.com/fluency/18/graduation-cap.png"
+                        }
+                        width={18}
+                        height={18}
+                        className="opacity-50"
+                        alt="Graduation"
+                      />
+                      <span className="text-muted dark:text-muted-dark">
+                        {t("Expert")}
+                      </span>
+                    </section>
+                    <section className="flex items-center gap-1 text-sm">
+                      <Image
+                        src={"https://img.icons8.com/color/18/idea.png"}
+                        width={18}
+                        height={18}
+                        className="opacity-50"
+                        alt="Idea"
+                      />
+                      <span className="text-muted dark:text-muted-dark">
+                        {t("Creative")}
+                      </span>
+                    </section>
+                    <section className="flex items-center gap-1 text-sm">
+                      <Image
+                        src={
+                          "https://img.icons8.com/fluency/18/engineering.png"
+                        }
+                        width={18}
+                        height={18}
+                        className="opacity-50"
+                        alt="Engineering"
+                      />
+                      <span className="text-muted dark:text-muted-dark">
+                        {t("Modern")}
+                      </span>
+                    </section>
+                  </section>
+                </Card.Header>
+                <Card.Body clasName={"text-center my-5"}>
+                  <p className="text-muted dark:text-muted-dark text-sm line-clamp-3">
+                    {t("Frontend_Team_Description")}
+                  </p>
+                </Card.Body>
+                <Card.Footer>
+                  <Link href={"/teams/#frontend"}>
+                    <Button
+                      type={"button"}
+                      variant={"primary-link"}
+                      className={"flex items-center gap-2 mx-auto py-2.5"}
+                    >
+                      <span>{t("See_the_team")}</span>
+                      <FontAwesomeIcon icon={faAngleRight} />
+                    </Button>
+                  </Link>
+                </Card.Footer>
+              </Card>
+            </section>
+            <section className="min-w-72 snap-center snap-always">
+              <Card
+                className={
+                  "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-4"
+                }
+              >
+                <Card.Header clasName={"text-center"}>
+                  <h1 className="text-primary text-xl mb-2">
+                    {t("Mobile_Team")}
+                  </h1>
+                  <section className="flex items-center justify-evenly">
+                    <section className="flex items-center gap-1 text-sm">
+                      <Image
+                        src={
+                          "https://img.icons8.com/fluency/18/graduation-cap.png"
+                        }
+                        width={18}
+                        height={18}
+                        className="opacity-50"
+                        alt="Graduation"
+                      />
+                      <span className="text-muted dark:text-muted-dark">
+                        {t("Expert")}
+                      </span>
+                    </section>
+                    <section className="flex items-center gap-1 text-sm">
+                      <Image
+                        src={"https://img.icons8.com/color/18/idea.png"}
+                        width={18}
+                        height={18}
+                        className="opacity-50"
+                        alt="Idea"
+                      />
+                      <span className="text-muted dark:text-muted-dark">
+                        {t("Creative")}
+                      </span>
+                    </section>
+                    <section className="flex items-center gap-1 text-sm">
+                      <Image
+                        src={
+                          "https://img.icons8.com/fluency/18/engineering.png"
+                        }
+                        width={18}
+                        height={18}
+                        className="opacity-50"
+                        alt="Engineering"
+                      />
+                      <span className="text-muted dark:text-muted-dark">
+                        {t("Modern")}
+                      </span>
+                    </section>
+                  </section>
+                </Card.Header>
+                <Card.Body clasName={"text-center my-5"}>
+                  <p className="text-muted dark:text-muted-dark text-sm line-clamp-3">
+                    {t("Mobile_Team_Description")}
+                  </p>
+                </Card.Body>
+                <Card.Footer>
+                  <Link href={"/teams/#mobile"}>
+                    <Button
+                      type={"button"}
+                      variant={"primary-link"}
+                      className={"flex items-center gap-2 mx-auto py-2.5"}
+                    >
+                      <span>{t("See_the_team")}</span>
+                      <FontAwesomeIcon icon={faAngleRight} />
+                    </Button>
+                  </Link>
+                </Card.Footer>
+              </Card>
+            </section>
+            <section className="min-w-72 snap-center snap-always">
+              <Card
+                className={
+                  "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-4"
+                }
+              >
+                <Card.Header clasName={"text-center"}>
+                  <h1 className="text-primary text-xl mb-2">
+                    {t("Social_Media_Team")}
+                  </h1>
+                  <section className="flex items-center justify-evenly">
+                    <section className="flex items-center gap-1 text-sm">
+                      <Image
+                        src={
+                          "https://img.icons8.com/fluency/18/graduation-cap.png"
+                        }
+                        width={18}
+                        height={18}
+                        className="opacity-50"
+                        alt="Graduation"
+                      />
+                      <span className="text-muted dark:text-muted-dark">
+                        {t("Expert")}
+                      </span>
+                    </section>
+                    <section className="flex items-center gap-1 text-sm">
+                      <Image
+                        src={"https://img.icons8.com/color/18/idea.png"}
+                        width={18}
+                        height={18}
+                        className="opacity-50"
+                        alt="Idea"
+                      />
+                      <span className="text-muted dark:text-muted-dark">
+                        {t("Creative")}
+                      </span>
+                    </section>
+                    <section className="flex items-center gap-1 text-sm">
+                      <Image
+                        src={
+                          "https://img.icons8.com/fluency/18/engineering.png"
+                        }
+                        width={18}
+                        height={18}
+                        className="opacity-50"
+                        alt="Engineering"
+                      />
+                      <span className="text-muted dark:text-muted-dark">
+                        {t("Modern")}
+                      </span>
+                    </section>
+                  </section>
+                </Card.Header>
+                <Card.Body clasName={"text-center my-5"}>
+                  <p className="text-muted dark:text-muted-dark text-sm line-clamp-3">
+                    {t("Social_Media_Team_Description")}
+                  </p>
+                </Card.Body>
+                <Card.Footer>
+                  <Link href={"/teams/#social"}>
+                    <Button
+                      type={"button"}
+                      variant={"primary-link"}
+                      className={"flex items-center gap-2 mx-auto py-2.5"}
+                    >
+                      <span>{t("See_the_team")}</span>
+                      <FontAwesomeIcon icon={faAngleRight} />
+                    </Button>
+                  </Link>
+                </Card.Footer>
+              </Card>
+            </section>
+            <section className="min-w-72 snap-center snap-always">
+              <Card
+                className={
+                  "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-4"
+                }
+              >
+                <Card.Header clasName={"text-center"}>
+                  <h1 className="text-primary text-xl mb-2">
+                    {t("Design_Team")}
+                  </h1>
+                  <section className="flex items-center justify-evenly">
+                    <section className="flex items-center gap-1 text-sm">
+                      <Image
+                        src={
+                          "https://img.icons8.com/fluency/18/graduation-cap.png"
+                        }
+                        width={18}
+                        height={18}
+                        className="opacity-50"
+                        alt="Graduation"
+                      />
+                      <span className="text-muted dark:text-muted-dark">
+                        {t("Expert")}
+                      </span>
+                    </section>
+                    <section className="flex items-center gap-1 text-sm">
+                      <Image
+                        src={"https://img.icons8.com/color/18/idea.png"}
+                        width={18}
+                        height={18}
+                        className="opacity-50"
+                        alt="Idea"
+                      />
+                      <span className="text-muted dark:text-muted-dark">
+                        {t("Creative")}
+                      </span>
+                    </section>
+                    <section className="flex items-center gap-1 text-sm">
+                      <Image
+                        src={
+                          "https://img.icons8.com/fluency/18/engineering.png"
+                        }
+                        width={18}
+                        height={18}
+                        className="opacity-50"
+                        alt="Engineering"
+                      />
+                      <span className="text-muted dark:text-muted-dark">
+                        {t("Modern")}
+                      </span>
+                    </section>
+                  </section>
+                </Card.Header>
+                <Card.Body clasName={"text-center my-5"}>
+                  <p className="text-muted dark:text-muted-dark text-sm line-clamp-3">
+                    {t("Design_Team_Description")}
+                  </p>
+                </Card.Body>
+                <Card.Footer>
+                  <Link href={"/teams/#design"}>
+                    <Button
+                      type={"button"}
+                      variant={"primary-link"}
+                      className={"flex items-center gap-2 mx-auto py-2.5"}
+                    >
+                      <span>{t("See_the_team")}</span>
+                      <FontAwesomeIcon icon={faAngleRight} />
+                    </Button>
+                  </Link>
+                </Card.Footer>
+              </Card>
+            </section>
+            <section className="min-w-72 snap-center snap-always">
+              <Card
+                className={
+                  "bg-no-repeat bg-cover bg-opacity-0 bg-light shadow border dark:border-none dark:shadow-xl dark:bg-dark rounded-lg !py-4"
+                }
+              >
+                <Card.Header clasName={"text-center"}>
+                  <h1 className="text-primary text-xl mb-2">
+                    {t("Devops_Team")}
+                  </h1>
+                  <section className="flex items-center justify-evenly">
+                    <section className="flex items-center gap-1 text-sm">
+                      <Image
+                        src={
+                          "https://img.icons8.com/fluency/18/graduation-cap.png"
+                        }
+                        width={18}
+                        height={18}
+                        className="opacity-50"
+                        alt="Graduation"
+                      />
+                      <span className="text-muted dark:text-muted-dark">
+                        {t("Expert")}
+                      </span>
+                    </section>
+                    <section className="flex items-center gap-1 text-sm">
+                      <Image
+                        src={"https://img.icons8.com/color/18/idea.png"}
+                        width={18}
+                        height={18}
+                        className="opacity-50"
+                        alt="Idea"
+                      />
+                      <span className="text-muted dark:text-muted-dark">
+                        {t("Creative")}
+                      </span>
+                    </section>
+                    <section className="flex items-center gap-1 text-sm">
+                      <Image
+                        src={
+                          "https://img.icons8.com/fluency/18/engineering.png"
+                        }
+                        width={18}
+                        height={18}
+                        className="opacity-50"
+                        alt="Engineering"
+                      />
+                      <span className="text-muted dark:text-muted-dark">
+                        {t("Modern")}
+                      </span>
+                    </section>
+                  </section>
+                </Card.Header>
+                <Card.Body clasName={"text-center my-5"}>
+                  <p className="text-muted dark:text-muted-dark text-sm line-clamp-3">
+                    {t("Devops_Team_Description")}
+                  </p>
+                </Card.Body>
+                <Card.Footer>
+                  <Link href={"/teams/#devops"}>
+                    <Button
+                      type={"button"}
+                      variant={"primary-link"}
+                      className={"flex items-center gap-2 mx-auto py-2.5"}
+                    >
+                      <span>{t("See_the_team")}</span>
+                      <FontAwesomeIcon icon={faAngleRight} />
+                    </Button>
+                  </Link>
+                </Card.Footer>
+              </Card>
+            </section>
+          </section>
         </section>
         <section id="services" className="hidden lg:block relative my-48">
           <Container>
