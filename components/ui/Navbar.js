@@ -144,7 +144,7 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 w-full py-6 ${navbarVariant} z-50 transition-all ${Poppins_400.className}`}
+        className={`fixed top-0 left-0 w-full py-6 ${navbarVariant} z-10 transition-all ${Poppins_400.className}`}
       >
         <Container className={"flex lg:grid lg:grid-cols-12 items-center"}>
           <section className="lg:col-span-2">

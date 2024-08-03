@@ -9,7 +9,9 @@ import {
   faGears,
   faHome,
   faInfoCircle,
+  faMoon,
   faProjectDiagram,
+  faSun,
   faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
@@ -27,7 +29,7 @@ import { createPortal } from "react-dom";
 
 const SidebarHeader = ({ handleSidebar }) => {
   return (
-    <section className="offcanvas-header flex items-center sticky top-0 py-6 p-4 bg-black shadow-sm z-50">
+    <section className="offcanvas-header bg-white dark:bg-black flex items-center sticky top-0 py-6 p-4 z-10 shadow-sm mb-8">
       <Link
         href={"/"}
         // className="text-primary text-2xl font-semibold"
@@ -121,33 +123,37 @@ const SidebarBody = ({ handleSidebar }) => {
           <Link
             href={"https://www.instagram.com/911development/"}
             target="_blank"
-            className="col-span-6 bg-dark shadow-sm rounded py-2 px-4"
+            className="col-span-6 bg-light dark:bg-dark shadow-sm rounded py-2 px-4"
           >
             <section className="flex items-center gap-2 bg-gradient-to-r from-purple-500 to-orange-500 bg-clip-text text-transparent rounded mb-1">
               <FontAwesomeIcon icon={faInstagram} className="text-purple-500" />
               <span className="font-semibold">Instagram</span>
             </section>
-            <p className="text-xs text-muted-dark">{t("see_on_instagram")}</p>
+            <p className="text-xs text-muted dark:text-muted-dark">
+              {t("see_on_instagram")}
+            </p>
           </Link>
           <Link
             href={"https://www.linkedin.com/company/911development/"}
             target="_blank"
-            className="col-span-6 bg-dark shadow-sm rounded py-2 px-4"
+            className="col-span-6 bg-light dark:bg-dark shadow-sm rounded py-2 px-4"
           >
             <section className="flex items-center gap-2 bg-gradient-to-r from-blue-800 to-blue-100 bg-clip-text text-transparent rounded mb-1">
               <FontAwesomeIcon icon={faLinkedin} className="text-blue-500" />
               <span className="font-semibold">LinkedIn</span>
             </section>
-            <p className="text-xs text-muted-dark">{t("see_on_linkedin")}</p>
+            <p className="text-xs text-muted dark:text-muted-dark">
+              {t("see_on_linkedin")}
+            </p>
           </Link>
         </section>
-        <hr className="border-gray-500 my-8" />
-        <ul className="space-y-2">
+        <hr className="border-gray-300 dark:border-gray-700 my-8" />
+        <ul className="space-y-3">
           <li>
             <Link
               href={"/"}
               className={`flex items-center gap-2 rounded py-3 px-4 ${
-                pathname === "/" && "bg-dark text-primary"
+                pathname === "/" && "bg-light dark:bg-dark text-primary"
               }`}
               onClick={() => handleSidebar()}
             >
@@ -159,7 +165,7 @@ const SidebarBody = ({ handleSidebar }) => {
             <Link
               href={"/about"}
               className={`flex items-center gap-2 rounded py-3 px-4 ${
-                pathname === "/about" && "bg-dark text-primary"
+                pathname === "/about" && "bg-light dark:bg-dark text-primary"
               }`}
               onClick={() => handleSidebar()}
             >
@@ -168,7 +174,7 @@ const SidebarBody = ({ handleSidebar }) => {
             </Link>
           </li>
           <li
-            className="flex items-center gap-2 rounded active:text-primary active:bg-dark py-3 px-4"
+            className="flex items-center gap-2 rounded active:text-primary active:bg-light active:dark:bg-dark py-3 px-4"
             onClick={function () {
               setServicesDisplay("block");
               setLanguagesDisplay("none");
@@ -184,7 +190,7 @@ const SidebarBody = ({ handleSidebar }) => {
             <Link
               href={"/teams"}
               className={`flex items-center gap-2 rounded py-3 px-4 ${
-                pathname === "/teams" && "bg-dark text-primary"
+                pathname === "/teams" && "bg-light dark:bg-dark text-primary"
               }`}
               onClick={() => {
                 dispatch(intersectingSliceActions.setIntersectingOnDark(false));
@@ -199,7 +205,7 @@ const SidebarBody = ({ handleSidebar }) => {
             <Link
               href={"/projects"}
               className={`flex items-center gap-2 rounded py-3 px-4 ${
-                pathname === "/projects" && "bg-dark text-primary"
+                pathname === "/projects" && "bg-light dark:bg-dark text-primary"
               }`}
               onClick={() => {
                 dispatch(intersectingSliceActions.setIntersectingOnDark(false));
@@ -211,26 +217,20 @@ const SidebarBody = ({ handleSidebar }) => {
             </Link>
           </li>
         </ul>
-        <hr className="border-gray-500 mt-8 mb-4" />
+        <hr className="border-gray-300 dark:border-gray-700 my-8" />
         <ul className="space-y-3">
           <li
-            className="flex items-center gap-1 rounded bg-dark py-3 px-4"
+            className="flex items-center gap-3 rounded bg-light dark:bg-dark py-3 px-4"
             onClick={() => {
               handleSwitchTheme();
               handleSidebar();
             }}
           >
-            <Image
-              src={themeIcon}
-              width={96}
-              height={96}
-              className="w-9 cursor-pointer rounded transition-all p-1"
-              alt="Theme Icon"
-            />
+            <FontAwesomeIcon icon={faMoon} size="lg" />
             <span>{t("switch_theme")}</span>
           </li>
           <li
-            className="flex items-center justify-between rounded bg-dark py-3 px-4"
+            className="flex items-center gap-3 justify-between rounded bg-light dark:bg-dark py-3 px-4"
             onClick={() => {
               setLanguagesDisplay("block");
               setServicesDisplay("none");
@@ -238,17 +238,19 @@ const SidebarBody = ({ handleSidebar }) => {
               handleNextSidebarBodyPage();
             }}
           >
-            <section className="flex items-center gap-3 px-2">
+            <section className="flex items-center gap-3">
               <FontAwesomeIcon icon={faEarth} size="lg" />
-              <span>{t("switch_language")}</span>
+              <span>{t("Language")}</span>
             </section>
             <FontAwesomeIcon icon={faAngleRight} />
           </li>
         </ul>
-        <hr className="border-gray-500 mt-4 mb-8" />
+        <hr className="border-gray-300 dark:border-gray-700 my-8" />
         <section>
           <h1 className="font-semibold mb-2">{t("Contact_Us")}</h1>
-          <p className="mb-4">{t("Contact_Us_Description")}</p>
+          <p className="text-muted dark:text-muted-dark mb-4">
+            {t("Contact_Us_Description")}
+          </p>
           <Link href={"/contact"}>
             <Button
               type={"button"}
@@ -271,7 +273,7 @@ const SidebarBody = ({ handleSidebar }) => {
         className="min-w-full py-6 px-4"
       >
         <section
-          className="flex items-center gap-1 mb-8"
+          className="flex items-center gap-1 text-primary mb-8"
           onClick={handlePreviousSidebarBodyPage}
         >
           <FontAwesomeIcon icon={faAngleLeft} size="lg" />
@@ -279,14 +281,14 @@ const SidebarBody = ({ handleSidebar }) => {
         </section>
         <section>
           <Link href={"/#services"} scroll={false} onClick={handleSidebar}>
-            <Card className="rounded shadow !py-4 mb-8 bg-dark">
+            <Card className="rounded shadow !py-4 mb-8 bg-light dark:bg-dark">
               <Card.Header clasName={"mb-4"}>
                 <h1 className="text-primary text-xl">{t("Design")}</h1>
               </Card.Header>
               <Card.Body clasName={"grid grid-cols-12"}>
                 <section className="col-span-6">
-                  <ul className="text-muted-dark space-y-2">
-                    <li className="inline-block bg-primary-darkest text-light rounded-md">
+                  <ul className="text-muted dark:text-muted-dark space-y-2">
+                    <li className="inline-block bg-primary dark:bg-primary-darkest text-light rounded-md">
                       <span className="block px-1 text-nowrap">
                         {t("Web_Design_Service")}
                       </span>
@@ -294,13 +296,13 @@ const SidebarBody = ({ handleSidebar }) => {
                     <li className="text-nowrap">
                       {t("Mobile_Design_Service")}
                     </li>
-                    <li className="inline-block bg-primary-darkest text-light rounded-md">
+                    <li className="inline-block bg-primary dark:bg-primary-darkest text-light rounded-md">
                       <span className="block px-1 text-nowrap">UI / UX</span>
                     </li>
                   </ul>
                 </section>
                 <section className="col-span-6">
-                  <ul className="text-muted-dark space-y-2">
+                  <ul className="text-muted dark:text-muted-dark space-y-2">
                     <li>{t("Logo_Design_Service")}</li>
                     <li>Photoshop</li>
                   </ul>
@@ -309,22 +311,22 @@ const SidebarBody = ({ handleSidebar }) => {
             </Card>
           </Link>
           <Link href={"/#services"} scroll={false} onClick={handleSidebar}>
-            <Card className="rounded shadow !py-4 mb-8 bg-dark">
+            <Card className="rounded shadow !py-4 mb-8 bg-light dark:bg-dark">
               <Card.Header clasName={"mb-4"}>
                 <h1 className="text-primary text-xl">{t("Development")}</h1>
               </Card.Header>
               <Card.Body clasName={"grid grid-cols-12"}>
                 <section className="col-span-6">
-                  <ul className="text-muted-dark space-y-2">
+                  <ul className="text-muted dark:text-muted-dark space-y-2">
                     <li>Website</li>
                     <li>Frontend</li>
                     <li>Backend</li>
                   </ul>
                 </section>
                 <section className="col-span-6">
-                  <ul className="text-muted-dark space-y-2">
+                  <ul className="text-muted dark:text-muted-dark space-y-2">
                     <li>{t("Mobile_Apps")}</li>
-                    <li className="inline-block bg-primary-darkest text-light rounded-md">
+                    <li className="inline-block bg-primary dark:bg-primary-darkest text-light rounded-md">
                       <span className="block px-1 text-nowrap">
                         {t("Web_Apps")}
                       </span>
@@ -336,14 +338,14 @@ const SidebarBody = ({ handleSidebar }) => {
             </Card>
           </Link>
           <Link href={"/#services"} scroll={false} onClick={handleSidebar}>
-            <Card className="rounded shadow !py-4 bg-dark">
+            <Card className="rounded shadow !py-4 bg-light dark:bg-dark">
               <Card.Header clasName={"mb-4"}>
                 <h1 className="text-primary text-xl">{t("Others")}</h1>
               </Card.Header>
               <Card.Body clasName={"grid grid-cols-12"}>
-                <ul className="text-muted-dark space-y-4 ms-auto">
+                <ul className="text-muted dark:text-muted-dark space-y-4 ms-auto">
                   <li className="text-nowrap">{t("Social_Media")}</li>
-                  <li className="inline-block bg-primary-darkest text-light rounded-md">
+                  <li className="inline-block bg-primary dark:bg-primary-darkest text-light rounded-md">
                     <span className="block px-1 text-nowrap">
                       {t("Digital_Marketing")}
                     </span>
@@ -364,7 +366,7 @@ const SidebarBody = ({ handleSidebar }) => {
         className="min-w-full py-6 px-4"
       >
         <section
-          className="flex items-center gap-1 mb-8 px-3"
+          className="flex items-center gap-1 text-primary mb-8 px-3"
           onClick={handlePreviousSidebarBodyPage}
         >
           <FontAwesomeIcon icon={faAngleLeft} size="lg" />
@@ -373,7 +375,7 @@ const SidebarBody = ({ handleSidebar }) => {
         <ul className="space-y-6">
           <li
             className={`flex items-center justify-between rounded py-3 px-4 ${
-              currentLanguage === "en" && "bg-dark text-primary"
+              currentLanguage === "en" && "bg-light dark:bg-dark text-primary"
             }`}
             onClick={() => {
               handleSwitchLanguage("en");
@@ -386,7 +388,7 @@ const SidebarBody = ({ handleSidebar }) => {
           </li>
           <li
             className={`flex items-center justify-between rounded py-3 px-4 ${
-              currentLanguage === "tr" && "bg-dark text-primary"
+              currentLanguage === "tr" && "bg-ligt dark:bg-dark text-primary"
             }`}
             onClick={() => {
               handleSwitchLanguage("tr");
@@ -418,9 +420,12 @@ const SidebarFooter = () => {
 const Sidebar = ({ show, handleSidebar }) => {
   if (typeof document === "undefined") return;
 
+  const themeState = useSelector((state) => state.theme);
+
+  const [currentTheme, setCurrentTheme] = useState("");
   const [display, setDisplay] = useState("none");
 
-  console.log("a");
+  const { theme } = themeState;
 
   useEffect(
     function () {
@@ -444,15 +449,26 @@ const Sidebar = ({ show, handleSidebar }) => {
     return () => (document.body.style.overflow = "auto");
   }, [show]);
 
+  useEffect(
+    function () {
+      setCurrentTheme(theme);
+    },
+    [theme]
+  );
+
   return createPortal(
-    <div id="sidebar-overlay" style={{ display }}>
+    <div
+      id="sidebar-overlay"
+      className="fixed top-0 left-0 w-screen h-screen overflow-y-scroll z-50"
+      style={{ display }}
+    >
       <motion.div
         style={{ display }}
         initial={{ translateX: "100%" }}
         animate={{
           translateX: show ? "0%" : "100%",
         }}
-        className="offcanvas bg-black text-white fixed w-screen h-screen flex flex-col top-0 overflow-y-scroll select-none z-50"
+        className="offcanvas bg-white dark:bg-black flex flex-col select-none text-dark dark:text-white"
       >
         <SidebarHeader handleSidebar={handleSidebar} />
         <SidebarBody handleSidebar={handleSidebar} />
