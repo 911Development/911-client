@@ -139,8 +139,6 @@ const Navbar = () => {
     [isHeaderIntersecting]
   );
 
-  // bg-white dark:bg-black
-
   return (
     <>
       <nav

@@ -31,13 +31,13 @@ const HeaderDropdown = ({ show }) => {
             <section className="grid grid-cols-12 gap-3">
               <section className="col-span-6">
                 <ul className="text-muted dark:text-muted-dark space-y-4">
-                  <li className="inline-block bg-blue-100 dark:bg-primary-darkest text-primary-darker dark:text-light rounded-full">
+                  <li className="inline-block  text-primary-darker dark:text-light rounded-full">
                     <span className="block px-1 text-nowrap">
                       {t("Web_Design_Service")}
                     </span>
                   </li>
                   <li className="text-nowrap">{t("Mobile_Design_Service")}</li>
-                  <li className="inline-block bg-blue-100 dark:bg-primary-darkest text-primary-darker dark:text-light rounded-full">
+                  <li className="inline-block  text-primary-darker dark:text-light rounded-full">
                     <span className="block px-1 text-nowrap">UI / UX</span>
                   </li>
                 </ul>
@@ -63,7 +63,7 @@ const HeaderDropdown = ({ show }) => {
               <section className="col-span-6">
                 <ul className="text-muted dark:text-muted-dark space-y-4">
                   <li>{t("Mobile_Apps")}</li>
-                  <li className="inline-block bg-blue-100 dark:bg-primary-darkest text-primary-darker dark:text-light rounded-full">
+                  <li className="inline-block  text-primary-darker dark:text-light rounded-full">
                     <span className="block px-1 text-nowrap">
                       {t("Web_Apps")}
                     </span>
@@ -79,7 +79,7 @@ const HeaderDropdown = ({ show }) => {
             </h1>
             <ul className="text-muted dark:text-muted-dark space-y-4 ms-auto">
               <li className="text-nowrap">{t("Social_Media")}</li>
-              <li className="inline-block bg-blue-100 dark:bg-primary-darkest text-primary-darker dark:text-light rounded-full">
+              <li className="inline-block  text-primary-darker dark:text-light rounded-full">
                 <span className="block px-1 text-nowrap">
                   {t("Digital_Marketing_Service")}
                 </span>

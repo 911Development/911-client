@@ -612,6 +612,104 @@ const TeamsPage = ({ meta }) => {
               </Card>
             </motion.section>
           </section>
+          <section
+            id="digital-marketing"
+            className="lg:grid lg:grid-cols-12 mb-48"
+          >
+            <motion.section
+              initial={{ x: "-100%" }}
+              whileInView={{ x: ["-100%", "0%"] }}
+              transition={{ ease: "easeOut", duration: 0.5 }}
+              viewport={{ once: true }}
+              className="lg:col-span-6"
+            >
+              <Card>
+                <Card.Header>
+                  <div
+                    className="rounded-3xl shadow-2xl p-1 mb-8"
+                    style={{ width: "96px", height: "96px" }}
+                  >
+                    <Image
+                      src={
+                        "https://img.icons8.com/avantgarde/128/commercial.png"
+                      }
+                      width={128}
+                      height={128}
+                      alt="Mobile"
+                    />
+                  </div>
+                  <h1 className="text-3xl text-primary mb-3">
+                    {t("Digital_Marketing")}
+                  </h1>
+                  <section className="flex items-center justify-start gap-4">
+                    <section className="flex items-center gap-1 text-sm">
+                      <Image
+                        src={
+                          "https://img.icons8.com/fluency/18/graduation-cap.png"
+                        }
+                        width={18}
+                        height={18}
+                        className="opacity-50"
+                        alt="Graduation"
+                      />
+                      <span className="text-muted dark:text-muted-dark">
+                        {t("Expert")}
+                      </span>
+                    </section>
+                    <section className="flex items-center gap-1 text-sm">
+                      <Image
+                        src={"https://img.icons8.com/color/18/idea.png"}
+                        width={18}
+                        height={18}
+                        className="opacity-50"
+                        alt="Idea"
+                      />
+                      <span className="text-muted dark:text-muted-dark">
+                        {t("Creative")}
+                      </span>
+                    </section>
+                    <section className="flex items-center gap-1 text-sm">
+                      <Image
+                        src={
+                          "https://img.icons8.com/fluency/18/engineering.png"
+                        }
+                        width={18}
+                        height={18}
+                        className="opacity-50"
+                        alt="Engineering"
+                      />
+                      <span className="text-muted dark:text-muted-dark">
+                        {t("Modern")}
+                      </span>
+                    </section>
+                  </section>
+                </Card.Header>
+                <Card.Body clasName={"my-3"}>
+                  <p
+                    className={`text-muted dark:text-muted-dark text-sm lg:w-3/4 ${Poppins_300.className}`}
+                  >
+                    {t("Digital_Marketing_Service_Description")}
+                  </p>
+                </Card.Body>
+              </Card>
+            </motion.section>
+            <motion.section
+              initial={{ x: "100%" }}
+              whileInView={{ x: ["100%", "0%"] }}
+              transition={{ ease: "easeOut", duration: 0.5 }}
+              viewport={{ once: true }}
+              className="lg:col-span-6"
+            >
+              <Image
+                src={"/icons/teams/digital-marketing.png"}
+                width={1080}
+                height={720}
+                className="rounded-3xl shadow-2xl w-full"
+                alt="Frontend"
+                priority
+              />
+            </motion.section>
+          </section>
         </Container>
       </section>
     </>
