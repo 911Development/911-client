@@ -97,8 +97,8 @@ const Footer = () => {
               </motion.section>
               <section className="absolute hidden lg:block bottom-10 left-10">
                 <Image
-                  src={"/logo.png"}
-                  className="opacity-30 w-32"
+                  src={"/logo.dark.png"}
+                  className="opacity-10 w-32"
                   width={120}
                   height={120}
                   alt="Watermark"
