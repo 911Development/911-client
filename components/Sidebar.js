@@ -36,10 +36,10 @@ const SidebarHeader = ({ handleSidebar }) => {
         onClick={handleSidebar}
       >
         <Image
-          src={"/logo.png"}
+          src={"/logo.light.png"}
           width={350}
           height={234}
-          className="w-16"
+          className="w-12"
           alt="Logo"
         />
       </Link>
