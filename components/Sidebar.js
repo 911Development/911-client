@@ -459,7 +459,7 @@ const Sidebar = ({ show, handleSidebar }) => {
   return createPortal(
     <div
       id="sidebar-overlay"
-      className="fixed top-0 left-0 w-screen h-screen overflow-y-scroll z-50"
+      className="fixed top-0 left-0 w-screen h-[100svh] overflow-y-scroll z-50"
       style={{ display }}
     >
       <motion.div

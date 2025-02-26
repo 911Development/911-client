@@ -186,7 +186,11 @@ const Navbar = () => {
               onMouseEnter={handleHeaderDropdown}
               onMouseLeave={handleHeaderDropdown}
             >
-              <Link href={"/#services"} scroll={false}>
+              <Link
+                href={"https://dismas-client.vercel.app"}
+                target="_blank"
+                scroll={false}
+              >
                 <span className="flex items-center gap-2 relative">
                   <span className="cursor-pointer">{t("Services")}</span>
                   <FontAwesomeIcon icon={faAngleDown} />
