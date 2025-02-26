@@ -1550,18 +1550,41 @@ export default function Home({ meta }) {
             </section>
           </section>
         </section>
-        <section id="services" className="hidden lg:block relative my-48">
+        <section id="services" className="relative my-48">
           <Container>
-            <h1 className="text-center text-primary font-semibold text-2xl mb-4">
+            <h1 className="text-center text-primary font-semibold text-2xl mb-12">
               {t("Our_Services")}
             </h1>
-            <section
-              className="flex items-stretch flex-nowrap overflow-x-hidden mb-8 select-none"
+            <Link
+              href={"https://dismas-client.vercel.app"}
+              target="_blank"
+              className="group flex items-start justify-center gap-6 mb-8"
               style={{
                 scrollbarWidth: "none",
               }}
             >
-              <motion.section
+              <section>
+                <div className="w-[72px] h-[72px] bg-black p-3 rounded-full overflow-hidden">
+                  <img
+                    src="/dismas.png"
+                    className="w-full h-full shadow"
+                    alt="Dismas"
+                  />
+                </div>
+              </section>
+              <section>
+                <Link
+                  href={"https://dismas-client.vercel.app"}
+                  target="_blank"
+                  className="text-2xl block mb-1 font-bold mx-auto tracking-widest group-hover:underline transition-all cursor-pointer"
+                >
+                  DISMAS STUDIO
+                </Link>
+                <p className="text-muted">
+                  DISMAS is TRNC based design <br /> and Development Studio
+                </p>
+              </section>
+              {/* <motion.section
                 animate={{
                   translateX: `${carouselState.service * -100}%`,
                 }}
@@ -1820,9 +1843,9 @@ export default function Home({ meta }) {
                   onClick={() => carouselStateDispatch({ type: "nextService" })}
                   alt="Next"
                 />
-              </span>
-            </section>
-            <section className="flex items-center justify-center gap-2">
+              </span> */}
+            </Link>
+            {/* <section className="flex items-center justify-center gap-2">
               <span
                 className={`inline-block ${
                   carouselState.service === 0 ? "bg-primary" : "bg-muted"
@@ -1837,10 +1860,10 @@ export default function Home({ meta }) {
                 } rounded-full cursor-pointer p-1.5 transition-all`}
                 onClick={() => carouselStateDispatch({ type: "nextService" })}
               />
-            </section>
+            </section> */}
           </Container>
         </section>
-        <section className="block lg:hidden relative my-48">
+        {/* <section className="block lg:hidden relative my-48">
           <Container>
             <h1 className="text-center text-primary font-semibold text-2xl mb-4">
               {t("Our_Services")}
@@ -2087,7 +2110,7 @@ export default function Home({ meta }) {
               </motion.section>
             </section>
           </Container>
-        </section>
+        </section> */}
         <Quote />
         <section className="bg-black dark:!bg-transparent text-white my-48 py-24 lg:py-32">
           <Container>

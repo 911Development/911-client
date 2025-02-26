@@ -16,6 +16,8 @@ const HeaderDropdown = ({ show }) => {
     return () => clearTimeout(identifier);
   }, [show]);
 
+  // console.log("a");
+
   return (
     <div style={{ display: display }}>
       <motion.div
